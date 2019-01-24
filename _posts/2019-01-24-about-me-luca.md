@@ -9,6 +9,8 @@ resources:
 type: Post
 ---
 
+## About me
+
 Hello everyone, my name is Luca Iannario and I am part of the [Developer Advocacy team within Oracle](https://medium.com/@juarezjunior/whats-is-a-developer-advocate-f07fb671135), based in Dublin (Ireland).
 
 My background is in Computer Engineering (MSc) and I started my career as a Software Engineer building enterprise distributed and mobile applications while living in Rome (Italy). Since 2015 I live in Dublin where I started working for a Pharma company as Solutions Architect, leading a team of developers and operations sparse across the globe, working mainly on open-source technologies and cloud platforms. This opportunity allowed me to work more closely with developers coming from different communities, backgrounds, and cultures, understanding their needs and, most importantly, collaborating with them to find smart solutions for challenging projects.
