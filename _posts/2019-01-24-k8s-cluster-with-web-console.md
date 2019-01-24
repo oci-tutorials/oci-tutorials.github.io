@@ -3,7 +3,7 @@ date: 2019-01-24
 title: Deploying a Kubernetes Cluster through a UI
 description: How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.
 categories:
-  - Miscellanous
+  - Kubernetes
 resources:
   - name: "What is OCI?"
     link: https://cloud.oracle.com/en_US/iaas/getting-started
@@ -12,8 +12,8 @@ resources:
   - name: "Source code"
     link: https://github.com/oci-tutorials
 type: Post
-set: about-us
-set_order: 4
+set: Kubernetes
+set_order: 1
 ---
 
 ## Introduction
