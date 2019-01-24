@@ -1,3 +1,21 @@
+---
+date: 2019-01-24
+title: Kubernetes: deploying a cluster with a few clicks using a Web console
+description: In this tutorial, I am going to show you how it is possible to deploy a simple cluster on the cloud with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.
+categories:
+  - Miscellanous
+resources:
+  - name: "What is OCI?"
+    link: https://cloud.oracle.com/en_US/iaas/getting-started
+  - name: "Oracle Developer Community"
+    link: https://developers.oracle.com
+  - name: "Source code"
+    link: https://github.com/oci-tutorials
+type: Post
+set: about-us
+set_order: 4
+---
+
 ## Introduction
 
 [Kubernetes (aka k8s)](https://kubernetes.io) is an open-source system for orchestrating containerized applications. It allows automating deployment, scaling, and management of clusters for running cloud-native applications.
