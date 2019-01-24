@@ -1,5 +1,5 @@
 ---
-date: 2018-01-24
+date: 2019-01-24
 title: Raquel Teresa
 description: Introducing my role as a Developer Advocate to the community
 categories:
