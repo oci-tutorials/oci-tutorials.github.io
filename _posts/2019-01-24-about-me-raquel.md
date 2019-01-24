@@ -1,9 +1,9 @@
 ---
 date: 2018-01-24
-title: About me
+title: Raquel Teresa
 description: Introducing my role as a Developer Advocate to the community
 categories:
-  - Profiles
+  - Contributors
 resources:
   - name: "About me"
 type: Post
