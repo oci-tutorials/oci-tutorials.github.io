@@ -1,0 +1,7 @@
+---
+---
+{% assign community = site.posts | where: "type", "Community" | sort: "title" %}
+
+<h2>Community <span class="count">({{ community | size }})</span></h2>
+
+{% include listings.html listings=community %}

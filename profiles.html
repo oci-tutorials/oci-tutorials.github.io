@@ -1,0 +1,7 @@
+---
+---
+{% assign profiles = site.posts | where: "type", "Profile" | sort: "title" %}
+
+<h2>Profiles <span class="count">({{ profiles | size }})</span></h2>
+
+{% include listings.html listings=profiles %}

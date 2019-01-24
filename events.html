@@ -1,0 +1,7 @@
+---
+---
+{% assign event = site.posts | where: "type", "Event" | sort: "title" %}
+
+<h2>Events <span class="count">({{ events | size }})</span></h2>
+
+{% include listings.html listings=events %}

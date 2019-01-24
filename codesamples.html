@@ -1,0 +1,7 @@
+---
+---
+{% assign samples = site.posts | where: "type", "Sample" | sort: "title" %}
+
+<h2>Samples <span class="count">({{ samples | size }})</span></h2>
+
+{% include listings.html listings=samples %}

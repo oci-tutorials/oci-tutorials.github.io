@@ -14,3 +14,5 @@
   link: /feed.xml
   social_icon: RSS
   new_window: false
+- name: About Us
+  link: /profiles/

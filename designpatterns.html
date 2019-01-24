@@ -1,0 +1,7 @@
+---
+---
+{% assign patterns = site.posts | where: "type", "Pattern" | sort: "title" %}
+
+<h2>Patterns <span class="count">({{ patterns | size }})</span></h2>
+
+{% include listings.html listings=patterns %}
