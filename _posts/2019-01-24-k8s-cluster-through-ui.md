@@ -106,6 +106,8 @@ You can try the steps I described in this tutorial by [registering a free trial 
 
 [Try Oracle Cloud for 30 days!](https://myservices.us.oraclecloud.com/mycloud/signup)
 
+***
+
 > Luca Iannario [@liannario](https://twitter.com/liannario)
 >
 > Developer Advocate at Oracle. 
