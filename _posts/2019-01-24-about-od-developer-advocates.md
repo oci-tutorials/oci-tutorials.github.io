@@ -1,5 +1,5 @@
 ---
-date: 2018-01-24
+date: 2019-01-24
 title: Introduction to OD Developer Advocates
 video_id: 19B6Sc5iSyA
 description: A quick introduction the new advocacy team will focus on everything Cloud Native and OCI. 
