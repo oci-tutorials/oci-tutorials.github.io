@@ -1,7 +1,7 @@
 ---
 date: 2019-01-24
-title: Kubernetes: deploying a cluster with a few clicks using a Web console
-description: In this tutorial, I am going to show you how it is possible to deploy a simple cluster on the cloud with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.
+title: Deploying a Kubernetes Cluster through a UI
+description: How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.
 categories:
   - Miscellanous
 resources:

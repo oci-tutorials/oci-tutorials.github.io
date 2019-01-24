@@ -1,4 +1,146 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-24T14:17:18+00:00</updated><id>http://localhost:4000/</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">Introduction to OD Developer Advocates</title><link href="http://localhost:4000/miscellanous/about-od-developer-advocates/" rel="alternate" type="text/html" title="Introduction to OD Developer Advocates" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>http://localhost:4000/miscellanous/about-od-developer-advocates</id><content type="html" xml:base="http://localhost:4000/miscellanous/about-od-developer-advocates/">&lt;p&gt;##About Us&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://oci-tutorials.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://oci-tutorials.github.io//" rel="alternate" type="text/html" /><updated>2019-01-24T17:00:22+00:00</updated><id>https://oci-tutorials.github.io//</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">Deploying a Kubernetes Cluster through a UI</title><link href="https://oci-tutorials.github.io//miscellanous/k8s-cluster-with-web-console/" rel="alternate" type="text/html" title="Deploying a Kubernetes Cluster through a UI" /><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//miscellanous/k8s-cluster-with-web-console</id><content type="html" xml:base="https://oci-tutorials.github.io//miscellanous/k8s-cluster-with-web-console/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kubernetes.io&quot;&gt;Kubernetes (aka k8s)&lt;/a&gt; is an open-source system for orchestrating containerized applications. It allows automating deployment, scaling, and management of clusters for running cloud-native applications.
+In this tutorial, I am going to show you how it is possible to deploy a simple cluster on the cloud with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console. For this purpose, I am going to use the &lt;a href=&quot;https://cloud.oracle.com/containers/kubernetes-engine&quot;&gt;Container Engine for Kubernetes (OKE)&lt;/a&gt; available under the “Developer Services” section within “Compute” services.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1500/1*YF1njH6uihOxHXusOUnzRA.gif&quot; alt=&quot;Image&quot; title=&quot;Creating a k8s cluster with OKE&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;Before creating a new cluster, it is important that &lt;a href=&quot;https://docs.us-phoenix-1.oraclecloud.com/Content/ContEng/Concepts/contengprerequisites.htm&quot;&gt;all the prerequisites listed here are fulfilled&lt;/a&gt;. Assuming we are Administrators in the tenancy, it is necessary to create the following policy under the root compartment:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;allow service OKE to manage all-resources &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;tenancy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This policy will allow OKE to manage networks, instances, storage, load balancers, etc. on our behalf.&lt;/p&gt;
+
+&lt;p&gt;For this tutorial, we also need to have &lt;a href=&quot;https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm&quot;&gt;OCI CLI&lt;/a&gt; and &lt;a href=&quot;https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengaccessingclusterkubectl.htminstalled&quot;&gt;kubectl&lt;/a&gt; on our local machine.&lt;/p&gt;
+
+&lt;h2 id=&quot;deploying-a-newcluster&quot;&gt;Deploying a new cluster&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial I am going to use the OCI datacenter located in Frankfurt, therefore the OKE console is reachable at “&lt;a href=&quot;https://console.eu-frankfurt-1.oraclecloud.com/containers/clusters&quot;&gt;https://console.&lt;strong&gt;eu-frankfurt-1&lt;/strong&gt;.oraclecloud.com/containers/clusters&lt;/a&gt;” in this case.&lt;/p&gt;
+
+&lt;p&gt;The next step is to click on the “Create Cluster” button and the following interface will show up:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*ZSXqkOhWXDxoiqqQ-6C_JA.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By choosing the “Quick create” option, all I need to enter is the &lt;strong&gt;Cluster name&lt;/strong&gt; and &lt;strong&gt;Kubernetes Version&lt;/strong&gt; (v1.11.5 at this time). &lt;/p&gt;
+
+&lt;p&gt;OKE by default creates a new Virtual Cloud Network (VCN) with 2 subnets for Load Balancers and 3 subnets for master and worker nodes, an Internet Gateway, a route table, and 2 Security lists. In addition, it creates a new node pool with 1 node for each subnet (3 nodes in total in this case). The number of nodes for each subnet can be increased at this point or can be scaled up later, without service interruptions.&lt;/p&gt;
+
+&lt;p&gt;Before clicking on “Create” button, I ticked the two checkboxes that allow enabling Kubernetes dashboard and Tiller (Helm) on the cluster. The former is useful for debugging and monitoring purposes, while the latter allows having Tiller installed and configured automatically for us.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*7Nfpult3n5UEekSeWyS2DQ.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Upon clicking on “Create”, OKE will start the creation and deployment of the new cluster on Oracle Cloud.&lt;/p&gt;
+
+&lt;h2 id=&quot;connecting-to-thecluster&quot;&gt;Connecting to the cluster&lt;/h2&gt;
+
+&lt;p&gt;Using the OCI CLI, it is possible to download the Kubeconfig file generated by OKE and use &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl&lt;/code&gt; to manage the cluster.&lt;/p&gt;
+
+&lt;p&gt;In the cluster landing page, after clicking on “Access Kubeconfig”, a popup window will show the commands to run on our local machine in order to download the &lt;em&gt;kubeconfig&lt;/em&gt; file. In my case the commands are as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a folder for storing kubeconfig file  &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.kube
+
+&lt;span class=&quot;c&quot;&gt;# Use OCI CLI to download the kubeconfig file on the local machine  &lt;/span&gt;
+oci ce cluster create-kubeconfig — cluster-id ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaaaezgkzraasadasdassdzrwhe2gcobzgcztmnjwgjqt — file &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.kube/config — region eu-frankfurt-1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It is also necessary to point the &lt;code class=&quot;highlighter-rouge&quot;&gt;KUBECONFIG&lt;/code&gt; environment variable to the _kubeconfig_file downloaded previously.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Export the environment variable  &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;KUBECONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.kube/config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I can run the following two commands to get more information about the cluster (these are also displayed in the Web console):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Get info about k8s nodes  &lt;/span&gt;
+kubectl get nodes
+
+&lt;span class=&quot;c&quot;&gt;# Get info about k8s cluster  &lt;/span&gt;
+kubectl cluster-info
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;They will show information about the 3 nodes IPs and master Load Balancer address. These can be useful in case we want to connect to any of the nodes via &lt;a href=&quot;https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengconnectingworkernodesusingssh.htm&quot;&gt;SSH&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl&lt;/code&gt; it is also possible to run a proxy on the local machine to connect to the Kubernetes dashboard:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl proxy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I can use any web browser and navigate to &lt;a href=&quot;http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/&quot;&gt;http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*X-t8yKC8M08YHrZyJXgqJA.png&quot; alt=&quot;Image&quot; title=&quot;Kubernetes dashboard proxied via local machine&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The dashboard shows many details about the cluster, including pods, services, nodes, persistent volumes, and deployments and also allows to perform operations via a web interface. As you can see from the screenshot above, Tiller is one of the services running on the cluster and has a Cluster IP assigned to.&lt;/p&gt;
+
+&lt;h2 id=&quot;try-for-free-on-oraclecloud&quot;&gt;Try for free on Oracle Cloud&lt;/h2&gt;
+
+&lt;p&gt;OKE is only one of the great services offered by Oracle Cloud. There are many others that can be explored to enhance your cloud-native applications.&lt;/p&gt;
+
+&lt;p&gt;You can try the steps I described in this tutorial by &lt;a href=&quot;https://myservices.us.oraclecloud.com/mycloud/signup&quot;&gt;registering a free trial account here&lt;/a&gt;, and take the opportunity to discover many other services offered by OCI.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://myservices.us.oraclecloud.com/mycloud/signup&quot;&gt;Try Oracle Cloud for 30 days!&lt;/a&gt;&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Introduction</summary></entry><entry><title type="html">About me</title><link href="https://oci-tutorials.github.io//profiles/about-me-raquel/" rel="alternate" type="text/html" title="About me" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//profiles/about-me-raquel</id><content type="html" xml:base="https://oci-tutorials.github.io//profiles/about-me-raquel/">&lt;h2 id=&quot;about-me&quot;&gt;About Me&lt;/h2&gt;
+
+&lt;p&gt;I am part of the Developer Advocacy team at Oracle Digital. I graduated in Telecommunication Engineering in 2017 at the Polytechnic University of Madrid, after completing my thesis on “Implementation of a portal to optimize the quality of the processes in an user management system”. Then I’ve had different IT roles, gaining experience with the challenges that companies and organizations face every day, and realizing how technology can make their lives better.&lt;/p&gt;
+
+&lt;p&gt;New trends such as Blockchain, Machine Learning or Big data, and the Cloud underneath, are already being disruptive in any organization that doesn’t want to be apart from the digital transformation journey. The adoption of these technologies will change businesses, economies and societies, ultimately. That’s why I am passionate about technology and people. We have the power to change the status quo.&lt;/p&gt;
+
+&lt;p&gt;Our main goal on this channel is to get in touch with you, the developer community. Contributing in the understanding of the big possibilities these technologies have, by providing new content, tutorials or sample code.&lt;/p&gt;
+
+&lt;p&gt;Please, feel free to reach out recommendations, feedback or any other comments. We want an open and interactive channel, that we can all leverage.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Raquel Teresa &lt;a href=&quot;https://twitter.com/Raquel_Teresa&quot;&gt;@Raquel_Teresa&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About Me</summary></entry><entry><title type="html">What is API gateway and why you need one?</title><link href="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/" rel="alternate" type="text/html" title="What is API gateway and why you need one?" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on</id><content type="html" xml:base="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/">&lt;p&gt;We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://images.unsplash.com/photo-1525857222756-37cdb4e87e36?ixlib=rb-1.2.1&amp;amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;amp;auto=format&amp;amp;fit=crop&amp;amp;w=2850&amp;amp;q=80&quot; alt=&quot;The puzzle of integrating APIs&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-i-need-an-api-gateway&quot;&gt;Why I need an API gateway?&lt;/h2&gt;
+
+&lt;p&gt;How many requests are you expecting per second? How many do you want to allow per minute? What happens if those requests are invalid? What if they are dangerous? Do you need authentication? What about authorization? I’m sure you want TLS on, right?&lt;/p&gt;
+
+&lt;p&gt;Let’s assume you know the answer to those questions. Now it’s time to implement all of those validations, rate limiting, auto-scaling, filtering out bad requests, integrate with OAuth, maybe OpenID Connect, TLS termination, and so on.&lt;/p&gt;
+
+&lt;p&gt;Aren’t all those cross-cutting aspects? Do we want to pollute our business code with that extra noise? The approach to these concerns should be the same across all contributors and teammates implementing the API.&lt;/p&gt;
+
+&lt;p&gt;Let’s be honest, it is not rocket science but as soon as we start implementing these new features, someone is going ask for configuration parameters and visibility of the process. At that point, it might be out of hand.&lt;/p&gt;
+
+&lt;p&gt;Some of the APIs endpoints would be public, other private. That would change and someone has to implement and enforce those policies. If you are building layers of microservices to provide internal and external services for other apps. It’s getting complicated.&lt;/p&gt;
+
+&lt;h2 id=&quot;lets-try-an-api-gateway&quot;&gt;Let’s try an API gateway&lt;/h2&gt;
+
+&lt;p&gt;What if we centralize the APIs of all your apps in a single place where you can configure non-functional requirements and manage policies, handle all the request per second and limit them to a threshold. Monitoring the result. The same way a reverse proxy works the API gateway can redirect the requests to the correct app inside your infrastructure. Imagine that you can handle TLS termination there to simplify the logic in your code. You don’t need to handle all the authentication and authorization in every app independently.&lt;/p&gt;
+
+&lt;p&gt;The good news is that API Gateway is exactly what you need. Manage hundreds of APIs from different systems in a centralized place. Even for a single API I would recommend it, you gain some insights about what the users are doing with your APIs and stop attacks in a lot of scenarios.&lt;/p&gt;
+
+&lt;p&gt;Even more, after a few months your API is getting traction, maybe you can implement some extra features for those that are willing to pay for some advanced features. API gateway can give you an easy way to analyze the requests and even monetize those fancy new ideas.&lt;/p&gt;
+
+&lt;h2 id=&quot;trade-offs&quot;&gt;Trade-offs&lt;/h2&gt;
+
+&lt;p&gt;Now that you are happy bringing in a new API gateway, you have to make sure the routing is correct at deployment time. You don’t want to have a call because some user can reach out your API.&lt;/p&gt;
+
+&lt;p&gt;Your API gateway should have the capacity to handle all the requests and be resilient. Think about what infrastructure is needed. Load balancer, metrics and alerts, and so on. Keep in mind that the complexity doesn’t disappear, it is moved to a place where you can manage more easily.&lt;/p&gt;
+
+&lt;h2 id=&quot;try-in-the-cloud&quot;&gt;Try in the cloud&lt;/h2&gt;
+
+&lt;p&gt;Some services in the cloud are available to handle all of this complexity for you. If you want to explore some options, feel free to play around with API platform cloud. It’s part of the catalog of cloud services that Oracle offers. See more on &lt;a href=&quot;https://cloud.oracle.com/en_US/api-platform&quot;&gt;API Platform&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create a &lt;a href=&quot;https://cloud.oracle.com/tryit&quot;&gt;free trial account&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;Happy hacking!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Victor Martin &lt;a href=&quot;https://twitter.com/victorilloleon&quot;&gt;@victorilloleon&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Software engineer and Oracle developer advocate.
+Long fancy name for just a guy who enjoys writing code and see it running in the cloud.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.</summary></entry><entry><title type="html">Introduction to OD Developer Advocates</title><link href="https://oci-tutorials.github.io//miscellanous/about-od-developer-advocates/" rel="alternate" type="text/html" title="Introduction to OD Developer Advocates" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//miscellanous/about-od-developer-advocates</id><content type="html" xml:base="https://oci-tutorials.github.io//miscellanous/about-od-developer-advocates/">&lt;p&gt;##About Us&lt;/p&gt;
 
 &lt;p&gt;Many people don’t use Jekyll for client projects as non-developers would traditionally have to learn HTML, Markdown and Liquid to update content. In this tutorial, we give non-developers an easy way to update Jekyll sites with &lt;a href=&quot;https://cloudcannon.com&quot;&gt;CloudCannon&lt;/a&gt;.&lt;/p&gt;
 
