@@ -105,3 +105,8 @@ OKE is only one of the great services offered by Oracle Cloud. There are many ot
 You can try the steps I described in this tutorial by [registering a free trial account here](https://myservices.us.oraclecloud.com/mycloud/signup), and take the opportunity to discover many other services offered by OCI.
 
 [Try Oracle Cloud for 30 days!](https://myservices.us.oraclecloud.com/mycloud/signup)
+
+> Luca Iannario [@liannario](https://twitter.com/liannario)
+>
+> Developer Advocate at Oracle. 
+> When I am not on the clouds, I like travelling and taking pictures.
