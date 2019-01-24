@@ -16,7 +16,7 @@ Hello everyone, my name is Luca Iannario and I am part of the [Developer Advoca
 My background is in Computer Engineering (MSc) and I started my career as a Software Engineer building enterprise distributed and mobile applications while living in Rome (Italy). Since 2015 I live in Dublin where I started working for a Pharma company as Solutions Architect, leading a team of developers and operations sparse across the globe, working mainly on open-source technologies and cloud platforms. This opportunity allowed me to work more closely with developers coming from different communities, backgrounds, and cultures, understanding their needs and, most importantly, collaborating with them to find smart solutions for challenging projects.
 
 ![Image](https://cdn-images-1.medium.com/max/1200/0*eivkOKc1z51XQpcW)
-Photo by [John Schnobrich](https://unsplash.com/@johnschno)
+*Photo by [John Schnobrich](https://unsplash.com/@johnschno)*
 
 This is what the Developer Advocacy team has been created for: being closer to the developer communities, facilitating the knowledge and adoption of emerging technologies, and establishing a bi-directional and trusted communication channel that allows to improve the products we use to implement great solutions, as well as consulting and helping them to identify the best architecture that suits their needs. A number of initiatives are going to be supported, including tutorials, videos, code samples, meetups, and conferences.
 
