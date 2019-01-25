@@ -3,15 +3,15 @@ date: 2019-01-25
 title: Istio — Getting started guide
 description: Istio — https://istio.io — is a new Microservice service mesh manager for making microservice deployments less complex and eases the strain on development teams.
 categories:
-  - DevOps
+  - Kubernetes
 resources:
   - name: "Istio — Getting started with Configuring, Monitoring & Managing your Microservice Deployments on Kubernetes"
     link: https://medium.com/devopslinks/istio-getting-started-with-configuring-monitoring-managing-your-microservice-deployments-on-ef73a4232ecd
   - name: "Source code"
     link: https://github.com/oci-tutorials
 type: Post
-set: DevOps
-set_order: 1
+set: Kubernetes
+set_order: 2
 ---
 
 # Istio — Getting started with Configuring, Monitoring & Managing your
