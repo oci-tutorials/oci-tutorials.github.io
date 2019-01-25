@@ -67,51 +67,32 @@ In an **empty folder** create a file named `func.js`
 
 In this function you can paste the following as its content:
 
-    const fdk = require(‘@fnproject/fdk’);
+~~~javascript
+const fdk = require('@fnproject/fdk');
+const fs  = require('fs');
+const tmp = require('tmp');
+const im  = require('imagemagick');
 
-    const fs = require(‘fs’);
-
-    const tmp = require(‘tmp’);
-
-    const im = require(‘imagemagick’);
-
-    fdk.handle((buffer, ctx) => {
-
-    return new Promise((resolve, reject) => {
-
+fdk.handle((buffer, ctx) => {
+  return new Promise((resolve, reject) => {
     tmp.tmpName((err, tmpFile) => {
-
-    if (err) throw err;
-
-    fs.writeFile(tmpFile, buffer, (err) => {
-
-    if (err) throw err;
-
-    im.identify([‘-format’, ‘{“width”: %w, “height”: %h}’, tmpFile],
-
-    (err, output) => {
-
-    if (err) {
-
-    reject(err);
-
-    } else {
-
-    resolve(JSON.parse(output));
-
-    }
-
-    }
-
-    );
-
+      if (err) throw err;
+      fs.writeFile(tmpFile, buffer, (err) => {
+        if (err) throw err;
+        im.identify(['-format', '{"width": %w, "height": %h}', tmpFile],
+          (err, output) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(JSON.parse(output));
+            }
+          }
+        );
+      });
     });
-
-    });
-
-    });
-
-    }, { inputMode: ‘buffer’ });
+  });
+}, { inputMode: 'buffer' });
+~~~
 
 This function is pretty straight forward, it takes a binary image as it’s
 argument, writes it to a tmp file, and then uses ImageMagick to obtain the width
