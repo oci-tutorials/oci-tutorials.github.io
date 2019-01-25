@@ -1,6 +1,6 @@
 ---
 date: 2019-01-25
-title: What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!
+title: What is this “FaaS”?
 description: This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to create
 a local kubernetes cluster. This tutorial uses [Docker for
 Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.
@@ -12,6 +12,8 @@ resources:
   - name: "Source code"
     link: https://github.com/oci-tutorials
 type: Tutorial
+set: DevOps
+set_order: 2
 ---
 
 # What is this “FaaS” thing everyone talking about? I don’t want a “microservice”,
@@ -86,12 +88,6 @@ microservice style architectures and smaller high volume back-end services.
 * [Developer](https://medium.com/tag/developer?source=post)
 * [Programming](https://medium.com/tag/programming?source=post)
 * [Introduction](https://medium.com/tag/introduction?source=post)
-
-### [Brian Mathews](https://medium.com/@brianbmathews)
-
-Technical Consultant and Evangelist with a focus on Serverless and DevOps. Why
-not give Oracle Cloud a try with $300 free credits!
-[https://bit.ly/2KQWy6k](https://bit.ly/2KQWy6k)
 
 
 > Brian Mathews [@DevOps4Days](https://twitter.com/DevOps4Days)
