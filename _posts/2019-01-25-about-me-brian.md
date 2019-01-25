@@ -19,8 +19,7 @@ Having been born in Ireland and spending my life so far here I have always been 
 
 I have a passion for day to day automation of mundane household tasks, which really isn’t helped by having IoT integration with my Alexa readily available.
 
-![Image](https://unsplash.com/photos/67L18R4tW_w)
-*Photo by [Kobu Agency on Unsplash]
+![Image](https://cdn-images-1.medium.com/max/1000/1*h7naW51IS9TrYMqBDZW6XA.jpeg)
 
 I have recently started working in Oracle as part of the new Developer Advocacy team on the OCI platform.
 
