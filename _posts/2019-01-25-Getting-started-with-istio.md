@@ -102,8 +102,10 @@ Following the instructions in the quick start guide:
 
 Firstly I downloaded the latest version of Istio to my Mac
 
-    curl -L 
-     | sh -
+    curl -L | sh -
+
+![](https://cdn-images-1.medium.com/max/1000/1*UUJA2AZ71aUDd7NU8ljejA.png)
+<span class="figcaption_hack">Istio Service Dashboard</span>
 
 <span class="figcaption_hack">Istio release download</span>
 
@@ -121,9 +123,7 @@ injecting Envoy as a sidecar proxy and for creating routing rules and policies.
 
 You then add the istioctl client to my PATH environment variables:
 
-    export
-    =$PWD
-    $PATH
+    export=$PWD $PATH
 
 Ensure that the current OCI and OKE user is allowed to do cluster administration
 tasks by creating a Role-Based Access Control policy
@@ -234,6 +234,7 @@ Each of the black boxes in the below diagram are instances of the Envoy proxy
 sidecar. When the “bookinfo” application is deployed to the Kubernetes cluster
 Istio deploys the sidecar in the pod alongside of the microservice.
 
+![](https://cdn-images-1.medium.com/max/1000/1*vAGfMSaU7_YqZ1xHW7PZUw.png)
 <span class="figcaption_hack">Istio bookinfo architecture
 [https://istio.io/docs/examples/bookinfo/](https://istio.io/docs/examples/bookinfo/)</span>
 
@@ -268,6 +269,7 @@ We can also check the cluster-ip and ports for this gateway by running:
 
     kubectl get svc -n istio-system
 
+![](https://cdn-images-1.medium.com/max/1000/1*vQGxeXAEBBsUeixkB8BYaQ.png)
 <span class="figcaption_hack">Gateway information output from “kubectl get svc -n istio-system”</span>
 
 Istio is now installed on our cluster with the bookinginfo application, we can
@@ -318,12 +320,16 @@ Once this has been configured we can access the dashboard at the :
 The Istio service mesh delivers six default Grafana dashboards. Please see some
 screenshots of these dashboards below:
 
+![](https://cdn-images-1.medium.com/max/800/1*Nn4Fh9X5jPQBsveStRC4nw.png)
 <span class="figcaption_hack">Mesh Dashboard</span>
 
+![](https://cdn-images-1.medium.com/max/800/1*3oLu5BTUtj4bkvLIhC5PGA.png)
 <span class="figcaption_hack">Istio Service Dashboard</span>
 
+![](https://cdn-images-1.medium.com/max/800/1*zTwLc5DXGSM-Znl7KxEjoA.png)
 <span class="figcaption_hack">Istio Workload Dashboard</span>
 
+![](https://cdn-images-1.medium.com/max/800/1*FKKDy4Jt8QaHs-rd2vdNhg.png
 <span class="figcaption_hack">Istio Mixer Dashboard</span>
 
 The Grafana add-on is a pre-configured instance of Grafana. The base image
