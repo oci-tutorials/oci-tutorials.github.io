@@ -321,6 +321,7 @@ The Istio service mesh delivers six default Grafana dashboards. Please see some
 screenshots of these dashboards below:
 
 ![](https://cdn-images-1.medium.com/max/800/1*Nn4Fh9X5jPQBsveStRC4nw.png)
+
 <span class="figcaption_hack">Mesh Dashboard</span>
 
 ![](https://cdn-images-1.medium.com/max/800/1*3oLu5BTUtj4bkvLIhC5PGA.png)
@@ -329,7 +330,7 @@ screenshots of these dashboards below:
 ![](https://cdn-images-1.medium.com/max/800/1*zTwLc5DXGSM-Znl7KxEjoA.png)
 <span class="figcaption_hack">Istio Workload Dashboard</span>
 
-![](https://cdn-images-1.medium.com/max/800/1*FKKDy4Jt8QaHs-rd2vdNhg.png
+![](https://cdn-images-1.medium.com/max/800/1*FKKDy4Jt8QaHs-rd2vdNhg.png)
 <span class="figcaption_hack">Istio Mixer Dashboard</span>
 
 The Grafana add-on is a pre-configured instance of Grafana. The base image
