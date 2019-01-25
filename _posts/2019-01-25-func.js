@@ -1,15 +1,12 @@
 ---
 date: 2019-01-25
 title: func.js
-  - Serverless
 resources:
 type: Sample
-set: Serverless
 set_order: 1
 ---
 
 ~~~javascript
-
 const fdk = require('@fnproject/fdk');
 const fs  = require('fs');
 const tmp = require('tmp');
