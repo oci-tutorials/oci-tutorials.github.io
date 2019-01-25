@@ -1,6 +1,6 @@
 ---
 date: 2019-01-25
-title: Creating custom Dockerfiles for Node.js Function’s
+title: Creating custom Dockerfiles for Node.js function’s
 description: The aim of this tutorial is to walk through how you can use a custom Docker image to define an Node.js serverless function.
 categories:
   - Serverless
@@ -207,6 +207,7 @@ this yet.
 The Dockerfile that `fn build` would normally generate to build a Node.js
 function container image looks like this:
 
+~~~bash
 FROM fnproject/node:dev as build-stage
 WORKDIR /function
 ADD package.json /function/
@@ -216,6 +217,7 @@ WORKDIR /function
 ADD . /function/
 COPY --from=build-stage /function/node_modules/ /function/node_modules/
 ENTRYPOINT ["node", "func.js"]
+~~~
 
 It’s a two stage build with the `fnproject/node:dev` image containing `npm` and
 other build tools, and the `fnproject/node` image containing just the Node
@@ -228,6 +230,9 @@ The `fnproject/node` container image is built on Alpine so we’ll need to insta
 the ImageMagick Alpine package using the `apk` package management utility. You
 can do this with a Dockerfile `RUN` command:
 
+~~~bash
+RUN apk add --no-cache imagemagick
+~~~ 
 
 We want to install ImageMagick into the runtime image, not the build image, so
 we need to add the `RUN` command after the `FROM fnproject/node` command.
@@ -235,6 +240,7 @@ we need to add the `RUN` command after the `FROM fnproject/node` command.
 In the folder containing the previously created files, create a file named
 `Dockerfile` and paste the following as its content:
 
+~~~bash~~
 FROM fnproject/node:dev as build-stage
 WORKDIR /function
 ADD package.json /function/fn
@@ -245,7 +251,7 @@ WORKDIR /function
 ADD . /function/
 COPY --from=build-stage /function/node_modules/ /function/node_modules/
 ENTRYPOINT ["node", "func.js"]
-
+~~~
 
 With this Dockerfile, the Node.js function, it’s dependencies (including the
 “imagemagick” wrapper), and the “imagemagick” Alpine package will be included in
@@ -281,6 +287,10 @@ say `fn ls f tutorial`
 
 You should see output similar to:
 
+~~~bash
+NAME        IMAGE             ID
+imagedims   imagedims:0.0.1   01CWFAS9DBNG8G00RZJ0000002
+~~~
 
 ### Invoking the Function
 
@@ -304,8 +314,7 @@ declaration, this is so we can also call the function easily with curl.
 It’s a little more complicated as you need to declare the content type because
 the request body is binary. You also need to use the `--data-binary` switch:
 
-`curl --data-binary Test-image.jpg -H "Content-Type: application/octet-stream"
--X POST http://localhost:8080/t/tutorial/imagedims`
+`curl --data-binary Test-image.jpg -H "Content-Type: application/octet-stream" -X POST http://localhost:8080/t/tutorial/imagedims`
 
 You should get exactly the same output as when using `fn invoke`.
 
