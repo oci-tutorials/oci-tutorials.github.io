@@ -3,15 +3,15 @@ date: 2019-01-25
 title: What is this “FaaS”?
 description: This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to createa local kubernetes cluster. This tutorial uses [Docker for Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.
 categories:
-  - DevOps
+  - Serverless
 resources:
   - name: "What is 'Faas'?"
     link: https://medium.com/@brianbmathews/what-is-this-faas-thing-everyone-talking-about-aba5d5e8ebfa
   - name: "Source code"
     link: https://github.com/oci-tutorials
 type: Tutorial
-set: DevOps
-set_order: 2
+set: Serverless
+set_order: 3
 ---
 
 # What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!
