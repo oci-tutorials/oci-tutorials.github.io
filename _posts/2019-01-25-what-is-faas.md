@@ -1,9 +1,7 @@
 ---
 date: 2019-01-25
 title: What is this “FaaS”?
-description: This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to create
-a local kubernetes cluster. This tutorial uses [Docker for
-Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.
+description: This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to createa local kubernetes cluster. This tutorial uses [Docker for Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.
 categories:
   - DevOps
 resources:
