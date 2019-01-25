@@ -4,7 +4,7 @@ title: func.js
 resources:
 type: Sample
 set_order: 1
-
+---
 ~~~json
 {
   "name": "imagedims",
