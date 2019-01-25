@@ -1,6 +1,6 @@
 ---
 date: 2019-01-25
-title: Getting started with Custom Dockerfiles for Node.js for Serverless Function’s
+title: Creating custom Dockerfiles for Node.js Function’s
 description: The aim of this tutorial is to walk through how you can use a custom Docker image to define an Node.js serverless function.
 categories:
   - Serverless
@@ -207,14 +207,15 @@ this yet.
 The Dockerfile that `fn build` would normally generate to build a Node.js
 function container image looks like this:
 
-
-
-
-
-
-
-
-
+FROM fnproject/node:dev as build-stage
+WORKDIR /function
+ADD package.json /function/
+RUN npm install
+FROM fnproject/node
+WORKDIR /function
+ADD . /function/
+COPY --from=build-stage /function/node_modules/ /function/node_modules/
+ENTRYPOINT ["node", "func.js"]
 
 It’s a two stage build with the `fnproject/node:dev` image containing `npm` and
 other build tools, and the `fnproject/node` image containing just the Node
@@ -234,14 +235,16 @@ we need to add the `RUN` command after the `FROM fnproject/node` command.
 In the folder containing the previously created files, create a file named
 `Dockerfile` and paste the following as its content:
 
-
-
-
-
-
-
-
-
+FROM fnproject/node:dev as build-stage
+WORKDIR /function
+ADD package.json /function/fn
+RUN npm install
+FROM fnproject/node
+RUN apk add --no-cache imagemagick
+WORKDIR /function
+ADD . /function/
+COPY --from=build-stage /function/node_modules/ /function/node_modules/
+ENTRYPOINT ["node", "func.js"]
 
 
 With this Dockerfile, the Node.js function, it’s dependencies (including the
@@ -290,6 +293,8 @@ download one. I used a random photo on my laptop
 For this file you should see the following output:
 
 `{"width":720,"height":540}`
+
+![](https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif)
 
 ### Calling the Function with curl
 
