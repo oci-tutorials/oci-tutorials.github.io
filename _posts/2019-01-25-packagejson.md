@@ -1,6 +1,6 @@
 ---
 date: 2019-01-25
-title: func.js
+title: package.json
 resources:
 type: Sample
 set_order: 1
