@@ -1,7 +1,7 @@
 ---
 date: 2019-01-25
-title: Serverless Functions on Oracle Cloud using the open source FN project
-description: TThe Fn project is an open source, container native, and cloud agnostic serverless platform which is being funded by Oracle. It’s easy to use, supports every programming language, and in my opinion, performs very well.
+title: Serverless Functions on OCI using FN
+description: The Fn project is an open source, container native, and cloud agnostic serverless platform which is being funded by Oracle. It’s easy to use, supports every programming language, and in my opinion, performs very well.
 categories:
   - Serverless
 resources:
