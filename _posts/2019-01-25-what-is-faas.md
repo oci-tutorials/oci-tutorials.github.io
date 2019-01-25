@@ -14,8 +14,7 @@ set: DevOps
 set_order: 2
 ---
 
-# What is this “FaaS” thing everyone talking about? I don’t want a “microservice”,
-I want a big service that makes me lots of money!
+# What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!
 
 ### What is Function-as-a-Service (FaaS)?
 
