@@ -1,0 +1,298 @@
+---
+date: 2019-01-25
+title: Getting Started with Minikube & Docker Container Images
+description: This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to create
+a local kubernetes cluster. This tutorial uses [Docker for
+Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.
+categories:
+  - DevOps
+resources:
+  - name: "Getting Started with Minikube & Docker Container Images"
+    link: https://medium.com/@brianbmathews/getting-started-with-minikube-docker-container-images-for-testing-kubernetes-locally-on-mac-e39adb60bd41
+  - name: "Oracle Developer Community"
+    link: https://developers.oracle.com
+  - name: "Source code"
+    link: https://github.com/oci-tutorials
+type: Tutorial
+---
+
+# **Getting Started with Minikube & Docker Container Images, for testing
+Kubernetes locally on Mac.**
+
+![](https://cdn-images-1.medium.com/max/800/1*D9XikRFp9pItUZJ-wJu-OA.png)
+
+#### Intro
+
+This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to create
+a local kubernetes cluster. This tutorial uses [Docker for
+Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.
+If you are on a different platform like Linux or using VirtualBox instead of
+Docker for Mac, the instructions to install Minikube may be slightly different.
+
+**Prerequisites:**
+
+* Docker for Mac.
+* Homebrew.
+* Node.js
+
+If you don’ t have docker installed you can easily install it using the install
+package provided by Docker here:
+[https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/docker-for-mac/install/)
+
+Now that we have our prerequisites complete lets get started with Minikube.
+
+First, we use Homebrew to install the latest Minikube release:
+
+    brew cask install minikube
+
+Use Homebrew to download the kubectl command-line tool, which you can use to
+interact with Kubernetes clusters:
+
+    brew install kubernetes-cli
+
+Determine whether you can access sites like
+[https://cloud.oracle.com/home](https://cloud.oracle.com/home) directly without
+a proxy, by opening a new terminal and using:
+
+    curl --proxy “” 
+
+We then make sure that the Docker daemon is started. You can determine if docker
+is running by using a command such as:
+
+    docker images
+
+If **NO** proxy is required, start the Minikube cluster:
+
+    minikube start — vm-driver=hyperkit
+
+If a proxy server is required eg. if you are blocked by a corporate network etc,
+you can use the following method to start Minikube cluster **with proxy**
+setting:
+
+    minikube start — vm-driver=hyperkit — docker-env HTTP_PROXY=http://your-http-proxy-host:your-http-proxy-port — docker-env HTTPS_PROXY=http(s)://your-https-proxy-host:your-https-proxy-port
+
+The `--vm-driver=hyperkit`flag specifies that you are using Docker for Mac. The
+default VM driver for Minikube is VirtualBox.
+
+Now we will need to set the Minikube context. The context is what determines
+which cluster kubectl is interacting with. You can see all your available
+contexts in the `~/.kube/config` file.
+
+To set the context to use `minikube` we will use the following command:
+
+    kubectl config use-context minikube
+
+We should then verify that kubectl is configured to communicate with your
+cluster:
+
+    kubectl cluster-info
+
+This will output the following if correctly running:
+
+    Kubernetes master is running at 
+    KubeDNS is running at 
+
+Now that we have correctly configured Minikube to run Kubernetes locally we can
+open the Kubernetes dashboard in a browser using the following command which
+will open a browser window with your dashboard:
+
+    minikube dashboard
+
+<span class="figcaption_hack">Kubernetes Dashboard</span>
+
+*****
+
+**Create a Node.js application to test.**
+
+Now that we have Minikube configured why not get started with a simple Node.js
+application to host on Kubernetes.
+
+You may need to install Node.js on your machine first if you dont already have
+it installed. To do this run:
+
+    brew install node
+
+The next step is to write the application. Save this code in a folder named
+hellonode with the filename “server.js”:
+
+[hellonode/server.js](https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/minikube/server.js)
+
+     http = require(‘http’);
+
+     handleRequest = 
+    (request, response) {
+
+    console.log(‘Received request for URL: ‘ + request.url);
+
+    response.writeHead(200);
+
+    response.end(‘Hello Medium!’);
+
+    };
+
+     www = http.createServer(handleRequest);
+
+
+**Run your application:**
+
+    node server.js
+
+You should be able to see your “Hello Medium!” message when you access you local
+host eg:
+
+
+You can now stop the running Node.js server by pressing **Ctrl-C**.
+
+*****
+
+**Create a Docker Container Image**
+
+The next step we can do is to package your application in a Docker container for
+easy distribution.
+
+To do this we will first need to create a **Dockerfile. **A Dockerfile describes
+the image that you want to build such as language version, ports being used etc.
+You can build a Docker container image by extending an existing image. The image
+in this tutorial extends an existing Node.js image which we have just built.
+
+To create your Dockerfile we will stay in the hellonode folder, and create a
+file named “Dockerfile” using your favourite text editor.
+
+eg. `vim Dockerfile`
+
+In this file, we shall then paste the following commands for our Dockerfile
+image.
+
+    FROM node:6.9.2
+
+    EXPOSE 8080
+
+    COPY server.js .
+
+    CMD node server.js
+
+This Dockerfile image starts by using the necessary Node.js image found in the
+Dockerhub registry, it then exposes port 8080, copies your server.js file to the
+image and runsthe command that starts the Node.js server.
+
+Because this tutorial uses Minikube, instead of pushing your Docker image to a
+registry, you can simply build the image using the same Docker host as the
+Minikube VM, so that the images are automatically present.
+
+To do this we need to make sure we are using the Minikube Docker daemon, you can
+do this by running the following:
+
+    eval 
+    minikube docker-env
+
+**Note:** Later, when you no longer wish to use the Minikube host, you can undo
+this change by running:
+
+    eval $(minikube docker-env -u).
+
+Build your Docker image, using the Minikube Docker daemon (mind the trailing
+dot):
+
+    docker build -t hello-node:v1 .
+
+Now the Minikube VM can run the docker image you have built.
+
+**Create a Deployment**
+
+A **Kubernetes pod** is a group of one or more Containers joined together for
+networking. The Pod in this tutorial has only one Container.
+
+A **Kubernetes deployment** runs a health check on of your Pod and restarts the
+Pod’s Container if it terminates for any reason. Deployments are the recommended
+way to manage the creation and scaling of Pods.
+
+We can use the `kubectl run` command to create a Deployment that manages a Pod.
+The Pod runs a Container based on your hello-node:v1 Docker image. Set the
+`--image-pull-policy` flag to `Never `this will mean that it will always use the
+local image, rather than pulling it from your Docker registry . This is good
+since we haven’t pushed it there!
+
+
+**Deployment:**
+
+    kubectl get deployments
+
+**Output:**
+
+    NAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+    hello-node   1         1         1            1           23h
+
+**View the Pod:**
+
+    kubectl get pods
+
+**Output:**
+
+    NAME                          READY     STATUS    RESTARTS   AGE
+    hello-node-57c6b66f9c-6zzx2   1/1       Running   1          23h
+
+**View cluster events:**
+
+    kubectl get events
+
+**View the kubectl configuration:**
+
+    kubectl config view
+
+**Create a Service**
+
+By default, the Pod is only accessible by its internal IP address within the
+Kubernetes cluster. To make the hellonode Container accessible from outside the
+Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service.
+
+From your development machine, you can expose the Pod to the public internet
+using the kubectl expose command:
+
+    kubectl expose deployment hello-node — type="LoadBalancer"
+
+**View the Service you just created:**
+
+    kubectl get service
+
+**Output:**
+
+    NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+    hello-node   LoadBalancer   10.108.192.243   <pending>     8080:31746/TCP   23h
+    kubernetes   ClusterIP      10.96.0.1        <none>        443/TCP          36d
+
+The `--type="LoadBalance"` flag indicates that you want to expose your service
+outside of the cluster. This is for us on cloud providers that support load
+balancers, they use an external IP address that is provisioned to access the
+service.
+
+On Minikube, the LoadBalancer type makes the Service accessible through the
+`minikube service`command.
+
+    minikube service hello-node
+
+This automatically opens up a browser window using a local IP address that
+serves your app and shows the “Hello World” message.
+
+**Summary**
+
+We have now created a locally hosted Kubernetes environment for testing hosted
+on Docker.
+
+Why not give it a try hosting your application on the Cloud by using the
+following $300 free trial for Oracle Cloud
+[http://bit.ly/brianMediumBlog](http://bit.ly/brianMediumBlog).
+
+You can use the new managed Kubernetes service to easily get started with a
+hosted environment for your containerized application.
+
+* [Docker](https://medium.com/tag/docker?source=post)
+* [Minikube](https://medium.com/tag/minikube?source=post)
+* [Kubernetes](https://medium.com/tag/kubernetes?source=post)
+* [Cloud Computing](https://medium.com/tag/cloud-computing?source=post)
+* [DevOps](https://medium.com/tag/devops?source=post)
+
+### [Brian Mathews](https://medium.com/@brianbmathews)
+
+Technical Consultant and Evangelist with a focus on Serverless and DevOps. Why
+not give Oracle Cloud a try with $300 free credits!
+[https://bit.ly/2KQWy6k](https://bit.ly/2KQWy6k)
