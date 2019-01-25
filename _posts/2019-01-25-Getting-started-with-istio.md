@@ -1,6 +1,6 @@
 ---
 date: 2019-01-25
-title: GIstio — Getting started with Configuring, Monitoring & Managing your Microservice Deployments on Kubernetes
+title: Istio — Getting started guide
 description: Istio — https://istio.io — is a new Microservice service mesh manager for making microservice deployments less complex and eases the strain on development teams.
 categories:
   - DevOps
