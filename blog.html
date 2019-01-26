@@ -1,0 +1,7 @@
+---
+---
+{% assign blog = site.posts | where: "type", "Blog" | sort: "title" %}
+
+<h2>Articles <span class="count">({{ blog | size }})</span></h2>
+
+{% include listings.html listings=blog %}
