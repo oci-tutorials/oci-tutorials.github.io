@@ -7,7 +7,7 @@ categories:
   - Contributors
 resources:
   - name: "About me"
-type: Post
+type: Video
 ---
 
 ## About me
