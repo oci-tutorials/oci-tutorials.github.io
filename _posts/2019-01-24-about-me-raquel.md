@@ -1,12 +1,13 @@
 ---
 date: 2019-01-24
 title: Raquel Teresa
+video_id: xTlLasGeAIc
 description: Introducing my role as a Developer Advocate to the community
 categories:
   - Contributors
 resources:
   - name: "About me"
-type: Post
+type: Video
 ---
 
 ## About Me
