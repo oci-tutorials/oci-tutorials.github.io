@@ -14,19 +14,19 @@
 		
 
 		<!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Deploying a Kubernetes Cluster through a UI | OD Groundbreakers</title>
+<title>What is this “FaaS”? | OD Groundbreakers</title>
 <meta name="generator" content="Jekyll v3.7.2" />
-<meta property="og:title" content="Deploying a Kubernetes Cluster through a UI" />
+<meta property="og:title" content="What is this “FaaS”?" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console." />
-<meta property="og:description" content="How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console." />
-<link rel="canonical" href="https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console/" />
-<meta property="og:url" content="https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console/" />
+<meta name="description" content="This tutorial uses Minikube to createa local kubernetes cluster. This tutorial uses Docker for Mac as the host of Minikube." />
+<meta property="og:description" content="This tutorial uses Minikube to createa local kubernetes cluster. This tutorial uses Docker for Mac as the host of Minikube." />
+<link rel="canonical" href="https://oci-tutorials.github.io//serverless/what-is-faas/" />
+<meta property="og:url" content="https://oci-tutorials.github.io//serverless/what-is-faas/" />
 <meta property="og:site_name" content="OD Groundbreakers" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-01-24T00:00:00+00:00" />
+<meta property="article:published_time" content="2019-01-25T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.","@type":"BlogPosting","url":"https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://oci-tutorials.github.io//siteicon.png"}},"headline":"Deploying a Kubernetes Cluster through a UI","dateModified":"2019-01-24T00:00:00+00:00","datePublished":"2019-01-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console/"},"@context":"http://schema.org"}</script>
+{"description":"This tutorial uses Minikube to createa local kubernetes cluster. This tutorial uses Docker for Mac as the host of Minikube.","@type":"BlogPosting","url":"https://oci-tutorials.github.io//serverless/what-is-faas/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://oci-tutorials.github.io//siteicon.png"}},"headline":"What is this “FaaS”?","dateModified":"2019-01-25T00:00:00+00:00","datePublished":"2019-01-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oci-tutorials.github.io//serverless/what-is-faas/"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 		<link type="application/atom+xml" rel="alternate" href="https://oci-tutorials.github.io//feed.xml" title="OD Groundbreakers" />
@@ -89,108 +89,96 @@
 		<ul>
 			
 			
-				<li><a href="#introduction">Introduction</a></li>
-			
-				<li><a href="#prerequisites">Prerequisites</a></li>
-			
-				<li><a href="#deploying-a-newcluster">Deploying a new cluster</a></li>
-			
-				<li><a href="#connecting-to-thecluster">Connecting to the cluster</a></li>
-			
-				<li><a href="#try-for-free-on-oraclecloud">Try for free on Oracle Cloud</a></li>
-			
 		</ul>
 	</section>
 	<section class="tutorial-content">
-		<h1>Deploying a Kubernetes Cluster through a UI</h1>
+		<h1>What is this “FaaS”?</h1>
 
 		
 		
 		<div class="tutorial-main">
-			<h2 id="introduction">Introduction</h2>
+			<h1 id="what-is-this-faas-thing-everyone-talking-about-i-dont-want-a-microservice-i-want-a-big-service-that-makes-me-lots-of-money">What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!</h1>
 
-<p><a href="https://kubernetes.io">Kubernetes (aka k8s)</a> is an open-source system for orchestrating containerized applications. It allows automating deployment, scaling, and management of clusters for running cloud-native applications.
-In this tutorial, I am going to show you how it is possible to deploy a simple cluster on the cloud with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console. For this purpose, I am going to use the <a href="https://cloud.oracle.com/containers/kubernetes-engine">Container Engine for Kubernetes (OKE)</a> available under the “Developer Services” section within “Compute” services.</p>
+<h3 id="what-is-function-as-a-service-faas">What is Function-as-a-Service (FaaS)?</h3>
 
-<p><img src="https://cdn-images-1.medium.com/max/1500/1*YF1njH6uihOxHXusOUnzRA.gif" alt="Image" title="Creating a k8s cluster with OKE" /></p>
+<p>FaaS is the concept of serverless computing with serverless architectures.
+Software developers can use this to deploy an individual function (Piece of
+code), that performs an action, or piece of business logic, without worrying
+about where they are running it (eg. serverless). They are expected to start
+within milliseconds and process individual requests and then the process ends.
+Sounds simple right?</p>
 
-<h2 id="prerequisites">Prerequisites</h2>
+<p><strong>Principles of FaaS:</strong></p>
 
-<p>Before creating a new cluster, it is important that <a href="https://docs.us-phoenix-1.oraclecloud.com/Content/ContEng/Concepts/contengprerequisites.htm">all the prerequisites listed here are fulfilled</a>. Assuming we are Administrators in the tenancy, it is necessary to create the following policy under the root compartment:</p>
+<ul>
+  <li>Completely takes the pain of servers and environment constraints away from the
+developer</li>
+  <li>Billing based on consumption and executions, not server instance sizes</li>
+  <li>Services that are event-driven and instantaneously scalable</li>
+</ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allow service OKE to manage all-resources <span class="k">in </span>tenancy
-</code></pre></div></div>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*5B_ycnAD2U7zITih.png" alt="" /></p>
 
-<p>This policy will allow OKE to manage networks, instances, storage, load balancers, etc. on our behalf.</p>
+<p>At the basic level, you could describe them as a way to run some code when a
+“thing” happens. Shows how easy it is to process an HTTP request as a
+“Function”.</p>
 
-<p>For this tutorial, we also need to have <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">OCI CLI</a> and <a href="https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengaccessingclusterkubectl.htminstalled">kubectl</a> on our local machine.</p>
+<hr />
 
-<h2 id="deploying-a-newcluster">Deploying a new cluster</h2>
+<h4 id="benefits--use-cases">Benefits &amp; Use Cases</h4>
 
-<p>In this tutorial I am going to use the OCI datacenter located in Frankfurt, therefore the OKE console is reachable at “<a href="https://console.eu-frankfurt-1.oraclecloud.com/containers/clusters">https://console.<strong>eu-frankfurt-1</strong>.oraclecloud.com/containers/clusters</a>” in this case.</p>
+<p>Like most things, FaaS is not going to be perfect for every app.</p>
 
-<p>The next step is to click on the “Create Cluster” button and the following interface will show up:</p>
+<p>In general, we see companies and developers using them mostly for our very high
+volume transactions so that they can scale when needed and don’t have to have
+redundant servers the rest of the time.</p>
 
-<p><img src="https://cdn-images-1.medium.com/max/1200/1*ZSXqkOhWXDxoiqqQ-6C_JA.png" alt="Image" /></p>
+<ul>
+  <li>High volume transactions — Isolate them and scale them</li>
+  <li>Dynamic or burstable workloads — If you only run something once a day or month,
+no need to pay for a server 24/7/365</li>
+  <li>Scheduled tasks — They are a perfect way to run a certain piece of code on a
+schedule, think cron jobs.</li>
+</ul>
 
-<p>By choosing the “Quick create” option, all I need to enter is the <strong>Cluster name</strong> and <strong>Kubernetes Version</strong> (v1.11.5 at this time). </p>
+<hr />
 
-<p>OKE by default creates a new Virtual Cloud Network (VCN) with 2 subnets for Load Balancers and 3 subnets for master and worker nodes, an Internet Gateway, a route table, and 2 Security lists. In addition, it creates a new node pool with 1 node for each subnet (3 nodes in total in this case). The number of nodes for each subnet can be increased at this point or can be scaled up later, without service interruptions.</p>
+<h4 id="types-of-functions">Types of Functions</h4>
 
-<p>Before clicking on “Create” button, I ticked the two checkboxes that allow enabling Kubernetes dashboard and Tiller (Helm) on the cluster. The former is useful for debugging and monitoring purposes, while the latter allows having Tiller installed and configured automatically for us.</p>
+<p>There are a lot of potential uses for functions. Below is a simple list of some
+common scenarios. Support and implementation for them vary by the provider or
+service your using.</p>
 
-<p><img src="https://cdn-images-1.medium.com/max/1200/1*7Nfpult3n5UEekSeWyS2DQ.png" alt="Image" /></p>
+<ul>
+  <li>Scheduled tasks or jobs.</li>
+  <li>Process a web request.</li>
+  <li>Process queue messages.</li>
+  <li>Run manually.</li>
+</ul>
 
-<p>Upon clicking on “Create”, OKE will start the creation and deployment of the new cluster on Oracle Cloud.</p>
+<hr />
 
-<h2 id="connecting-to-thecluster">Connecting to the cluster</h2>
+<h3 id="summary">Summary</h3>
 
-<p>Using the OCI CLI, it is possible to download the Kubeconfig file generated by OKE and use <code class="highlighter-rouge">kubectl</code> to manage the cluster.</p>
+<p>Developers hate servers and server management. The idea of serverless
+architectures is a dream came true for most developers. That said, I can’t see
+FaaS as being a complete replacement for normal application architectures. For
+example a basic web application, it would take a lot of functions.</p>
 
-<p>In the cluster landing page, after clicking on “Access Kubeconfig”, a popup window will show the commands to run on our local machine in order to download the <em>kubeconfig</em> file. In my case the commands are as follows:</p>
+<p>In my humble opinion, function-based apps are a perfect fit for replacing
+microservice style architectures and smaller high volume back-end services.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a folder for storing kubeconfig file  </span>
-<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/.kube
+<ul>
+  <li><a href="https://medium.com/tag/serverless?source=post">Serverless</a></li>
+  <li><a href="https://medium.com/tag/cloud-computing?source=post">Cloud Computing</a></li>
+  <li><a href="https://medium.com/tag/developer?source=post">Developer</a></li>
+  <li><a href="https://medium.com/tag/programming?source=post">Programming</a></li>
+  <li><a href="https://medium.com/tag/introduction?source=post">Introduction</a></li>
+</ul>
 
-<span class="c"># Use OCI CLI to download the kubeconfig file on the local machine  </span>
-oci ce cluster create-kubeconfig — cluster-id ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaaaezgkzraasadasdassdzrwhe2gcobzgcztmnjwgjqt — file <span class="nv">$HOME</span>/.kube/config — region eu-frankfurt-1
-</code></pre></div></div>
-
-<p>It is also necessary to point the <code class="highlighter-rouge">KUBECONFIG</code> environment variable to the _kubeconfig_file downloaded previously.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Export the environment variable  </span>
-<span class="nb">export </span><span class="nv">KUBECONFIG</span><span class="o">=</span><span class="nv">$HOME</span>/.kube/config
-</code></pre></div></div>
-
-<p>Now I can run the following two commands to get more information about the cluster (these are also displayed in the Web console):</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get info about k8s nodes  </span>
-kubectl get nodes
-
-<span class="c"># Get info about k8s cluster  </span>
-kubectl cluster-info
-</code></pre></div></div>
-
-<p>They will show information about the 3 nodes IPs and master Load Balancer address. These can be useful in case we want to connect to any of the nodes via <a href="https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengconnectingworkernodesusingssh.htm">SSH</a>.</p>
-
-<p>Using <code class="highlighter-rouge">kubectl</code> it is also possible to run a proxy on the local machine to connect to the Kubernetes dashboard:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl proxy
-</code></pre></div></div>
-
-<p>Now I can use any web browser and navigate to <a href="http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy</a></p>
-
-<p><img src="https://cdn-images-1.medium.com/max/1200/1*X-t8yKC8M08YHrZyJXgqJA.png" alt="Image" title="Kubernetes dashboard proxied via local machine" /></p>
-
-<p>The dashboard shows many details about the cluster, including pods, services, nodes, persistent volumes, and deployments and also allows to perform operations via a web interface. As you can see from the screenshot above, Tiller is one of the services running on the cluster and has a Cluster IP assigned to.</p>
-
-<h2 id="try-for-free-on-oraclecloud">Try for free on Oracle Cloud</h2>
-
-<p>OKE is only one of the great services offered by Oracle Cloud. There are many others that can be explored to enhance your cloud-native applications.</p>
-
-<p>You can try the steps I described in this tutorial by <a href="https://myservices.us.oraclecloud.com/mycloud/signup">registering a free trial account here</a>, and take the opportunity to discover many other services offered by OCI.</p>
-
-<p><a href="https://myservices.us.oraclecloud.com/mycloud/signup">Try Oracle Cloud for 30 days!</a></p>
+<blockquote>
+  <p>Brian Mathews <a href="https://twitter.com/DevOps4Days">@DevOps4Days</a></p>
+</blockquote>
 
 		</div>
 		<div class="tutorial-share">
@@ -220,12 +208,12 @@ kubectl cluster-info
 		<ul class="listing">
 	
 		<li class="active">
-			<a href="/kubernetes/k8s-cluster-with-web-console/">
+			<a href="/serverless/what-is-faas/">
 				<div class="icon"></div>
 				<article>
 					<div>
-						<h3>1. Deploying a Kubernetes Cluster through a UI</h3>
-						<p class="description">How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.</p>
+						<h3>1. What is this “FaaS”?</h3>
+						<p class="description">This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to createa local kubernetes cluster. This tutorial uses [Docker for Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.</p>
 					</div>
 				</article>
 			</a>
@@ -243,12 +231,96 @@ kubectl cluster-info
 		<ul class="listing">
 	
 		<li >
-			<a href="/contributors/about-me-raquel/">
+			<a href="/serverless/serverless-fuctions-with-fn/">
 				<div class="icon"></div>
 				<article>
 					<div>
-						<h3>Raquel Teresa</h3>
-						<p class="description">Introducing my role as a Developer Advocate to the community</p>
+						<h3>Serverless Functions on OCI using FN</h3>
+						<p class="description">The Fn project is an open source, container native, and cloud agnostic serverless platform which is being funded by Oracle. It’s easy to use, supports every programming language, and in my opinion, performs very well.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/packagejson/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>package.json</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/serverless/getting-started-with-customer-dockerfiles/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Creating custom Dockerfiles for Node.js function’s</h3>
+						<p class="description">The aim of this tutorial is to walk through how you can use a custom Docker image to define an Node.js serverless function.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/funcjs/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>func.js</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/func-yaml/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>func.yaml</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/kubernetes/Getting-started-with-istio/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Istio — Getting started guide</h3>
+						<p class="description">Istio — https://istio.io — is a new Microservice service mesh manager for making microservice deployments less complex and eases the strain on development teams.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/Dockerfile-magick-function/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Dockerfile - Magick function</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/contributors/about-me-brian/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Brian Mathews</h3>
+						<p class="description">Joining a Developer Advocate team</p>
 					</div>
 				</article>
 			</a>
@@ -267,17 +339,12 @@ kubectl cluster-info
 		</li>
 	
 		<li >
-			<a href="/miscellanous/about-od-developer-advocates/">
-				<div class="icon">
-		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-			<path d="M0 0h24v24H0z" fill="none"/>
-			<path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-		</svg>
-	</div>
+			<a href="/kubernetes/k8s-cluster-through-ui/">
+				<div class="icon"></div>
 				<article>
 					<div>
-						<h3>Introduction to OD Developer Advocates</h3>
-						<p class="description">A quick introduction the new advocacy team will focus on everything Cloud Native and OCI.</p>
+						<h3>Deploying a Kubernetes Cluster through a UI</h3>
+						<p class="description">How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.</p>
 					</div>
 				</article>
 			</a>
@@ -307,19 +374,19 @@ kubectl cluster-info
 		<h2>Share</h2>
 		<p>Share this tutorial with your community.</p>
 		<ul>
-			<li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-with-web-console%2F">
+			<li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fwhat-is-faas%2F">
 		<svg class="twitter" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
 	
  Twitter</a></li>
-			<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-with-web-console%2F">
+			<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fwhat-is-faas%2F">
 		<svg class="facebook" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="15.8 15.8 25 25"><path d="M32.8 24.7h-3.2v-2.1c0-0.8 0.5-1 0.9-1s2.3 0 2.3 0v-3.5l-3.1 0c-3.5 0-4.3 2.6-4.3 4.3v2.3h-2v3.6h2c0 4.6 0 10.2 0 10.2h4.2c0 0 0-5.6 0-10.2h2.8L32.8 24.7z"/></svg>
 	
  Facebook</a></li>
-			<li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-with-web-console%2F">
+			<li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fwhat-is-faas%2F">
 		<svg class="google-plus" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23,11H21V9H19V11H17V13H19V15H21V13H23M8,11V13.4H12C11.8,14.4 10.8,16.4 8,16.4C5.6,16.4 3.7,14.4 3.7,12C3.7,9.6 5.6,7.6 8,7.6C9.4,7.6 10.3,8.2 10.8,8.7L12.7,6.9C11.5,5.7 9.9,5 8,5C4.1,5 1,8.1 1,12C1,15.9 4.1,19 8,19C12,19 14.7,16.2 14.7,12.2C14.7,11.7 14.7,11.4 14.6,11H8Z" /></svg>
 	
  Google+</a></li>
-			<li><a class="hacker-news" target="_blank" href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-with-web-console%2F&t=Deploying%20a%20Kubernetes%20Cluster%20through%20a%20UI">
+			<li><a class="hacker-news" target="_blank" href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fwhat-is-faas%2F&t=What%20is%20this%20%E2%80%9CFaaS%E2%80%9D%3F">
 		<svg class="hacker-news" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.8 3.3c-0.4 0.8-5.6 11.1-5.6 11.2 0 2 0 6.2 0 6.2 -0.1 0-2.2 0-2.3 0 0 0 0-5.9 0-6.2 0 0-5.5-10.9-5.6-11.1C5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3c0 0 0 0 0.1 0 0.9 0 1.7 0 2.6 0 0 0 0 0 0 0.1 0.1 0.1 4 8.3 4.1 8.3 0 0 4.2-8.3 4.3-8.4 0.8 0 1.6 0 2.4 0 0 0 0 0 0 0C18.8 3.3 18.8 3.3 18.8 3.3z"/></svg>
 	
  Hacker News</a></li>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="/css/screen.css">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="/touch-icon.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="/images/favicon.png">
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather:400italic,400,300italic,300,700,700italic|Open+Sans:400italic,600italic,700italic,700,600,400|Inconsolata:400,700">
+
+		
+
+		<!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Serverless Functions on OCI using FN | OD Groundbreakers</title>
+<meta name="generator" content="Jekyll v3.7.2" />
+<meta property="og:title" content="Serverless Functions on OCI using FN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Fn project is an open source, container native, and cloud agnostic serverless platform which is being funded by Oracle. It’s easy to use, supports every programming language, and in my opinion, performs very well." />
+<meta property="og:description" content="The Fn project is an open source, container native, and cloud agnostic serverless platform which is being funded by Oracle. It’s easy to use, supports every programming language, and in my opinion, performs very well." />
+<link rel="canonical" href="https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/" />
+<meta property="og:url" content="https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/" />
+<meta property="og:site_name" content="OD Groundbreakers" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-25T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"The Fn project is an open source, container native, and cloud agnostic serverless platform which is being funded by Oracle. It’s easy to use, supports every programming language, and in my opinion, performs very well.","@type":"BlogPosting","url":"https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://oci-tutorials.github.io//siteicon.png"}},"headline":"Serverless Functions on OCI using FN","dateModified":"2019-01-25T00:00:00+00:00","datePublished":"2019-01-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link type="application/atom+xml" rel="alternate" href="https://oci-tutorials.github.io//feed.xml" title="OD Groundbreakers" />
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+
+	<body class="">
+		<header>
+			<div class="wrapper">
+				<section class="top-bar">
+					<div class="logo"><a href="/"><img src="/images/groundbreakerslogo.png" alt="Oracle Groundbreakers" height="180" width="240px">
+</a></div>
+					<a class="nav-toggle" id="open-nav" href="#">&#9776;</a>
+<nav>
+	<a class="editor-link btn" href="cloudcannon:collections/_data/navigation.yml" class="btn" style="padding: 5px;"><strong>&#9998;</strong> Edit navigation</a>
+	
+	
+
+		
+		<a href="/" class="">Tutorials</a>
+	
+	
+
+		
+		<a href="/codesamples/" class="">Code Samples</a>
+	
+	
+
+		
+		<a href="/designpatterns/" class="">Design Patterns</a>
+	
+	
+
+		
+		<a href="/events/" class="">Events</a>
+	
+</nav>
+
+				</section>
+				<section class="hero_search">
+					<h1>Tutorials</h1>
+					<p>Blogposts, Tutorials, Code Samples & Videos. All you need to get started.</p>
+					<form action="/search/" method="get">
+	<input type="search" name="q"  placeholder="What would you like to know?" autofocus>
+	<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+	<input type="submit" value="Search" style="display: none;">
+</form>
+				</section>
+			</div>
+
+		</header>
+		<section class="content">
+			<div class="wrapper">
+				<section class="tutorial">
+	<section class="sidebar sticky">
+		<ul>
+			
+			
+		</ul>
+	</section>
+	<section class="tutorial-content">
+		<h1>Serverless Functions on OCI using FN</h1>
+
+		
+		
+		<div class="tutorial-main">
+			<h1 id="serverless-functions-on-oracle-cloud-using-the-open-source-fn-project">Serverless Functions on Oracle Cloud using the open source FN project</h1>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*2KyQBP3r911sr6C3-Dh_Jg.png" alt="" />
+<span class="figcaption_hack">FN logo</span></p>
+
+<h3 id="fn-project">Fn Project</h3>
+
+<p>The <a href="http://fnproject.io/">Fn project</a> is an open source, container native, and
+cloud agnostic serverless platform which is being funded by Oracle. It’s easy to
+use, supports every programming language, and in my opinion, performs very well.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>As this is an open source project as opposed to a lot of “as a service”
+offerings available, we are left with the first task of, where we would like to
+run the project.</p>
+
+<p>The good thing about this, however, is that the FN project is very versatile so
+you can run it almost anywhere from your laptop, to on-premise, to your
+favourite cloud platform.</p>
+
+<p>In this blog, I will be walking you through getting started with FN hosted on
+Oracle Clouds OKE (Kubernetes Engine). There are 2 reasons which I chose this as
+a platform for testing firstly the easy access and use of the OKE service for a
+fully managed Kubernetes service and secondly its completely free to test with a
+<a href="http://bit.ly/blogMedium">free trial!</a></p>
+
+<h3 id="getting-started">Getting started</h3>
+
+<p>For getting started with FN on Kubernetes the team at FN have made it really
+easy by releasing a Helm chart to give easy installation. This chart deploys a
+fully functioning instance of the <a href="https://github.com/fnproject/fn">Fn</a> platform
+on a Kubernetes cluster using the <a href="https://helm.sh/">Helm</a> package manager.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li>PV provisioner support in the underlying infrastructure (for persistent data,
+see below )</li>
+  <li>Install <a href="https://github.com/kubernetes/helm#install">Helm</a></li>
+  <li>Initialise Helm by installing Tiller, the server portion of Helm, to your
+Kubernetes cluster</li>
+</ul>
+
+<h4 id="let-get-started">Let get started:</h4>
+
+<p>Download helm using a package manager for ease:</p>
+
+<p>Initialise Helm once installed:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm init
+</code></pre></div></div>
+
+<h3 id="installing-the-chart">Installing the Chart</h3>
+
+<p>Clone the fn-helm repo:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone 
+ &amp;&amp; cd fn-helm
+</code></pre></div></div>
+
+<p>Install chart dependencies from
+<a href="https://github.com/fnproject/fn-helm/blob/master/fn/requirements.yaml">requirements.yaml</a>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm dep build fn
+</code></pre></div></div>
+
+<p>The default chart will install fn as a private service inside your cluster with
+ephemeral storage, to configure a public endpoint and persistent storage you
+should look at
+<a href="https://github.com/fnproject/fn-helm/blob/master/fn/values.yaml">values.yaml</a>
+and modify the default settings. For OKE on Oracle Cloud it is as follows:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn:                         
+service:                            
+annotations:                               service.beta.kubernetes.io/oci-load-balancer-shape: 400Mbps                       ui:                         
+service:                            
+annotations:                                 service.beta.kubernetes.io/oci-load-balancer-shape: 400Mbps                                               mysql:                          
+persistence:                             
+enabled: true                             
+existingClaim: tc-fn-mysql                                               redis:                          
+persistence:                             
+enabled: true                             
+existingClaim: tc-fn-redis                                                                       rbac:                         
+enabled: true
+</code></pre></div></div>
+
+<p>Once you have this edited for your relevant Kubernetes host we can go ahead and
+install the chart on Kubernetes.</p>
+
+<p>To install the chart with the release name <code class="highlighter-rouge">release</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm install --name release fn
+</code></pre></div></div>
+
+<p><strong>Note:</strong>* if you do not pass the — name flag, a release name will be
+auto-generated. You can view releases by running helm list (or helm ls, for
+short).*</p>
+
+<p>Now that FN has been installed we can start the service.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn start
+</code></pre></div></div>
+
+<p>The above command runs Fn in a single server mode with an embedded database and
+queue. Behind the scenes, the <code class="highlighter-rouge">fn start</code> command runs a Docker image called
+<code class="highlighter-rouge">fnproject/fnserver</code> in a privileged mode. It also mounts the Docker socket into
+the container as well as the <code class="highlighter-rouge">/data</code> folder in the current working directory
+(this is where database and queue information is stored). Finally, it exposes
+port <code class="highlighter-rouge">8080</code> to the host so you can invoke it on that port.</p>
+
+<h3 id="first-function">First function</h3>
+
+<p>The FN CLI which we have installed has a built-in <code class="highlighter-rouge">init</code> command which we use
+for new functions.</p>
+
+<p>For FN &amp; Serverless functions there are a few terms which are useful to know
+that I will refer too in the next steps.</p>
+
+<p><strong>Apps</strong> <br /> Apps are a way to group your functions and triggers logically
+under the same name e.g. <code class="highlighter-rouge">test-app</code></p>
+
+<p><strong>Triggers</strong><br /> Triggers are pointers to functions used for invoking the
+function code. Think of it as an endpoint where the function can be invoked
+from, e.g.<code class="highlighter-rouge">http://localhost:8080/test-app/helloworld</code> which uses a HTTP trigger.
+**NOTE: **You can have multiple triggers pointing to the same function, eg
+events, HTTP triggers, scheduled, etc.</p>
+
+<p><strong>Functions</strong>This is the piece of code you are writing and that gets executed.</p>
+
+<p><strong>Images</strong><br /> Docker image that packages your function; the image used depends
+on the language of the function (e.g.<code class="highlighter-rouge">fnproject/go</code>, <code class="highlighter-rouge">fnproject/ruby</code>), for the
+best performance of functions we want our images to be as small as possible to
+make the function easier to scale.</p>
+
+<h4 id="lets-get-started">Let’s get started</h4>
+
+<p>Now that we have the terminology sorted let’s get started and make our sample
+app.</p>
+
+<p>To do this we use the <code class="highlighter-rouge">init</code> command to create a function with a Golang runtime
+<code class="highlighter-rouge">--runtime go</code> then the provide it with the trigger type <code class="highlighter-rouge">--trigger http</code> and
+then finally the subfolder for the function in this case <code class="highlighter-rouge">hello</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn init --runtime go --trigger http hello
+</code></pre></div></div>
+
+<p>When we go to the newly created function <code class="highlighter-rouge">hello</code> subfolder, in this folder we
+can see the structure of the function, eg:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello
+├── Gopkg.toml
+├── func.go
+├── func.yaml
+└── test.json
+</code></pre></div></div>
+
+<p>The source code for your function is in the <code class="highlighter-rouge">func.go</code> file and has a function
+handler that responds with a <em>“Hello World”</em> message. The <code class="highlighter-rouge">func.yaml</code> file
+contains information such as version runtime, name, entry point for your
+function and a list of triggers.</p>
+
+<p>You may look at the <code class="highlighter-rouge">test.json</code> file and wonder what it is, this file holds an
+array of tests (input values and expected output values) that can be used to
+test your function as a black-box service <code class="highlighter-rouge">fn test</code>. This is really useful
+fortesting any services in the beta stage.</p>
+
+<p>Now that we have created our function using the built-in <code class="highlighter-rouge">hello</code> example we can
+run the function for testing using the <code class="highlighter-rouge">fn run</code> command.</p>
+
+<p>**Note: **Before you run the function make sure you set the <code class="highlighter-rouge">FN_REGISTRY</code>
+environment variable to your Docker repository.</p>
+
+<p>Now when you run the command, Fn will build the Docker image with the function
+and runs the function like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn run
+
+Building image hello:0.0.1 ...........
+{"message":"Hello World"}
+</code></pre></div></div>
+
+<p>This is all great, but we have the Fn server running locally, so let’s deploy
+our function to the server, instead of just running it.</p>
+
+<p>To deploy the function, you can use the <code class="highlighter-rouge">fn deploy</code> command and specify the app
+name. Note that you need to run the command below from within the function
+folder:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn deploy --app myapp
+</code></pre></div></div>
+
+<p>This command deploys the app (called <code class="highlighter-rouge">myapp</code>) and a function called <code class="highlighter-rouge">hello </code>to
+the local Fn server and links a trigger called <code class="highlighter-rouge">hello-trigger</code> to that function.</p>
+
+<p>This means that on the Fn server, the function will be accessible under
+<code class="highlighter-rouge">/myapp/hello-trigger</code> path (e.g. <code class="highlighter-rouge">http://**ClsuterIP**/t/myapp/hello-trigger</code>).
+The app name is used to logically group functions together. To see the full list
+of triggers defined on the Fn server, just run this command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># List all triggers for 'myapp'
+fn list triggers myapp
+
+FUNCTION        NAME            TYPE    SOURCE          ENDPOINT
+hello           hello-trigger   http    /hello-trigger  
+</code></pre></div></div>
+
+<p>Finally, if you access the endpoint, you will get back the “<em>Hello World</em>”
+message like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl 
+{"message":"Hello World"}
+</code></pre></div></div>
+
+<h3 id="grouping-functions">Grouping functions</h3>
+
+<p>To group the functions together, we can use the <code class="highlighter-rouge">app</code> name construct — this
+allows you to group different functions together logically (e.g. <code class="highlighter-rouge">test-app</code>
+could have functions such as <code class="highlighter-rouge">hello</code> and <code class="highlighter-rouge">goodbye</code>).</p>
+
+<p>In this case, the <code class="highlighter-rouge">test-app</code> could also be the folder where your functions live,
+with their subfolders eg. <code class="highlighter-rouge">/hello</code> and <code class="highlighter-rouge">/goodbye </code>which contain the actual
+functions. You can also define the <code class="highlighter-rouge">app.yaml</code> file in the app root folder, to be
+able to deploy all functions with one command.</p>
+
+<p>Follow the steps below to create a <code class="highlighter-rouge">test-app</code> with hello and goodbye functions:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Create the test-app folder
+mkdir test-app
+cd test-app
+
+# Create app.yaml that defines the app name
+echo "name: test-app" &gt; app.yaml
+
+# Create a hello function in /hello subfolder
+fn init --runtime go --trigger http hello
+
+# Create a goodbye function in /goodbye subfolder
+fn init --runtime go --trigger http goodbye
+</code></pre></div></div>
+
+<p>Next, we can go into the <code class="highlighter-rouge">/hello</code> and the <code class="highlighter-rouge">/goodbye</code> folder, and deploy each app
+separately with <code class="highlighter-rouge">fn deploy --app test-app</code>. Alternatively, since we have the app
+name defined in <code class="highlighter-rouge">app.yaml</code> in the root folder, we can use this command to deploy
+all functions to the Fn server:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn deploy --all
+</code></pre></div></div>
+
+<p>The above command creates the following functions and triggers:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn list triggers test-app
+
+FUNCTION        NAME            TYPE    SOURCE                  ENDPOINT
+goodbye         goodbye-trigger http    /goodbye-trigger        
+hello           hello-trigger   http    /hello-trigger          
+</code></pre></div></div>
+
+<p>You can also create a function that lives in the root of your app by running <code class="highlighter-rouge">fn
+init</code> command from the apps root folder:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn init --runtime node --trigger http
+</code></pre></div></div>
+
+<p>Then deploy it again:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn deploy --all
+</code></pre></div></div>
+
+<p>Now we have three <em>triggers</em> defined under the <em>greeter-app</em> logical group:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fn list triggers test-app
+
+FUNCTION        NAME                    TYPE    SOURCE                  ENDPOINT
+goodbye         goodbye-trigger         http    /goodbye-trigger        
+greeter-app     test-app-trigger     http    /greeter-app-trigger    
+hello           hello-trigger           http    /hello-trigger          
+</code></pre></div></div>
+
+<h3 id="enabling-the-ui">Enabling the UI</h3>
+
+<p>If you prefer to interact with a UI, you can also do this with FN. Assuming you
+have the Fn server running locally, you can start the UI l:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --rm -it --link fnserver:api -p 4000:4000 -e "FN_API_URL=
+" fnproject/ui
+</code></pre></div></div>
+
+<p>When the image has been downloaded and the container has been executed, you’ll
+be able to access the UI on <code class="highlighter-rouge">http://localhost:4000</code>.</p>
+
+<h4 id="try-it-yourself-for-free">Try it yourself for free!</h4>
+
+<p>Now that you’ve seen how FN works and how to get started and host it on the
+cloud, why not give it a go yourself with up to 3500 hours worth of free credits
+on Oracle Cloud <a href="http://bit.ly/brianMediumBlog">http://bit.ly/brianMediumBlog</a></p>
+
+<blockquote>
+  <p>Brian Mathews <a href="https://twitter.com/DevOps4Days">@DevOps4Days</a></p>
+</blockquote>
+
+		</div>
+		<div class="tutorial-share">
+			<a class="modalOpen no-smooth" href="#subscribe">
+			<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+		
+ Subscribe</a>
+			<a class="modalOpen no-smooth" href="#share">
+			<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 0h24v24H0z" fill="none"/>
+				<path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+			</svg>
+		
+ Share</a>
+		</div>
+	</section>
+</section>
+
+
+
+
+
+	<div class="related">
+		<h3>Related tutorials</h3>
+
+		<ul class="listing">
+	
+		<li >
+			<a href="/serverless/what-is-faas/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>What is this “FaaS”?</h3>
+						<p class="description">This tutorial uses [Minikube](https://github.com/kubernetes/minikube) to createa local kubernetes cluster. This tutorial uses [Docker for Mac](https://docs.docker.com/engine/installation/mac/) as the host of Minikube.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/packagejson/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>package.json</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/serverless/getting-started-with-customer-dockerfiles/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Creating custom Dockerfiles for Node.js function’s</h3>
+						<p class="description">The aim of this tutorial is to walk through how you can use a custom Docker image to define an Node.js serverless function.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/funcjs/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>func.js</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/func-yaml/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>func.yaml</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/kubernetes/Getting-started-with-istio/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Istio — Getting started guide</h3>
+						<p class="description">Istio — https://istio.io — is a new Microservice service mesh manager for making microservice deployments less complex and eases the strain on development teams.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/Dockerfile-magick-function/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Dockerfile - Magick function</h3>
+						<p class="description"></p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/contributors/about-me-brian/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Brian Mathews</h3>
+						<p class="description">Joining a Developer Advocate team</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/integration/what-is-api-gateway-and-why-you-need-on/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>What is API gateway and why you need one?</h3>
+						<p class="description">Introduction about API gateways. What it is and why you need one.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li >
+			<a href="/kubernetes/k8s-cluster-through-ui/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>Deploying a Kubernetes Cluster through a UI</h3>
+						<p class="description">How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+</ul>
+	</div>
+
+
+
+
+<div id="subscribe" class="modalDialog">
+	<div>
+		<a title="Close" class="close">&times;</a>
+		<form action="" method="post">
+			<h2>Subscribe</h2>
+			<p>The latest tutorials sent straight to your inbox.</p>
+			<input type="email" name="EMAIL" placeholder="Email">
+			<input type="submit" value="Sign up">
+		</form>
+	</div>
+</div>
+
+<div id="share" class="modalDialog sharing">
+	<div>
+		<a title="Close" class="close">&times;</a>
+		<h2>Share</h2>
+		<p>Share this tutorial with your community.</p>
+		<ul>
+			<li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fserverless-fuctions-with-fn%2F">
+		<svg class="twitter" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+	
+ Twitter</a></li>
+			<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fserverless-fuctions-with-fn%2F">
+		<svg class="facebook" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="15.8 15.8 25 25"><path d="M32.8 24.7h-3.2v-2.1c0-0.8 0.5-1 0.9-1s2.3 0 2.3 0v-3.5l-3.1 0c-3.5 0-4.3 2.6-4.3 4.3v2.3h-2v3.6h2c0 4.6 0 10.2 0 10.2h4.2c0 0 0-5.6 0-10.2h2.8L32.8 24.7z"/></svg>
+	
+ Facebook</a></li>
+			<li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fserverless-fuctions-with-fn%2F">
+		<svg class="google-plus" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23,11H21V9H19V11H17V13H19V15H21V13H23M8,11V13.4H12C11.8,14.4 10.8,16.4 8,16.4C5.6,16.4 3.7,14.4 3.7,12C3.7,9.6 5.6,7.6 8,7.6C9.4,7.6 10.3,8.2 10.8,8.7L12.7,6.9C11.5,5.7 9.9,5 8,5C4.1,5 1,8.1 1,12C1,15.9 4.1,19 8,19C12,19 14.7,16.2 14.7,12.2C14.7,11.7 14.7,11.4 14.6,11H8Z" /></svg>
+	
+ Google+</a></li>
+			<li><a class="hacker-news" target="_blank" href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fserverless%2Fserverless-fuctions-with-fn%2F&t=Serverless%20Functions%20on%20OCI%20using%20FN">
+		<svg class="hacker-news" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.8 3.3c-0.4 0.8-5.6 11.1-5.6 11.2 0 2 0 6.2 0 6.2 -0.1 0-2.2 0-2.3 0 0 0 0-5.9 0-6.2 0 0-5.5-10.9-5.6-11.1C5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3c0 0 0 0 0.1 0 0.9 0 1.7 0 2.6 0 0 0 0 0 0 0.1 0.1 0.1 4 8.3 4.1 8.3 0 0 4.2-8.3 4.3-8.4 0.8 0 1.6 0 2.4 0 0 0 0 0 0 0C18.8 3.3 18.8 3.3 18.8 3.3z"/></svg>
+	
+ Hacker News</a></li>
+		</ul>
+	</div>
+</div>
+
+<script src="/js/main.js"></script>
+
+<script>
+	var headings = document.querySelectorAll("h2[id]");
+
+	console.log(headings);
+	for (var i = 0; i < headings.length; i++) {
+		var anchorLink = document.createElement("a");
+		anchorLink.innerText = "#";
+		anchorLink.href = "#" + headings[i].id;
+		anchorLink.classList.add("header-link");
+
+		headings[i].appendChild(anchorLink);
+	}
+
+	$(".modalOpen").click(function() {
+		var id = $(this).attr("href");
+		$(id).addClass("show");
+
+		$(window).click(function() {
+			$(".show").removeClass("show");
+		});
+
+		$(id + " > div").click(function(event){
+			event.stopPropagation();
+		});
+		return false;
+	});
+
+	$(".close").click(function() {
+		$(".show").removeClass("show");
+		return false;
+	});
+
+	$(document).keyup(function(e) {
+		if (e.keyCode == 27) {
+			$(".show").removeClass("show");
+		}
+	});
+</script>
+
+			</div>
+		</section>
+
+		<footer>
+	<div class="wrapper">
+		<p class="edit-footer"><a class="editor-link btn" href="cloudcannon:collections/_data/footer.yml" class="btn" style="padding: 5px;"><strong>&#9998;</strong> Edit footer</a></p>
+		<ul class="footer-links">
+			
+				<li><a target="_blank" href="https://facebook.com/OracleDevs" class="Facebook-icon">
+					
+						
+		<svg class="facebook" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19,4V7H17A1,1 0 0,0 16,8V10H19V13H16V20H13V13H11V10H13V7.5C13,5.56 14.57,4 16.5,4M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg>
+	
+
+					
+					</a></li>
+			
+				<li><a target="_blank" href="https://twitter.com/oracledevs" class="Twitter-icon">
+					
+						
+		<svg class="twitter" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+	
+
+					
+					</a></li>
+			
+				<li><a target="_blank" href="https://www.youtube.com/channel/UCPpdGsinMIzZkJ7HOrg5ANA/featured" class="YouTube-icon">
+					
+						
+		<svg class="youtube" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M10,16.5V7.5L16,12M20,4.4C19.4,4.2 15.7,4 12,4C8.3,4 4.6,4.19 4,4.38C2.44,4.9 2,8.4 2,12C2,15.59 2.44,19.1 4,19.61C4.6,19.81 8.3,20 12,20C15.7,20 19.4,19.81 20,19.61C21.56,19.1 22,15.59 22,12C22,8.4 21.56,4.91 20,4.4Z" /></svg>
+	
+
+					
+					</a></li>
+			
+				<li><a  href="/feed.xml" class="RSS-icon">
+					
+						
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+		
+
+					
+					</a></li>
+			
+				<li><a  href="/profiles/" >
+					
+					About Us</a></li>
+			
+		</ul>
+		<p class="copyright">&copy; OD Groundbreakers 2019. All rights reserved.</p>
+	</div>
+</footer>
+		<script>
+			$(function() {
+				$('a[href*=\\#]').not(".no-smooth").on('click', function(event){
+					var el = $(this.hash);
+					if (el.length > 0) {
+						// event.preventDefault();
+						$('html,body').animate({scrollTop:$(this.hash).offset().top - 50}, 500);
+					}
+				});
+
+				$('svg').click(function() {
+					$(this).parent('form').submit();
+				});
+			});
+
+			document.getElementById("open-nav").addEventListener("click", function (event) {
+				event.preventDefault();
+				document.body.classList.toggle("nav-open");
+			});
+		</script>
+	</body>
+</html>

@@ -14,19 +14,19 @@
 		
 
 		<!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Raquel Teresa | OD Groundbreakers</title>
+<title>Deploying a Kubernetes Cluster through a UI | OD Groundbreakers</title>
 <meta name="generator" content="Jekyll v3.7.2" />
-<meta property="og:title" content="Raquel Teresa" />
+<meta property="og:title" content="Deploying a Kubernetes Cluster through a UI" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Introducing my role as a Developer Advocate to the community" />
-<meta property="og:description" content="Introducing my role as a Developer Advocate to the community" />
-<link rel="canonical" href="https://oci-tutorials.github.io//contributors/about-me-raquel/" />
-<meta property="og:url" content="https://oci-tutorials.github.io//contributors/about-me-raquel/" />
+<meta name="description" content="How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console." />
+<meta property="og:description" content="How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console." />
+<link rel="canonical" href="https://oci-tutorials.github.io//kubernetes/k8s-cluster-through-ui/" />
+<meta property="og:url" content="https://oci-tutorials.github.io//kubernetes/k8s-cluster-through-ui/" />
 <meta property="og:site_name" content="OD Groundbreakers" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-01-24T00:00:00+00:00" />
 <script type="application/ld+json">
-{"description":"Introducing my role as a Developer Advocate to the community","@type":"BlogPosting","url":"https://oci-tutorials.github.io//contributors/about-me-raquel/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://oci-tutorials.github.io//siteicon.png"}},"headline":"Raquel Teresa","dateModified":"2019-01-24T00:00:00+00:00","datePublished":"2019-01-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oci-tutorials.github.io//contributors/about-me-raquel/"},"@context":"http://schema.org"}</script>
+{"description":"How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.","@type":"BlogPosting","url":"https://oci-tutorials.github.io//kubernetes/k8s-cluster-through-ui/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://oci-tutorials.github.io//siteicon.png"}},"headline":"Deploying a Kubernetes Cluster through a UI","dateModified":"2019-01-24T00:00:00+00:00","datePublished":"2019-01-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oci-tutorials.github.io//kubernetes/k8s-cluster-through-ui/"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 		<link type="application/atom+xml" rel="alternate" href="https://oci-tutorials.github.io//feed.xml" title="OD Groundbreakers" />
@@ -89,30 +89,116 @@
 		<ul>
 			
 			
-				<li><a href="#about-me">About Me</a></li>
+				<li><a href="#introduction">Introduction</a></li>
+			
+				<li><a href="#prerequisites">Prerequisites</a></li>
+			
+				<li><a href="#deploying-a-newcluster">Deploying a new cluster</a></li>
+			
+				<li><a href="#connecting-to-thecluster">Connecting to the cluster</a></li>
+			
+				<li><a href="#try-for-free-on-oraclecloud">Try for free on Oracle Cloud</a></li>
 			
 		</ul>
 	</section>
 	<section class="tutorial-content">
-		<h1>Raquel Teresa</h1>
+		<h1>Deploying a Kubernetes Cluster through a UI</h1>
 
 		
 		
 		<div class="tutorial-main">
-			<h2 id="about-me">About Me</h2>
+			<h2 id="introduction">Introduction</h2>
 
-<p>I am part of the Developer Advocacy team at Oracle Digital. I graduated in Telecommunication Engineering in 2017 at the Polytechnic University of Madrid, after completing my thesis on “Implementation of a portal to optimise the quality of the processes in an user management system”. Then I’ve had different IT roles, gaining experience with the challenges that companies and organisations face every day, and realising how technology can make their lives better.</p>
+<p><a href="https://kubernetes.io">Kubernetes (aka k8s)</a> is an open-source system for orchestrating containerized applications. It allows automating deployment, scaling, and management of clusters for running cloud-native applications.
+In this tutorial, I am going to show you how it is possible to deploy a simple cluster on the cloud with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console. For this purpose, I am going to use the <a href="https://cloud.oracle.com/containers/kubernetes-engine">Container Engine for Kubernetes (OKE)</a> available under the “Developer Services” section within “Compute” services.</p>
 
-<p>New trends such as Blockchain, Machine Learning or Big data (and the Cloud underneath), are already being disruptive in any organisation that doesn’t want to be apart from the digital transformation journey. The adoption of these technologies will change businesses, economies, societies, and our lives, ultimately. That’s why I am passionate about technology and people. We have the power to change the status quo.</p>
+<p><img src="https://cdn-images-1.medium.com/max/1500/1*YF1njH6uihOxHXusOUnzRA.gif" alt="Image" title="Creating a k8s cluster with OKE" /></p>
 
-<p>Our main goal as Developer Advocates is to get in touch with you, the developer community. Contributing in the understanding of the big possibilities these technologies have, by providing new content, tutorials or sample code.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 
-<p>Please, feel free to reach out your recommendations, feedback or any other comments. We would like an open and interactive channel.</p>
+<p>Before creating a new cluster, it is important that <a href="https://docs.us-phoenix-1.oraclecloud.com/Content/ContEng/Concepts/contengprerequisites.htm">all the prerequisites listed here are fulfilled</a>. Assuming we are Administrators in the tenancy, it is necessary to create the following policy under the root compartment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allow service OKE to manage all-resources <span class="k">in </span>tenancy
+</code></pre></div></div>
+
+<p>This policy will allow OKE to manage networks, instances, storage, load balancers, etc. on our behalf.</p>
+
+<p>For this tutorial, we also need to have <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">OCI CLI</a> and <a href="https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengaccessingclusterkubectl.htminstalled">kubectl</a> on our local machine.</p>
+
+<h2 id="deploying-a-newcluster">Deploying a new cluster</h2>
+
+<p>In this tutorial I am going to use the OCI datacenter located in Frankfurt, therefore the OKE console is reachable at “<a href="https://console.eu-frankfurt-1.oraclecloud.com/containers/clusters">https://console.<strong>eu-frankfurt-1</strong>.oraclecloud.com/containers/clusters</a>” in this case.</p>
+
+<p>The next step is to click on the “Create Cluster” button and the following interface will show up:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*ZSXqkOhWXDxoiqqQ-6C_JA.png" alt="Image" /></p>
+
+<p>By choosing the “Quick create” option, all I need to enter is the <strong>Cluster name</strong> and <strong>Kubernetes Version</strong> (v1.11.5 at this time). </p>
+
+<p>OKE by default creates a new Virtual Cloud Network (VCN) with 2 subnets for Load Balancers and 3 subnets for master and worker nodes, an Internet Gateway, a route table, and 2 Security lists. In addition, it creates a new node pool with 1 node for each subnet (3 nodes in total in this case). The number of nodes for each subnet can be increased at this point or can be scaled up later, without service interruptions.</p>
+
+<p>Before clicking on “Create” button, I ticked the two checkboxes that allow enabling Kubernetes dashboard and Tiller (Helm) on the cluster. The former is useful for debugging and monitoring purposes, while the latter allows having Tiller installed and configured automatically for us.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*7Nfpult3n5UEekSeWyS2DQ.png" alt="Image" /></p>
+
+<p>Upon clicking on “Create”, OKE will start the creation and deployment of the new cluster on Oracle Cloud.</p>
+
+<h2 id="connecting-to-thecluster">Connecting to the cluster</h2>
+
+<p>Using the OCI CLI, it is possible to download the Kubeconfig file generated by OKE and use <code class="highlighter-rouge">kubectl</code> to manage the cluster.</p>
+
+<p>In the cluster landing page, after clicking on “Access Kubeconfig”, a popup window will show the commands to run on our local machine in order to download the <em>kubeconfig</em> file. In my case the commands are as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a folder for storing kubeconfig file  </span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/.kube
+
+<span class="c"># Use OCI CLI to download the kubeconfig file on the local machine  </span>
+oci ce cluster create-kubeconfig — cluster-id ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaaaezgkzraasadasdassdzrwhe2gcobzgcztmnjwgjqt — file <span class="nv">$HOME</span>/.kube/config — region eu-frankfurt-1
+</code></pre></div></div>
+
+<p>It is also necessary to point the <code class="highlighter-rouge">KUBECONFIG</code> environment variable to the _kubeconfig_file downloaded previously.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Export the environment variable  </span>
+<span class="nb">export </span><span class="nv">KUBECONFIG</span><span class="o">=</span><span class="nv">$HOME</span>/.kube/config
+</code></pre></div></div>
+
+<p>Now I can run the following two commands to get more information about the cluster (these are also displayed in the Web console):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get info about k8s nodes  </span>
+kubectl get nodes
+
+<span class="c"># Get info about k8s cluster  </span>
+kubectl cluster-info
+</code></pre></div></div>
+
+<p>They will show information about the 3 nodes IPs and master Load Balancer address. These can be useful in case we want to connect to any of the nodes via <a href="https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengconnectingworkernodesusingssh.htm">SSH</a>.</p>
+
+<p>Using <code class="highlighter-rouge">kubectl</code> it is also possible to run a proxy on the local machine to connect to the Kubernetes dashboard:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl proxy
+</code></pre></div></div>
+
+<p>Now I can use any web browser and navigate to <a href="http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy</a></p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*X-t8yKC8M08YHrZyJXgqJA.png" alt="Image" title="Kubernetes dashboard proxied via local machine" /></p>
+
+<p>The dashboard shows many details about the cluster, including pods, services, nodes, persistent volumes, and deployments and also allows to perform operations via a web interface. As you can see from the screenshot above, Tiller is one of the services running on the cluster and has a Cluster IP assigned to.</p>
+
+<h2 id="try-for-free-on-oraclecloud">Try for free on Oracle Cloud</h2>
+
+<p>OKE is only one of the great services offered by Oracle Cloud. There are many others that can be explored to enhance your cloud-native applications.</p>
+
+<p>You can try the steps I described in this tutorial by <a href="https://myservices.us.oraclecloud.com/mycloud/signup">registering a free trial account here</a>, and take the opportunity to discover many other services offered by OCI.</p>
+
+<p><a href="https://myservices.us.oraclecloud.com/mycloud/signup">Try Oracle Cloud for 30 days!</a></p>
 
 <hr />
 
 <blockquote>
-  <p>Raquel Teresa <a href="https://twitter.com/Raquel_Teresa">@Raquel_Teresa</a></p>
+  <p>Luca Iannario <a href="https://twitter.com/liannario">@liannario</a></p>
+
+  <p>Developer Advocate at Oracle. 
+When I am not on the clouds, I like travelling and taking pictures.</p>
 </blockquote>
 
 		</div>
@@ -132,6 +218,42 @@
 	</section>
 </section>
 
+
+	
+	
+	
+	<div class="tutorial-series">
+		<h3> - Series</h3>
+		<p></p>
+
+		<ul class="listing">
+	
+		<li >
+			<a href="/kubernetes/Getting-started-with-istio/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>1. Istio — Getting started guide</h3>
+						<p class="description">Istio — https://istio.io — is a new Microservice service mesh manager for making microservice deployments less complex and eases the strain on development teams.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+		<li class="active">
+			<a href="/kubernetes/k8s-cluster-through-ui/">
+				<div class="icon"></div>
+				<article>
+					<div>
+						<h3>2. Deploying a Kubernetes Cluster through a UI</h3>
+						<p class="description">How to deploy a simple Kubbernetes cluster with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console.</p>
+					</div>
+				</article>
+			</a>
+		</li>
+	
+</ul>
+	</div>
 
 
 
@@ -285,19 +407,19 @@
 		<h2>Share</h2>
 		<p>Share this tutorial with your community.</p>
 		<ul>
-			<li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fcontributors%2Fabout-me-raquel%2F">
+			<li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-through-ui%2F">
 		<svg class="twitter" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
 	
  Twitter</a></li>
-			<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fcontributors%2Fabout-me-raquel%2F">
+			<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-through-ui%2F">
 		<svg class="facebook" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="15.8 15.8 25 25"><path d="M32.8 24.7h-3.2v-2.1c0-0.8 0.5-1 0.9-1s2.3 0 2.3 0v-3.5l-3.1 0c-3.5 0-4.3 2.6-4.3 4.3v2.3h-2v3.6h2c0 4.6 0 10.2 0 10.2h4.2c0 0 0-5.6 0-10.2h2.8L32.8 24.7z"/></svg>
 	
  Facebook</a></li>
-			<li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fcontributors%2Fabout-me-raquel%2F">
+			<li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-through-ui%2F">
 		<svg class="google-plus" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23,11H21V9H19V11H17V13H19V15H21V13H23M8,11V13.4H12C11.8,14.4 10.8,16.4 8,16.4C5.6,16.4 3.7,14.4 3.7,12C3.7,9.6 5.6,7.6 8,7.6C9.4,7.6 10.3,8.2 10.8,8.7L12.7,6.9C11.5,5.7 9.9,5 8,5C4.1,5 1,8.1 1,12C1,15.9 4.1,19 8,19C12,19 14.7,16.2 14.7,12.2C14.7,11.7 14.7,11.4 14.6,11H8Z" /></svg>
 	
  Google+</a></li>
-			<li><a class="hacker-news" target="_blank" href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fcontributors%2Fabout-me-raquel%2F&t=Raquel%20Teresa">
+			<li><a class="hacker-news" target="_blank" href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Foci-tutorials.github.io%2F%2Fkubernetes%2Fk8s-cluster-through-ui%2F&t=Deploying%20a%20Kubernetes%20Cluster%20through%20a%20UI">
 		<svg class="hacker-news" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.8 3.3c-0.4 0.8-5.6 11.1-5.6 11.2 0 2 0 6.2 0 6.2 -0.1 0-2.2 0-2.3 0 0 0 0-5.9 0-6.2 0 0-5.5-10.9-5.6-11.1C5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3 5.3 3.3c0 0 0 0 0.1 0 0.9 0 1.7 0 2.6 0 0 0 0 0 0 0.1 0.1 0.1 4 8.3 4.1 8.3 0 0 4.2-8.3 4.3-8.4 0.8 0 1.6 0 2.4 0 0 0 0 0 0 0C18.8 3.3 18.8 3.3 18.8 3.3z"/></svg>
 	
  Hacker News</a></li>

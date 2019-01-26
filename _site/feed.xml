@@ -1,101 +1,1149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://oci-tutorials.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://oci-tutorials.github.io//" rel="alternate" type="text/html" /><updated>2019-01-24T17:07:35+00:00</updated><id>https://oci-tutorials.github.io//</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">Deploying a Kubernetes Cluster through a UI</title><link href="https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console/" rel="alternate" type="text/html" title="Deploying a Kubernetes Cluster through a UI" /><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console</id><content type="html" xml:base="https://oci-tutorials.github.io//kubernetes/k8s-cluster-with-web-console/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://oci-tutorials.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://oci-tutorials.github.io//" rel="alternate" type="text/html" /><updated>2019-01-26T00:13:45+00:00</updated><id>https://oci-tutorials.github.io//</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">What is this “FaaS”?</title><link href="https://oci-tutorials.github.io//serverless/what-is-faas/" rel="alternate" type="text/html" title="What is this “FaaS”?" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/what-is-faas</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/what-is-faas/">&lt;h1 id=&quot;what-is-this-faas-thing-everyone-talking-about-i-dont-want-a-microservice-i-want-a-big-service-that-makes-me-lots-of-money&quot;&gt;What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://kubernetes.io&quot;&gt;Kubernetes (aka k8s)&lt;/a&gt; is an open-source system for orchestrating containerized applications. It allows automating deployment, scaling, and management of clusters for running cloud-native applications.
-In this tutorial, I am going to show you how it is possible to deploy a simple cluster on the cloud with a few clicks through the Oracle Cloud Infrastructure (OCI) Web console. For this purpose, I am going to use the &lt;a href=&quot;https://cloud.oracle.com/containers/kubernetes-engine&quot;&gt;Container Engine for Kubernetes (OKE)&lt;/a&gt; available under the “Developer Services” section within “Compute” services.&lt;/p&gt;
+&lt;h3 id=&quot;what-is-function-as-a-service-faas&quot;&gt;What is Function-as-a-Service (FaaS)?&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1500/1*YF1njH6uihOxHXusOUnzRA.gif&quot; alt=&quot;Image&quot; title=&quot;Creating a k8s cluster with OKE&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;FaaS is the concept of serverless computing with serverless architectures.
+Software developers can use this to deploy an individual function (Piece of
+code), that performs an action, or piece of business logic, without worrying
+about where they are running it (eg. serverless). They are expected to start
+within milliseconds and process individual requests and then the process ends.
+Sounds simple right?&lt;/p&gt;
 
-&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Principles of FaaS:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Before creating a new cluster, it is important that &lt;a href=&quot;https://docs.us-phoenix-1.oraclecloud.com/Content/ContEng/Concepts/contengprerequisites.htm&quot;&gt;all the prerequisites listed here are fulfilled&lt;/a&gt;. Assuming we are Administrators in the tenancy, it is necessary to create the following policy under the root compartment:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Completely takes the pain of servers and environment constraints away from the
+developer&lt;/li&gt;
+  &lt;li&gt;Billing based on consumption and executions, not server instance sizes&lt;/li&gt;
+  &lt;li&gt;Services that are event-driven and instantaneously scalable&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;allow service OKE to manage all-resources &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;tenancy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/0*5B_ycnAD2U7zITih.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This policy will allow OKE to manage networks, instances, storage, load balancers, etc. on our behalf.&lt;/p&gt;
-
-&lt;p&gt;For this tutorial, we also need to have &lt;a href=&quot;https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm&quot;&gt;OCI CLI&lt;/a&gt; and &lt;a href=&quot;https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengaccessingclusterkubectl.htminstalled&quot;&gt;kubectl&lt;/a&gt; on our local machine.&lt;/p&gt;
-
-&lt;h2 id=&quot;deploying-a-newcluster&quot;&gt;Deploying a new cluster&lt;/h2&gt;
-
-&lt;p&gt;In this tutorial I am going to use the OCI datacenter located in Frankfurt, therefore the OKE console is reachable at “&lt;a href=&quot;https://console.eu-frankfurt-1.oraclecloud.com/containers/clusters&quot;&gt;https://console.&lt;strong&gt;eu-frankfurt-1&lt;/strong&gt;.oraclecloud.com/containers/clusters&lt;/a&gt;” in this case.&lt;/p&gt;
-
-&lt;p&gt;The next step is to click on the “Create Cluster” button and the following interface will show up:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*ZSXqkOhWXDxoiqqQ-6C_JA.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;By choosing the “Quick create” option, all I need to enter is the &lt;strong&gt;Cluster name&lt;/strong&gt; and &lt;strong&gt;Kubernetes Version&lt;/strong&gt; (v1.11.5 at this time). &lt;/p&gt;
-
-&lt;p&gt;OKE by default creates a new Virtual Cloud Network (VCN) with 2 subnets for Load Balancers and 3 subnets for master and worker nodes, an Internet Gateway, a route table, and 2 Security lists. In addition, it creates a new node pool with 1 node for each subnet (3 nodes in total in this case). The number of nodes for each subnet can be increased at this point or can be scaled up later, without service interruptions.&lt;/p&gt;
-
-&lt;p&gt;Before clicking on “Create” button, I ticked the two checkboxes that allow enabling Kubernetes dashboard and Tiller (Helm) on the cluster. The former is useful for debugging and monitoring purposes, while the latter allows having Tiller installed and configured automatically for us.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*7Nfpult3n5UEekSeWyS2DQ.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Upon clicking on “Create”, OKE will start the creation and deployment of the new cluster on Oracle Cloud.&lt;/p&gt;
-
-&lt;h2 id=&quot;connecting-to-thecluster&quot;&gt;Connecting to the cluster&lt;/h2&gt;
-
-&lt;p&gt;Using the OCI CLI, it is possible to download the Kubeconfig file generated by OKE and use &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl&lt;/code&gt; to manage the cluster.&lt;/p&gt;
-
-&lt;p&gt;In the cluster landing page, after clicking on “Access Kubeconfig”, a popup window will show the commands to run on our local machine in order to download the &lt;em&gt;kubeconfig&lt;/em&gt; file. In my case the commands are as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a folder for storing kubeconfig file  &lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.kube
-
-&lt;span class=&quot;c&quot;&gt;# Use OCI CLI to download the kubeconfig file on the local machine  &lt;/span&gt;
-oci ce cluster create-kubeconfig — cluster-id ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaaaezgkzraasadasdassdzrwhe2gcobzgcztmnjwgjqt — file &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.kube/config — region eu-frankfurt-1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It is also necessary to point the &lt;code class=&quot;highlighter-rouge&quot;&gt;KUBECONFIG&lt;/code&gt; environment variable to the _kubeconfig_file downloaded previously.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Export the environment variable  &lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;KUBECONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.kube/config
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now I can run the following two commands to get more information about the cluster (these are also displayed in the Web console):&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Get info about k8s nodes  &lt;/span&gt;
-kubectl get nodes
-
-&lt;span class=&quot;c&quot;&gt;# Get info about k8s cluster  &lt;/span&gt;
-kubectl cluster-info
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;They will show information about the 3 nodes IPs and master Load Balancer address. These can be useful in case we want to connect to any of the nodes via &lt;a href=&quot;https://docs.cloud.oracle.com/iaas/Content/ContEng/Tasks/contengconnectingworkernodesusingssh.htm&quot;&gt;SSH&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl&lt;/code&gt; it is also possible to run a proxy on the local machine to connect to the Kubernetes dashboard:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl proxy
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now I can use any web browser and navigate to &lt;a href=&quot;http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/&quot;&gt;http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*X-t8yKC8M08YHrZyJXgqJA.png&quot; alt=&quot;Image&quot; title=&quot;Kubernetes dashboard proxied via local machine&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The dashboard shows many details about the cluster, including pods, services, nodes, persistent volumes, and deployments and also allows to perform operations via a web interface. As you can see from the screenshot above, Tiller is one of the services running on the cluster and has a Cluster IP assigned to.&lt;/p&gt;
-
-&lt;h2 id=&quot;try-for-free-on-oraclecloud&quot;&gt;Try for free on Oracle Cloud&lt;/h2&gt;
-
-&lt;p&gt;OKE is only one of the great services offered by Oracle Cloud. There are many others that can be explored to enhance your cloud-native applications.&lt;/p&gt;
-
-&lt;p&gt;You can try the steps I described in this tutorial by &lt;a href=&quot;https://myservices.us.oraclecloud.com/mycloud/signup&quot;&gt;registering a free trial account here&lt;/a&gt;, and take the opportunity to discover many other services offered by OCI.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://myservices.us.oraclecloud.com/mycloud/signup&quot;&gt;Try Oracle Cloud for 30 days!&lt;/a&gt;&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Introduction</summary></entry><entry><title type="html">Raquel Teresa</title><link href="https://oci-tutorials.github.io//contributors/about-me-raquel/" rel="alternate" type="text/html" title="Raquel Teresa" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//contributors/about-me-raquel</id><content type="html" xml:base="https://oci-tutorials.github.io//contributors/about-me-raquel/">&lt;h2 id=&quot;about-me&quot;&gt;About Me&lt;/h2&gt;
-
-&lt;p&gt;I am part of the Developer Advocacy team at Oracle Digital. I graduated in Telecommunication Engineering in 2017 at the Polytechnic University of Madrid, after completing my thesis on “Implementation of a portal to optimize the quality of the processes in an user management system”. Then I’ve had different IT roles, gaining experience with the challenges that companies and organizations face every day, and realizing how technology can make their lives better.&lt;/p&gt;
-
-&lt;p&gt;New trends such as Blockchain, Machine Learning or Big data, and the Cloud underneath, are already being disruptive in any organization that doesn’t want to be apart from the digital transformation journey. The adoption of these technologies will change businesses, economies and societies, ultimately. That’s why I am passionate about technology and people. We have the power to change the status quo.&lt;/p&gt;
-
-&lt;p&gt;Our main goal on this channel is to get in touch with you, the developer community. Contributing in the understanding of the big possibilities these technologies have, by providing new content, tutorials or sample code.&lt;/p&gt;
-
-&lt;p&gt;Please, feel free to reach out recommendations, feedback or any other comments. We want an open and interactive channel, that we can all leverage.&lt;/p&gt;
+&lt;p&gt;At the basic level, you could describe them as a way to run some code when a
+“thing” happens. Shows how easy it is to process an HTTP request as a
+“Function”.&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;h4 id=&quot;benefits--use-cases&quot;&gt;Benefits &amp;amp; Use Cases&lt;/h4&gt;
+
+&lt;p&gt;Like most things, FaaS is not going to be perfect for every app.&lt;/p&gt;
+
+&lt;p&gt;In general, we see companies and developers using them mostly for our very high
+volume transactions so that they can scale when needed and don’t have to have
+redundant servers the rest of the time.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;High volume transactions — Isolate them and scale them&lt;/li&gt;
+  &lt;li&gt;Dynamic or burstable workloads — If you only run something once a day or month,
+no need to pay for a server 24/7/365&lt;/li&gt;
+  &lt;li&gt;Scheduled tasks — They are a perfect way to run a certain piece of code on a
+schedule, think cron jobs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;types-of-functions&quot;&gt;Types of Functions&lt;/h4&gt;
+
+&lt;p&gt;There are a lot of potential uses for functions. Below is a simple list of some
+common scenarios. Support and implementation for them vary by the provider or
+service your using.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Scheduled tasks or jobs.&lt;/li&gt;
+  &lt;li&gt;Process a web request.&lt;/li&gt;
+  &lt;li&gt;Process queue messages.&lt;/li&gt;
+  &lt;li&gt;Run manually.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Developers hate servers and server management. The idea of serverless
+architectures is a dream came true for most developers. That said, I can’t see
+FaaS as being a complete replacement for normal application architectures. For
+example a basic web application, it would take a lot of functions.&lt;/p&gt;
+
+&lt;p&gt;In my humble opinion, function-based apps are a perfect fit for replacing
+microservice style architectures and smaller high volume back-end services.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/serverless?source=post&quot;&gt;Serverless&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/cloud-computing?source=post&quot;&gt;Cloud Computing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/developer?source=post&quot;&gt;Developer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/programming?source=post&quot;&gt;Programming&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/introduction?source=post&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;Raquel Teresa &lt;a href=&quot;https://twitter.com/Raquel_Teresa&quot;&gt;@Raquel_Teresa&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About Me</summary></entry><entry><title type="html">What is API gateway and why you need one?</title><link href="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/" rel="alternate" type="text/html" title="What is API gateway and why you need one?" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on</id><content type="html" xml:base="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/">&lt;p&gt;We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.&lt;/p&gt;
+  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!</summary></entry><entry><title type="html">Serverless Functions on OCI using FN</title><link href="https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/" rel="alternate" type="text/html" title="Serverless Functions on OCI using FN" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/">&lt;h1 id=&quot;serverless-functions-on-oracle-cloud-using-the-open-source-fn-project&quot;&gt;Serverless Functions on Oracle Cloud using the open source FN project&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*2KyQBP3r911sr6C3-Dh_Jg.png&quot; alt=&quot;&quot; /&gt;
+&lt;span class=&quot;figcaption_hack&quot;&gt;FN logo&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;fn-project&quot;&gt;Fn Project&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://fnproject.io/&quot;&gt;Fn project&lt;/a&gt; is an open source, container native, and
+cloud agnostic serverless platform which is being funded by Oracle. It’s easy to
+use, supports every programming language, and in my opinion, performs very well.&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;As this is an open source project as opposed to a lot of “as a service”
+offerings available, we are left with the first task of, where we would like to
+run the project.&lt;/p&gt;
+
+&lt;p&gt;The good thing about this, however, is that the FN project is very versatile so
+you can run it almost anywhere from your laptop, to on-premise, to your
+favourite cloud platform.&lt;/p&gt;
+
+&lt;p&gt;In this blog, I will be walking you through getting started with FN hosted on
+Oracle Clouds OKE (Kubernetes Engine). There are 2 reasons which I chose this as
+a platform for testing firstly the easy access and use of the OKE service for a
+fully managed Kubernetes service and secondly its completely free to test with a
+&lt;a href=&quot;http://bit.ly/blogMedium&quot;&gt;free trial!&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-started&quot;&gt;Getting started&lt;/h3&gt;
+
+&lt;p&gt;For getting started with FN on Kubernetes the team at FN have made it really
+easy by releasing a Helm chart to give easy installation. This chart deploys a
+fully functioning instance of the &lt;a href=&quot;https://github.com/fnproject/fn&quot;&gt;Fn&lt;/a&gt; platform
+on a Kubernetes cluster using the &lt;a href=&quot;https://helm.sh/&quot;&gt;Helm&lt;/a&gt; package manager.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PV provisioner support in the underlying infrastructure (for persistent data,
+see below )&lt;/li&gt;
+  &lt;li&gt;Install &lt;a href=&quot;https://github.com/kubernetes/helm#install&quot;&gt;Helm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Initialise Helm by installing Tiller, the server portion of Helm, to your
+Kubernetes cluster&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;let-get-started&quot;&gt;Let get started:&lt;/h4&gt;
+
+&lt;p&gt;Download helm using a package manager for ease:&lt;/p&gt;
+
+&lt;p&gt;Initialise Helm once installed:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;helm init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;installing-the-chart&quot;&gt;Installing the Chart&lt;/h3&gt;
+
+&lt;p&gt;Clone the fn-helm repo:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone 
+ &amp;amp;&amp;amp; cd fn-helm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Install chart dependencies from
+&lt;a href=&quot;https://github.com/fnproject/fn-helm/blob/master/fn/requirements.yaml&quot;&gt;requirements.yaml&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;helm dep build fn
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The default chart will install fn as a private service inside your cluster with
+ephemeral storage, to configure a public endpoint and persistent storage you
+should look at
+&lt;a href=&quot;https://github.com/fnproject/fn-helm/blob/master/fn/values.yaml&quot;&gt;values.yaml&lt;/a&gt;
+and modify the default settings. For OKE on Oracle Cloud it is as follows:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn:                         
+service:                            
+annotations:                               service.beta.kubernetes.io/oci-load-balancer-shape: 400Mbps                       ui:                         
+service:                            
+annotations:                                 service.beta.kubernetes.io/oci-load-balancer-shape: 400Mbps                                               mysql:                          
+persistence:                             
+enabled: true                             
+existingClaim: tc-fn-mysql                                               redis:                          
+persistence:                             
+enabled: true                             
+existingClaim: tc-fn-redis                                                                       rbac:                         
+enabled: true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once you have this edited for your relevant Kubernetes host we can go ahead and
+install the chart on Kubernetes.&lt;/p&gt;
+
+&lt;p&gt;To install the chart with the release name &lt;code class=&quot;highlighter-rouge&quot;&gt;release&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;helm install --name release fn
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;* if you do not pass the — name flag, a release name will be
+auto-generated. You can view releases by running helm list (or helm ls, for
+short).*&lt;/p&gt;
+
+&lt;p&gt;Now that FN has been installed we can start the service.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above command runs Fn in a single server mode with an embedded database and
+queue. Behind the scenes, the &lt;code class=&quot;highlighter-rouge&quot;&gt;fn start&lt;/code&gt; command runs a Docker image called
+&lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/fnserver&lt;/code&gt; in a privileged mode. It also mounts the Docker socket into
+the container as well as the &lt;code class=&quot;highlighter-rouge&quot;&gt;/data&lt;/code&gt; folder in the current working directory
+(this is where database and queue information is stored). Finally, it exposes
+port &lt;code class=&quot;highlighter-rouge&quot;&gt;8080&lt;/code&gt; to the host so you can invoke it on that port.&lt;/p&gt;
+
+&lt;h3 id=&quot;first-function&quot;&gt;First function&lt;/h3&gt;
+
+&lt;p&gt;The FN CLI which we have installed has a built-in &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt; command which we use
+for new functions.&lt;/p&gt;
+
+&lt;p&gt;For FN &amp;amp; Serverless functions there are a few terms which are useful to know
+that I will refer too in the next steps.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Apps&lt;/strong&gt; &lt;br /&gt; Apps are a way to group your functions and triggers logically
+under the same name e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;test-app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Triggers&lt;/strong&gt;&lt;br /&gt; Triggers are pointers to functions used for invoking the
+function code. Think of it as an endpoint where the function can be invoked
+from, e.g.&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:8080/test-app/helloworld&lt;/code&gt; which uses a HTTP trigger.
+**NOTE: **You can have multiple triggers pointing to the same function, eg
+events, HTTP triggers, scheduled, etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Functions&lt;/strong&gt;This is the piece of code you are writing and that gets executed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Images&lt;/strong&gt;&lt;br /&gt; Docker image that packages your function; the image used depends
+on the language of the function (e.g.&lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/go&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/ruby&lt;/code&gt;), for the
+best performance of functions we want our images to be as small as possible to
+make the function easier to scale.&lt;/p&gt;
+
+&lt;h4 id=&quot;lets-get-started&quot;&gt;Let’s get started&lt;/h4&gt;
+
+&lt;p&gt;Now that we have the terminology sorted let’s get started and make our sample
+app.&lt;/p&gt;
+
+&lt;p&gt;To do this we use the &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt; command to create a function with a Golang runtime
+&lt;code class=&quot;highlighter-rouge&quot;&gt;--runtime go&lt;/code&gt; then the provide it with the trigger type &lt;code class=&quot;highlighter-rouge&quot;&gt;--trigger http&lt;/code&gt; and
+then finally the subfolder for the function in this case &lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn init --runtime go --trigger http hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When we go to the newly created function &lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt; subfolder, in this folder we
+can see the structure of the function, eg:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hello
+├── Gopkg.toml
+├── func.go
+├── func.yaml
+└── test.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The source code for your function is in the &lt;code class=&quot;highlighter-rouge&quot;&gt;func.go&lt;/code&gt; file and has a function
+handler that responds with a &lt;em&gt;“Hello World”&lt;/em&gt; message. The &lt;code class=&quot;highlighter-rouge&quot;&gt;func.yaml&lt;/code&gt; file
+contains information such as version runtime, name, entry point for your
+function and a list of triggers.&lt;/p&gt;
+
+&lt;p&gt;You may look at the &lt;code class=&quot;highlighter-rouge&quot;&gt;test.json&lt;/code&gt; file and wonder what it is, this file holds an
+array of tests (input values and expected output values) that can be used to
+test your function as a black-box service &lt;code class=&quot;highlighter-rouge&quot;&gt;fn test&lt;/code&gt;. This is really useful
+fortesting any services in the beta stage.&lt;/p&gt;
+
+&lt;p&gt;Now that we have created our function using the built-in &lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt; example we can
+run the function for testing using the &lt;code class=&quot;highlighter-rouge&quot;&gt;fn run&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;**Note: **Before you run the function make sure you set the &lt;code class=&quot;highlighter-rouge&quot;&gt;FN_REGISTRY&lt;/code&gt;
+environment variable to your Docker repository.&lt;/p&gt;
+
+&lt;p&gt;Now when you run the command, Fn will build the Docker image with the function
+and runs the function like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn run
+
+Building image hello:0.0.1 ...........
+{&quot;message&quot;:&quot;Hello World&quot;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is all great, but we have the Fn server running locally, so let’s deploy
+our function to the server, instead of just running it.&lt;/p&gt;
+
+&lt;p&gt;To deploy the function, you can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;fn deploy&lt;/code&gt; command and specify the app
+name. Note that you need to run the command below from within the function
+folder:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn deploy --app myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command deploys the app (called &lt;code class=&quot;highlighter-rouge&quot;&gt;myapp&lt;/code&gt;) and a function called &lt;code class=&quot;highlighter-rouge&quot;&gt;hello &lt;/code&gt;to
+the local Fn server and links a trigger called &lt;code class=&quot;highlighter-rouge&quot;&gt;hello-trigger&lt;/code&gt; to that function.&lt;/p&gt;
+
+&lt;p&gt;This means that on the Fn server, the function will be accessible under
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/myapp/hello-trigger&lt;/code&gt; path (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;http://**ClsuterIP**/t/myapp/hello-trigger&lt;/code&gt;).
+The app name is used to logically group functions together. To see the full list
+of triggers defined on the Fn server, just run this command:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# List all triggers for 'myapp'
+fn list triggers myapp
+
+FUNCTION        NAME            TYPE    SOURCE          ENDPOINT
+hello           hello-trigger   http    /hello-trigger  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, if you access the endpoint, you will get back the “&lt;em&gt;Hello World&lt;/em&gt;”
+message like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl 
+{&quot;message&quot;:&quot;Hello World&quot;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;grouping-functions&quot;&gt;Grouping functions&lt;/h3&gt;
+
+&lt;p&gt;To group the functions together, we can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; name construct — this
+allows you to group different functions together logically (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;test-app&lt;/code&gt;
+could have functions such as &lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;goodbye&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;In this case, the &lt;code class=&quot;highlighter-rouge&quot;&gt;test-app&lt;/code&gt; could also be the folder where your functions live,
+with their subfolders eg. &lt;code class=&quot;highlighter-rouge&quot;&gt;/hello&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/goodbye &lt;/code&gt;which contain the actual
+functions. You can also define the &lt;code class=&quot;highlighter-rouge&quot;&gt;app.yaml&lt;/code&gt; file in the app root folder, to be
+able to deploy all functions with one command.&lt;/p&gt;
+
+&lt;p&gt;Follow the steps below to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;test-app&lt;/code&gt; with hello and goodbye functions:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create the test-app folder
+mkdir test-app
+cd test-app
+
+# Create app.yaml that defines the app name
+echo &quot;name: test-app&quot; &amp;gt; app.yaml
+
+# Create a hello function in /hello subfolder
+fn init --runtime go --trigger http hello
+
+# Create a goodbye function in /goodbye subfolder
+fn init --runtime go --trigger http goodbye
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, we can go into the &lt;code class=&quot;highlighter-rouge&quot;&gt;/hello&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;/goodbye&lt;/code&gt; folder, and deploy each app
+separately with &lt;code class=&quot;highlighter-rouge&quot;&gt;fn deploy --app test-app&lt;/code&gt;. Alternatively, since we have the app
+name defined in &lt;code class=&quot;highlighter-rouge&quot;&gt;app.yaml&lt;/code&gt; in the root folder, we can use this command to deploy
+all functions to the Fn server:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn deploy --all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above command creates the following functions and triggers:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn list triggers test-app
+
+FUNCTION        NAME            TYPE    SOURCE                  ENDPOINT
+goodbye         goodbye-trigger http    /goodbye-trigger        
+hello           hello-trigger   http    /hello-trigger          
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also create a function that lives in the root of your app by running &lt;code class=&quot;highlighter-rouge&quot;&gt;fn
+init&lt;/code&gt; command from the apps root folder:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn init --runtime node --trigger http
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then deploy it again:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn deploy --all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we have three &lt;em&gt;triggers&lt;/em&gt; defined under the &lt;em&gt;greeter-app&lt;/em&gt; logical group:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn list triggers test-app
+
+FUNCTION        NAME                    TYPE    SOURCE                  ENDPOINT
+goodbye         goodbye-trigger         http    /goodbye-trigger        
+greeter-app     test-app-trigger     http    /greeter-app-trigger    
+hello           hello-trigger           http    /hello-trigger          
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;enabling-the-ui&quot;&gt;Enabling the UI&lt;/h3&gt;
+
+&lt;p&gt;If you prefer to interact with a UI, you can also do this with FN. Assuming you
+have the Fn server running locally, you can start the UI l:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run --rm -it --link fnserver:api -p 4000:4000 -e &quot;FN_API_URL=
+&quot; fnproject/ui
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When the image has been downloaded and the container has been executed, you’ll
+be able to access the UI on &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:4000&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;try-it-yourself-for-free&quot;&gt;Try it yourself for free!&lt;/h4&gt;
+
+&lt;p&gt;Now that you’ve seen how FN works and how to get started and host it on the
+cloud, why not give it a go yourself with up to 3500 hours worth of free credits
+on Oracle Cloud &lt;a href=&quot;http://bit.ly/brianMediumBlog&quot;&gt;http://bit.ly/brianMediumBlog&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Serverless Functions on Oracle Cloud using the open source FN project</summary></entry><entry><title type="html">package.json</title><link href="https://oci-tutorials.github.io//packagejson/" rel="alternate" type="text/html" title="package.json" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//packagejson</id><content type="html" xml:base="https://oci-tutorials.github.io//packagejson/">&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;imagedims&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Function using ImageMagick that returns dimensions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;func.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fnproject.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Apache-2.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@fnproject/fdk&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;=0.0.11&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tmp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^0.0.33&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;imagemagick&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^0.1.3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+ &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">{ &quot;name&quot;: &quot;imagedims&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;description&quot;: &quot;Function using ImageMagick that returns dimensions&quot;, &quot;main&quot;: &quot;func.js&quot;, &quot;author&quot;: &quot;fnproject.io&quot;, &quot;license&quot;: &quot;Apache-2.0&quot;, &quot;dependencies&quot;: { &quot;@fnproject/fdk&quot;: &quot;&amp;gt;=0.0.11&quot;, &quot;tmp&quot;: &quot;^0.0.33&quot;, &quot;imagemagick&quot;: &quot;^0.1.3&quot; } }</summary></entry><entry><title type="html">Creating custom Dockerfiles for Node.js function’s</title><link href="https://oci-tutorials.github.io//serverless/getting-started-with-customer-dockerfiles/" rel="alternate" type="text/html" title="Creating custom Dockerfiles for Node.js function’s" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/getting-started-with-customer-dockerfiles</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/getting-started-with-customer-dockerfiles/">&lt;h1 id=&quot;getting-started-with-custom-dockerfiles-for-nodejs-for-serverless-functions&quot;&gt;Getting started with Custom Dockerfiles for Node.js for Serverless Function’s&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2560/1*Njm6sMNgKzhyVhPzwf7g0g.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;intro&quot;&gt;&lt;strong&gt;Intro:&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;The aim of this tutorial is to walk through how you can use a custom Docker
+image to define an Node.js serverless function.&lt;/p&gt;
+
+&lt;p&gt;For the purpose of this tutorial I used the opensource Fn project for testing as
+you can run it on your local machine. For more information on Fn see tee the
+following page &lt;a href=&quot;http://fnproject.io/&quot;&gt;http://fnproject.io/&lt;/a&gt; or take a look at my
+last blog which walks you through configuring Fn to run on &lt;a href=&quot;https://medium.com/@brianbmathews/going-serverless-on-oracle-cloud-using-the-open-source-fn-project-3c71f843b6d&quot;&gt;Kubernetes on a free
+OCI Cloud
+trial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For the demo function I thought I would try something and use
+&lt;a href=&quot;https://www.imagemagick.org/&quot;&gt;ImageMagick&lt;/a&gt; to do some nice simple image
+processing in our function and while there is a Node.js module for ImageMagick,
+it’s really just a wrapper on the underlying native library. So we’ll have to
+install the library in addition to adding the Node module to our &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;
+dependencies. Let’s start by creating the Node function&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prequisites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This tutorial requires you to have both Docker and Fn installed. If you need
+help with Fn installation you can find instructions in the &lt;a href=&quot;https://fnproject.io/tutorials/install/&quot;&gt;Install and Start Fn
+Tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting Started&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If it isn’t already running, you’ll need to start the Fn server. We’ll run it in
+the foreground to let us see the server log messages so let’s open a new
+terminal for this.&lt;/p&gt;
+
+&lt;p&gt;Start the Fn server using the fn cli:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fn start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;function-definition&quot;&gt;Function Definition&lt;/h3&gt;
+
+&lt;p&gt;Firstly we shall create a folder for our deployment package:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir magick-function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We shall now jump into that folder:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd magick-function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In an &lt;strong&gt;empty folder&lt;/strong&gt; create a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;func.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nano func.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this function you can paste the following as its content:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fdk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'@fnproject/fdk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'imagemagick'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;fdk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tmpName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmpFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tmpFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;identify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'-format'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{&quot;width&quot;: %w, &quot;height&quot;: %h}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmpFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;inputMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'buffer'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This function is pretty straight forward, it takes a binary image as it’s
+argument, writes it to a tmp file, and then uses ImageMagick to obtain the width
+and height of the image. Since the function argument type is binary we need to
+set the “inputMode” property to “buffer” when we call the the FDK’s handle
+function.&lt;/p&gt;
+
+&lt;h3 id=&quot;declaring-nodejs-dependencies&quot;&gt;Declaring Node.js Dependencies&lt;/h3&gt;
+
+&lt;p&gt;There are some interesting elements to this function, but the key one for us is
+the use of the “imagemagick” Node module for image processing.&lt;/p&gt;
+
+&lt;p&gt;To use it we need to include it in our dependencies in the &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; along
+with the other dependencies.&lt;/p&gt;
+
+&lt;p&gt;In same folder as the &lt;code class=&quot;highlighter-rouge&quot;&gt;func.js&lt;/code&gt; file, create a &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file and paste the
+following as its content:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+
+&quot;name&quot;: &quot;imagedims&quot;,
+
+&quot;version&quot;: &quot;1.0.0&quot;,
+
+&quot;description&quot;: &quot;Function using ImageMagick that returns dimensions&quot;,
+
+&quot;main&quot;: &quot;func.js&quot;,
+
+&quot;author&quot;: &quot;fnproject.io&quot;,
+
+&quot;license&quot;: &quot;Apache-2.0&quot;,
+
+&quot;dependencies&quot;: {
+
+&quot;@fnproject/fdk&quot;: &quot;&amp;gt;=0.0.11&quot;,
+
+&quot;tmp&quot;: &quot;^0.0.33&quot;,
+
+&quot;imagemagick&quot;: &quot;^0.1.3&quot;
+
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Like all Node.js functions using the Fn Node FDK we include it as a dependency
+along with the “tmp” module which as I mentioned we need for the temporary file
+utilities and “imagemagick” for image processing.&lt;/p&gt;
+
+&lt;h3 id=&quot;function-metadata&quot;&gt;Function Metadata&lt;/h3&gt;
+
+&lt;p&gt;Now that we have a Node.js function and it’s dependencies captured in the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; we need a &lt;code class=&quot;highlighter-rouge&quot;&gt;func.yaml&lt;/code&gt; to capture the function metadata.&lt;/p&gt;
+
+&lt;p&gt;In the folder containing the previously created files, create a &lt;code class=&quot;highlighter-rouge&quot;&gt;func.yaml&lt;/code&gt; file
+and paste the following as its content:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;schema_version:
+20180708
+
+name:
+imagedims
+
+version:
+0.0.1
+
+runtime:
+docker
+
+triggers:
+
+-
+name:
+imagedims-trigger
+
+type:
+http
+
+source:
+/imagedims
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note: **This is a pretty typical &lt;code class=&quot;highlighter-rouge&quot;&gt;func.yaml&lt;/code&gt; for a Node.js function,
+**except&lt;/strong&gt; that instead of declaring the &lt;strong&gt;runtime&lt;/strong&gt; as “node” we’ve specified
+“&lt;strong&gt;docker&lt;/strong&gt;”. If you were to type &lt;code class=&quot;highlighter-rouge&quot;&gt;fn build&lt;/code&gt; right now you’d get the error:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ Fn: Dockerfile does not exist for ‘docker’ runtime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is because when you set the runtime type to “docker” &lt;code class=&quot;highlighter-rouge&quot;&gt;fn build&lt;/code&gt; defers to
+your Dockerfile to build the function container image–and we haven’t defined
+this yet.&lt;/p&gt;
+
+&lt;h3 id=&quot;default-nodejs-function-dockerfile&quot;&gt;Default Node.js Function Dockerfile&lt;/h3&gt;
+
+&lt;p&gt;The Dockerfile that &lt;code class=&quot;highlighter-rouge&quot;&gt;fn build&lt;/code&gt; would normally generate to build a Node.js
+function container image looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM fnproject/node:dev as build-stage
+WORKDIR /function
+ADD package.json /function/
+RUN npm &lt;span class=&quot;nb&quot;&gt;install
+&lt;/span&gt;FROM fnproject/node
+WORKDIR /function
+ADD &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; /function/
+COPY &lt;span class=&quot;nt&quot;&gt;--from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;build-stage /function/node_modules/ /function/node_modules/
+ENTRYPOINT &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;node&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;func.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It’s a two stage build with the &lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/node:dev&lt;/code&gt; image containing &lt;code class=&quot;highlighter-rouge&quot;&gt;npm&lt;/code&gt; and
+other build tools, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/node&lt;/code&gt; image containing just the Node
+runtime. This approach is designed to ensure that deployable function container
+images are as small as possible–which is beneficial for a number of reasons.&lt;/p&gt;
+
+&lt;h3 id=&quot;custom-nodejs-function-dockerfile&quot;&gt;Custom Node.js Function Dockerfile&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/node&lt;/code&gt; container image is built on Alpine so we’ll need to install
+the ImageMagick Alpine package using the &lt;code class=&quot;highlighter-rouge&quot;&gt;apk&lt;/code&gt; package management utility. You
+can do this with a Dockerfile &lt;code class=&quot;highlighter-rouge&quot;&gt;RUN&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;RUN apk add &lt;span class=&quot;nt&quot;&gt;--no-cache&lt;/span&gt; imagemagick
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We want to install ImageMagick into the runtime image, not the build image, so
+we need to add the &lt;code class=&quot;highlighter-rouge&quot;&gt;RUN&lt;/code&gt; command after the &lt;code class=&quot;highlighter-rouge&quot;&gt;FROM fnproject/node&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;In the folder containing the previously created files, create a file named
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; and paste the following as its content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-bash~~&quot;&gt;FROM fnproject/node:dev as build-stage
+WORKDIR /function
+ADD package.json /function/fn
+RUN npm install
+FROM fnproject/node
+RUN apk add --no-cache imagemagick
+WORKDIR /function
+ADD . /function/
+COPY --from=build-stage /function/node_modules/ /function/node_modules/
+ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this Dockerfile, the Node.js function, it’s dependencies (including the
+“imagemagick” wrapper), and the “imagemagick” Alpine package will be included in
+an image derived from the base &lt;code class=&quot;highlighter-rouge&quot;&gt;fnproject/node&lt;/code&gt; image. We should be good to go!&lt;/p&gt;
+
+&lt;p&gt;Now we can build our file:&lt;/p&gt;
+
+&lt;h3 id=&quot;building-and-deploying&quot;&gt;Building and Deploying&lt;/h3&gt;
+
+&lt;p&gt;Once you have your custom Dockerfile you can simply use &lt;code class=&quot;highlighter-rouge&quot;&gt;fn build&lt;/code&gt; to build your
+function. Give it a try:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fn -v build&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should see output similar to:&lt;/p&gt;
+
+&lt;p&gt;Just like with a default build, the output is a container image. From this point
+forward everything is just as it would be for any function. Since I previously
+started an Fn server, you can deploy it now and test. Let’s deploy to an
+application named ‘tutorial’:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fn deploy --app tutorial --local&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We can confirm the function is correctly defined by getting a list of the
+functions in the “tutorial” application:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fn list functions tutorial&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;: The fn cli let’s you abbreviate most of the keywords so you can also
+say &lt;code class=&quot;highlighter-rouge&quot;&gt;fn ls f tutorial&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should see output similar to:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NAME        IMAGE             ID
+imagedims   imagedims:0.0.1   01CWFAS9DBNG8G00RZJ0000002
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;invoking-the-function&quot;&gt;Invoking the Function&lt;/h3&gt;
+
+&lt;p&gt;With the function deployed let’s invoke it to make sure it’s working as
+expected. You’ll need a jpeg or png file so either find one on your machine or
+download one. I used a random photo on my laptop&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cat Test-image.jpg | fn invoke tutorial imagedims&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For this file you should see the following output:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;{&quot;width&quot;:720,&quot;height&quot;:540}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;calling-the-function-with-curl&quot;&gt;Calling the Function with curl&lt;/h3&gt;
+
+&lt;p&gt;You may have noticed when creating the &lt;code class=&quot;highlighter-rouge&quot;&gt;func.yaml&lt;/code&gt;we included a HTTP trigger
+declaration, this is so we can also call the function easily with curl.&lt;/p&gt;
+
+&lt;p&gt;It’s a little more complicated as you need to declare the content type because
+the request body is binary. You also need to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;--data-binary&lt;/code&gt; switch:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;curl --data-binary Test-image.jpg -H &quot;Content-Type: application/octet-stream&quot; -X POST http://localhost:8080/t/tutorial/imagedims&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should get exactly the same output as when using &lt;code class=&quot;highlighter-rouge&quot;&gt;fn invoke&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;One of the most powerful features of Fn is the ability to use custom defined
+Docker container images as functions. This feature makes it possible to
+customize your function’s runtime environment including letting you install any
+Linux libraries or utilities that your function might need. And thanks to the Fn
+CLI’s support for Dockerfiles it’s the same user experience as when developing
+any function.&lt;/p&gt;
+
+&lt;p&gt;Having completed this tutorial you’ve successfully built a function using a
+custom Dockerfile. Well done, why not give it a go now with Fn hosted on the
+Kubernetes on OCI for free as outlined in &lt;a href=&quot;https://medium.com/@brianbmathews/going-serverless-on-oracle-cloud-using-the-open-source-fn-project-3c71f843b6d&quot;&gt;my previous
+blog&lt;/a&gt;!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Getting started with Custom Dockerfiles for Node.js for Serverless Function’s</summary></entry><entry><title type="html">func.js</title><link href="https://oci-tutorials.github.io//funcjs/" rel="alternate" type="text/html" title="func.js" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//funcjs</id><content type="html" xml:base="https://oci-tutorials.github.io//funcjs/">&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fdk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'@fnproject/fdk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'imagemagick'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;fdk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tmpName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmpFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tmpFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;identify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'-format'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{&quot;width&quot;: %w, &quot;height&quot;: %h}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmpFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;inputMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'buffer'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">~~~javascript const fdk = require(‘@fnproject/fdk’); const fs = require(‘fs’); const tmp = require(‘tmp’); const im = require(‘imagemagick’);</summary></entry><entry><title type="html">func.yaml</title><link href="https://oci-tutorials.github.io//func-yaml/" rel="alternate" type="text/html" title="func.yaml" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//func-yaml</id><content type="html" xml:base="https://oci-tutorials.github.io//func-yaml/">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;schema_version: 20180708
+name: imagedims
+version: 0.0.1
+runtime: docker
+triggers:
+- name: imagedims-trigger
+type: http
+source: /imagedims
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">schema_version: 20180708 name: imagedims version: 0.0.1 runtime: docker triggers: - name: imagedims-trigger type: http source: /imagedims</summary></entry><entry><title type="html">Istio — Getting started guide</title><link href="https://oci-tutorials.github.io//kubernetes/Getting-started-with-istio/" rel="alternate" type="text/html" title="Istio — Getting started guide" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//kubernetes/Getting-started-with-istio</id><content type="html" xml:base="https://oci-tutorials.github.io//kubernetes/Getting-started-with-istio/">&lt;h1 id=&quot;istio--getting-started-with-configuring-monitoring--managing-your&quot;&gt;Istio — Getting started with Configuring, Monitoring &amp;amp; Managing your&lt;/h1&gt;
+&lt;p&gt;Microservice Deployments on Kubernetes&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*g0Jds40dh4QZSnfD9zOSiQ.jpeg&quot; alt=&quot;&quot; /&gt;
+&lt;span class=&quot;figcaption_hack&quot;&gt;Istio&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-istio&quot;&gt;What is Istio?&lt;/h3&gt;
+
+&lt;p&gt;Istio — &lt;a href=&quot;https://istio.io/&quot;&gt;https://istio.io&lt;/a&gt; — is a new Microservice service
+mesh manager for making microservice deployments less complex and eases the
+strain on development teams. It is a completely open source service mesh that
+layers transparently onto existing distributed applications. It is also a
+platform which included APIs that let it integrate into any logging platform,
+telemetry or policy system.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-a-service-mesh&quot;&gt;&lt;strong&gt;What is a Service Mesh?&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;A service mesh is a term we use to describe the network of microservices that
+make up a distributed microservice architecture that makeup applications and the
+interactions between them.&lt;/p&gt;
+
+&lt;p&gt;As these service meshes grow with size and complexity they become harder to
+understand and manage. It can require discovery, load balancing, failure
+recovery, metrics, and monitoring. They can also have more complex operational
+requirements such as A/B testing, canary releases, rate limiting, access
+control, and end-to-end authentication.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*HynrD-Clme6snFtTc7CaOg.png&quot; alt=&quot;&quot; /&gt;
+&lt;span class=&quot;figcaption_hack&quot;&gt;Booking info application service mesh
+&lt;a href=&quot;https://istio.io/docs/tasks/telemetry/servicegraph/&quot;&gt;https://istio.io/docs/tasks/telemetry/servicegraph/&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;why-use-istio&quot;&gt;Why use Istio?&lt;/h3&gt;
+
+&lt;p&gt;How can we manage this service mesh complexity? In comes Istio which provides
+behavioral insights and operational control over the service mesh as a whole,
+offering a complete solution to satisfy the requirements of microservice
+applications.&lt;/p&gt;
+
+&lt;p&gt;Istio makes it easy to create a network of deployed services with load
+balancing, service-to-service authentication, monitoring, and more, without any
+changes in service code. To do this you add Istio support to services by
+deploying a sidecar proxy throughout your environment that intercepts all
+network communication between microservices. You then configure and manage Istio
+using its control plane functions, such as:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;· Automatic load balancing for HTTP, gRPC, WebSocket, and TCP traffic.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;· Fine-grained control of traffic behavior with rich routing rules, retries,
+failovers, and fault injection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;· A pluggable policy layer and configuration API supporting access controls,
+rate limits and quotas.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;· Automatic metrics, logs, and traces for all traffic within a cluster,
+including cluster ingress and egress.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;· Secure service-to-service communication in a cluster with strong
+identity-based authentication and authorization.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;time-to-try-it&quot;&gt;Time to try it:&lt;/h3&gt;
+
+&lt;p&gt;In this article, I will show the steps for how I got started with Istio on my
+Kubernetes cluster that I provisioned on Oracle Cloud.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Steps taken:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Install Istio client on a my Mac.&lt;/li&gt;
+  &lt;li&gt;Deploy Istio to my Oracle Cloud OKE Kubernetes Cluster&lt;/li&gt;
+  &lt;li&gt;Deploy the Book info sample application with Sidecar Injection&lt;/li&gt;
+  &lt;li&gt;Try out some Istio functionalities — like traffic management and monitoring&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The conclusion is that leveraging Istio on OKE is quite straightforward.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;(the Envoy Sidecar is the proxy that is added to every Pod to handle all
+traffic into and out of the Pod; this is the magic that makes Istio work)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Istio Client in Linux VM&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The first step with Istio, prior to deploying Istio to the Kubernetes cluster,
+is the installation on your client machine of the istioctl client application
+and associated sources, including the Kubernetes yaml files required for the
+actual deployment.&lt;/p&gt;
+
+&lt;p&gt;Following the instructions in the quick start guide:
+&lt;a href=&quot;https://istio.io/docs/setup/kubernetes/quick-start.html&quot;&gt;https://istio.io/docs/setup/kubernetes/quick-start.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Firstly I downloaded the latest version of Istio to my Mac&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -L | sh -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*UUJA2AZ71aUDd7NU8ljejA.png&quot; alt=&quot;&quot; /&gt;
+&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Service Dashboard&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio release download&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Then move to the Istio directory:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd istio-1.0.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The installation directory contains:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Installation .yaml files for Kubernetes in /install/&lt;/li&gt;
+  &lt;li&gt;Sample applications in /samples/&lt;/li&gt;
+  &lt;li&gt;The istioctl client binary in the bin/ directory. istioctl is used when manually
+injecting Envoy as a sidecar proxy and for creating routing rules and policies.&lt;/li&gt;
+  &lt;li&gt;The istio.VERSION configuration file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You then add the istioctl client to my PATH environment variables:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export=$PWD $PATH
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ensure that the current OCI and OKE user is allowed to do cluster administration
+tasks by creating a Role-Based Access Control policy&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; kubectl create clusterrolebinding &amp;lt;admin-binding&amp;gt; –clusterrole=cluster-admin –user=&amp;lt;user-OCID&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;admin-binding: Is any string that you want, such as “adminrolebinding”&lt;/li&gt;
+  &lt;li&gt;user: Your user OCID&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Deploy Istio to your Oracle Cloud OKE Kubernetes Cluster&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I will cover the installation of Istio using Helm below, however, prior to
+performing the installation, let’s make some changes to the Istio “values.yaml”
+file. The “values.yaml” file informs Helm which components to install on the OKE
+platform. The “values.yaml” file is located at:&lt;/p&gt;
+
+&lt;p&gt;In order to have the components Grafana, Prometheus, Servicegraph, and Jaeger
+deployed, the “values.yaml” file needs to be modified. For each of the
+components you want to be deployed, change the enabled property from “false” to
+“true” eg:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Servicegraph:
+
+enabled: true
+
+replicaCount: 1
+
+image: servicegraph
+
+service:
+
+name: http
+
+type: ClusterIP
+
+externalPort: 8088
+
+internalPort: 8088
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once you have made these changes to the “values.yaml” file you can save. and
+exit and you are now ready to install Istio!&lt;/p&gt;
+
+&lt;p&gt;If you are using a version of Helm prior to 2.10.0 then you must first install
+Istio’s Custom Resource Definitions via the kubectl apply:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After this command execution you will have to wait a few seconds for the Custom
+Resource Definitions (CRDs) to be committed in the kube-apiserver.&lt;/p&gt;
+
+&lt;p&gt;Once the CRDs have been added to the kube-apiserver we can now render Istio’s
+core components to a Kubernetes manifest called &lt;code class=&quot;highlighter-rouge&quot;&gt;istio.yaml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;helm template install/kubernetes/helm/istio --name istio --namespace istio-system &amp;gt; $HOME/istio.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that the components have been rendered manifest file we can now install the
+components via the manifest by:&lt;/p&gt;
+
+&lt;p&gt;Creating the namespace in Kubernetes with Kubectl:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create namespace istio-system
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We then apply the istio.yaml file to install istio:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f $HOME/istio.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can now see that Istio has been installed to our pods by running:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get pods -n istio-system
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Since the “values.yaml” was modified to enable the deployment of Grafana,
+Prometheus, ServiceGraph, and Jeager you will see those components deployed as
+well.&lt;/p&gt;
+
+&lt;p&gt;While Istio states there is automatic sidecar injection; there are some slight
+limitations to this . Automatic sidecar injection must be specified per
+namespace; therefore, if you do not enable your namespace for automatic
+injection then the sidecar will not be injected into your pods. I do not
+recommend enabling the default namespace for automatic sidecar injection.&lt;/p&gt;
+
+&lt;p&gt;Please note, when enabling automatic sidecar injections that there may in future
+be some components that you deploy to the default namespace and you don’t want
+the sidecar deployed alongside the component. It would be better to deploy your
+application to a specified namespace and then set this namespace for automatic
+injection.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to have sidecar injection at deployment, you must enable the namespace
+for your application. To enable the namespace for automatic injection execute
+the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl label namespace default istio-injection=enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;running-the-book-information-application&quot;&gt;Running the Book Information Application&lt;/h3&gt;
+
+&lt;p&gt;For this demo, we are going to deploy the Istio provided “bookinfo” sample
+application. You can find this application in the samples directory from the
+Istio download, which we downloaded earlier. Keep in mind that we previously
+enabled automatic sidecar injection during the installation of Istio and also
+enabled the default namespace for automatic sidecar injection. Therefore, when
+you deploy the book application an Envoy sidecar proxy is deployed in each pod.&lt;/p&gt;
+
+&lt;p&gt;Each of the black boxes in the below diagram are instances of the Envoy proxy
+sidecar. When the “bookinfo” application is deployed to the Kubernetes cluster
+Istio deploys the sidecar in the pod alongside of the microservice.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*vAGfMSaU7_YqZ1xHW7PZUw.png&quot; alt=&quot;&quot; /&gt;
+&lt;span class=&quot;figcaption_hack&quot;&gt;Istio bookinfo architecture
+&lt;a href=&quot;https://istio.io/docs/examples/bookinfo/&quot;&gt;https://istio.io/docs/examples/bookinfo/&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This application is polyglot, i.e., the microservices are written in different
+languages. It’s worth noting that these services have no dependencies on Istio,
+but make an interesting service mesh example, particularly because of the
+multitude of services, languages and versions for the &lt;code class=&quot;highlighter-rouge&quot;&gt;reviews&lt;/code&gt; service.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let’s deploy the bookinfo application.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f /&amp;lt;istio installation directory&amp;gt;/samples/bookinfo/platform/kube/bookinfo.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After the successful deployment, let’s take a look at the pods that were
+deployed.&lt;/p&gt;
+
+&lt;p&gt;We can check our pods by running:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get pods
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We then need to make the application accessible from outside your Kubernetes
+cluster. To do that, we need to create an Istio gateway:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;istio installation directory&amp;gt;/samples/bookinfo/networking
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can check this gateway by:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get gateway
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can also check the cluster-ip and ports for this gateway by running:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get svc -n istio-system
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*vQGxeXAEBBsUeixkB8BYaQ.png&quot; alt=&quot;&quot; /&gt;
+&lt;span class=&quot;figcaption_hack&quot;&gt;Gateway information output from “kubectl get svc -n istio-system”&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Istio is now installed on our cluster with the bookinginfo application, we can
+now check out some of the monitoring functionality and dashboards available.&lt;/p&gt;
+
+&lt;h3 id=&quot;available-dashboards&quot;&gt;Available Dashboards&lt;/h3&gt;
+
+&lt;p&gt;When you install Istio, with all of the dashboards enabled, there will be 4
+dashboards available, in addition to the standard Kubernetes dashboard. Each
+dashboard provides their own unique features and will be key for managing and
+monitoring your Kubernetes cluster. Since each dashboard is a product in its own
+right I will not cover each product in depth. To understand the key features of
+the dashboards I recommend that you review each product’s documentation page.
+There are also several books that have been written on many of these products.&lt;/p&gt;
+
+&lt;h3 id=&quot;grafana&quot;&gt;Grafana&lt;/h3&gt;
+
+&lt;p&gt;The Grafana add-on is a preconfigured instance of
+&lt;a href=&quot;https://grafana.com/grafana&quot;&gt;Grafana&lt;/a&gt;. The base image has been modified to
+start with both a Prometheus data source and the Istio Dashboard installed. The
+base install files for Istio, and Mixer in particular, ship with a default
+configuration of global metrics. The Istio Dashboard is built to be used in
+conjunction with the default Istio metrics configuration and a Prometheus
+backend.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-istio-dashboard-consists-of-three-main-sections&quot;&gt;The Istio Dashboard consists of three main sections:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Individual Workloads View: This section provides metrics about requests and
+responses for each individual workload within the mesh (HTTP/gRPC and TCP).
+Also, give metrics about inbound workloads and outbound services for this
+workload.&lt;/li&gt;
+  &lt;li&gt;Individual Services View: This section provides metrics about requests and
+responses for each individual service within the mesh (HTTP/gRPC and TCP). Also,
+give metrics about client and service workloads for this service.&lt;/li&gt;
+  &lt;li&gt;A Mesh Summary View: This section provides a Global Summary view of the Mesh and
+shows HTTP/gRPC and TCP workloads in the Service Mesh.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;setup-the-dashboard&quot;&gt;Setup the dashboard:&lt;/h3&gt;
+
+&lt;p&gt;To set up the Istio dashboard we will need to set up a port forward to the
+dashboard fro kubectl locally on your laptop:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath=’{.items[0].metadata.name}’) 3000:3000 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once this has been configured we can access the dashboard at the :
+&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3000/dashboard/db/istio-mesh-dashboard&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The Istio service mesh delivers six default Grafana dashboards. Please see some
+screenshots of these dashboards below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*Nn4Fh9X5jPQBsveStRC4nw.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Mesh Dashboard&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*3oLu5BTUtj4bkvLIhC5PGA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Service Dashboard&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*zTwLc5DXGSM-Znl7KxEjoA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Workload Dashboard&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*FKKDy4Jt8QaHs-rd2vdNhg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Mixer Dashboard&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The Grafana add-on is a pre-configured instance of Grafana. The base image
+(&lt;a href=&quot;https://hub.docker.com/r/grafana/grafana/&quot;&gt;grafana/grafana:4.1.2&lt;/a&gt;) has been
+modified to start with both a Prometheus data source and the Istio Dashboard
+installed. The Istio Dashboard is built to be used in conjunction with the
+default Istio metrics configuration and a Prometheus backend. More details on
+Prometheus: &lt;a href=&quot;https://prometheus.io/&quot;&gt;https://prometheus.io/&lt;/a&gt; .&lt;/p&gt;
+
+&lt;p&gt;Why not give this a try for yourself with a free Kubernetes instance hosted on
+Oracle Cloud with $300 free credit
+&lt;a href=&quot;http://bit.ly/brianMediumBlog&quot;&gt;http://bit.ly/brianMediumBlog&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/kubernetes?source=post&quot;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/istio?source=post&quot;&gt;Istio&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/devops?source=post&quot;&gt;DevOps&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/cloud-computing?source=post&quot;&gt;Cloud Computing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/deployment?source=post&quot;&gt;Deployment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Istio — Getting started with Configuring, Monitoring &amp;amp; Managing your Microservice Deployments on Kubernetes</summary></entry><entry><title type="html">Dockerfile - Magick function</title><link href="https://oci-tutorials.github.io//Dockerfile-magick-function/" rel="alternate" type="text/html" title="Dockerfile - Magick function" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//Dockerfile-magick-function</id><content type="html" xml:base="https://oci-tutorials.github.io//Dockerfile-magick-function/">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM fnproject/node:dev as build-stage
+WORKDIR /function
+ADD package.json /function/fn
+RUN npm install
+FROM fnproject/node
+RUN apk add --no-cache imagemagick
+WORKDIR /function
+ADD . /function/
+COPY --from=build-stage /function/node_modules/ /function/node_modules/
+ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">FROM fnproject/node:dev as build-stage WORKDIR /function ADD package.json /function/fn RUN npm install FROM fnproject/node RUN apk add --no-cache imagemagick WORKDIR /function ADD . /function/ COPY --from=build-stage /function/node_modules/ /function/node_modules/ ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]</summary></entry><entry><title type="html">Brian Mathews</title><link href="https://oci-tutorials.github.io//contributors/about-me-brian/" rel="alternate" type="text/html" title="Brian Mathews" /><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//contributors/about-me-brian</id><content type="html" xml:base="https://oci-tutorials.github.io//contributors/about-me-brian/">&lt;h2 id=&quot;about-me&quot;&gt;About me&lt;/h2&gt;
+
+&lt;p&gt;Hey Everyone, my name is Brian Mathews and I am part of &lt;a href=&quot;https://medium.com/@brianbmathews/a-look-inside-the-life-of-a-developer-advocate-3c31cd6e0640&quot;&gt;Developer Advocacy team within Oracle&lt;/a&gt;, based in Dublin.&lt;/p&gt;
+
+&lt;p&gt;My background is in Software Engineering (BSc), I graduated a few years and went straight into a role in development and support in the same company where I had completed my Internship as part of my degree. I have experience with enterprise scale developments all the way down to smaller personal automation scripts for random things in my house&lt;/p&gt;
+
+&lt;p&gt;Having been born in Ireland and spending my life so far here I have always been used to clouds so naturally, I was drawn cloud computing.&lt;/p&gt;
+
+&lt;p&gt;I have a passion for day to day automation of mundane household tasks, which really isn’t helped by having IoT integration with my Alexa readily available.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*h7naW51IS9TrYMqBDZW6XA.jpeg&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I have recently started working in Oracle as part of the new Developer Advocacy team on the OCI platform.&lt;/p&gt;
+
+&lt;p&gt;The team spends our time trialing and creating some cool projects to see exactly what the OCI platform is capable of and showing the world the sort of cool application it can have for them. This ranges for small individual projects to larger team-based projects.&lt;/p&gt;
+
+&lt;p&gt;My current focus is mainly on the areas of DevOps &amp;amp; Serverless. But once in a while, I will also be branching off for some interesting projects in ML, AI, Blockchain and IoT. Wherever the tech takes me really!&lt;/p&gt;
+
+&lt;p&gt;Through testing and trying these projects I have gained experience in Java, Python, Swift, Objective C, Cuda, C, C++, Go, and Javascript (React, Node, etc.).
+***&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Developer Advocate at Oracle.&lt;/p&gt;
+
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About me</summary></entry><entry><title type="html">What is API gateway and why you need one?</title><link href="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/" rel="alternate" type="text/html" title="What is API gateway and why you need one?" /><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on</id><content type="html" xml:base="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/">&lt;p&gt;We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://images.unsplash.com/photo-1525857222756-37cdb4e87e36?ixlib=rb-1.2.1&amp;amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;amp;auto=format&amp;amp;fit=crop&amp;amp;w=2850&amp;amp;q=80&quot; alt=&quot;The puzzle of integrating APIs&quot; /&gt;&lt;/p&gt;
 
@@ -140,46 +1188,4 @@ kubectl cluster-info
 
   &lt;p&gt;Software engineer and Oracle developer advocate.
 Long fancy name for just a guy who enjoys writing code and see it running in the cloud.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.</summary></entry><entry><title type="html">Introduction to OD Developer Advocates</title><link href="https://oci-tutorials.github.io//miscellanous/about-od-developer-advocates/" rel="alternate" type="text/html" title="Introduction to OD Developer Advocates" /><published>2018-01-24T00:00:00+00:00</published><updated>2018-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//miscellanous/about-od-developer-advocates</id><content type="html" xml:base="https://oci-tutorials.github.io//miscellanous/about-od-developer-advocates/">&lt;p&gt;##About Us&lt;/p&gt;
-
-&lt;p&gt;Many people don’t use Jekyll for client projects as non-developers would traditionally have to learn HTML, Markdown and Liquid to update content. In this tutorial, we give non-developers an easy way to update Jekyll sites with &lt;a href=&quot;https://cloudcannon.com&quot;&gt;CloudCannon&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;why-we-are&quot;&gt;Why we are?&lt;/h2&gt;
-
-&lt;p&gt;CloudCannon is cloud content management system and hosting provider for Jekyll websites. A developer uploads a Jekyll site in the browser or by syncing with GitHub, Bitbucket or Dropbox. CloudCannon then builds the site, hosts it and provides an interface for non-technical users to update content.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-we-can-help&quot;&gt;How we can help?&lt;/h2&gt;
-
-&lt;p&gt;To begin, we need to create a CloudCannon account and create our first site. Head over to &lt;a href=&quot;https://cloudcannon.com&quot;&gt;CloudCannon&lt;/a&gt; and click the &lt;em&gt;Get Started Free&lt;/em&gt; button:&lt;/p&gt;
-
-&lt;p&gt;Enter your details into the sign up form:&lt;/p&gt;
-
-&lt;p&gt;Once we’ve signed up we’re taken to our dashboard. Click &lt;em&gt;Create Site&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;Enter a name for the site. I’m going to use the site from the &lt;a href=&quot;/jekyll-casts/converting-a-static-site-to-jekyll/&quot;&gt;Converting a static site to Jekyll&lt;/a&gt; cast so I’ll call it &lt;em&gt;Creative&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;This creates the site and gives us options for uploading our files. If you’d like to use the same site I’m using you can download it &lt;a href=&quot;https://github.com/CloudCannon/creative-jekyll-theme/archive/master.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;There’s a number of ways of getting your files on CloudCannon. To keep things simple we’re just going to upload a folder from our local computer. Click on the folder icon. &lt;em&gt;Note: folder upload is only supported in Chrome&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Navigate to your Jekyll site and click &lt;em&gt;Upload&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;Once the files upload, CloudCannon builds the site:&lt;/p&gt;
-
-&lt;p&gt;We can view the live site by clicking on the &lt;em&gt;.cloudvent.net&lt;/em&gt; URL in the sidebar:&lt;/p&gt;
-
-&lt;h2 id=&quot;coming-soon&quot;&gt;Coming Soon&lt;/h2&gt;
-
-&lt;p&gt;Next, we need to do is to define areas in our HTML which non-developers can update. These are called &lt;a href=&quot;https://docs.cloudcannon.com/editing/editable-regions/&quot;&gt;Editable Regions&lt;/a&gt; and are set by adding a class of &lt;code class=&quot;highlighter-rouge&quot;&gt;editable&lt;/code&gt; to HTML elements.&lt;/p&gt;
-
-&lt;p&gt;Open &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; in CloudCannon and add a class of &lt;code class=&quot;highlighter-rouge&quot;&gt;editable&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;h1&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; inside &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div class=&quot;header-content-inner&quot;&amp;gt;&lt;/code&gt; so it becomes the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;header-content-inner&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;editable&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Your Favorite Source of Free Bootstrap Themes&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;hr&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;editable&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/about.html&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-primary btn-xl page-scroll&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Find Out More&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you are as excited as we and can’t wait to get your hands on OCI, you can give it a try here: &lt;a href=&quot;https://app.cloudcannon.com/users/sign_up&quot;&gt;Sign up free&lt;/a&gt; and get $300 Free Credit.&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">##About Us</summary></entry></feed>
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.</summary></entry></feed>
