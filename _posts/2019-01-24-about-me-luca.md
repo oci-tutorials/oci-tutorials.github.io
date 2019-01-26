@@ -1,6 +1,7 @@
 ---
 date: 2019-01-24
 title: Luca Iannario
+video_id: _iH8f5alzWA
 description: Joining a Developer Advocate team
 categories:
   - Contributors
