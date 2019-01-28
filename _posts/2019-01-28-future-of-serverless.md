@@ -10,7 +10,7 @@ type: Post
 ---
 ## Future of Serverless
 
-![Techcrunch via Shutterstock](https://cdn-images-1.medium.com/max/1000/1*ouyuETWpSy2RWas30NdZdQ.jpeg)(https://cdn-images-1.medium.com/max/2000/1*ouyuETWpSy2RWas30NdZdQ.jpeg)
+![Techcrunch via Shutterstock](https://cdn-images-1.medium.com/max/1000/1*ouyuETWpSy2RWas30NdZdQ.jpeg)
 
 You’ve heard of Artificial Intelligence, IoT and Blockchain …
 
