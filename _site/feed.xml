@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://oci-tutorials.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://oci-tutorials.github.io//" rel="alternate" type="text/html" /><updated>2019-01-26T00:29:32+00:00</updated><id>https://oci-tutorials.github.io//</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">What is this “FaaS”?</title><link href="https://oci-tutorials.github.io//serverless/what-is-faas/" rel="alternate" type="text/html" title="What is this “FaaS”?" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/what-is-faas</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/what-is-faas/">&lt;h1 id=&quot;what-is-this-faas-thing-everyone-talking-about-i-dont-want-a-microservice-i-want-a-big-service-that-makes-me-lots-of-money&quot;&gt;What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://oci-tutorials.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://oci-tutorials.github.io//" rel="alternate" type="text/html" /><updated>2019-01-29T09:12:43+00:00</updated><id>https://oci-tutorials.github.io//</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">Future of Serverless</title><link href="https://oci-tutorials.github.io//serverless/future-of-serverless/" rel="alternate" type="text/html" title="Future of Serverless" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/future-of-serverless</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/future-of-serverless/">&lt;h2 id=&quot;future-of-serverless&quot;&gt;Future of Serverless&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*ouyuETWpSy2RWas30NdZdQ.jpeg&quot; alt=&quot;Techcrunch via Shutterstock&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ve heard of Artificial Intelligence, IoT and Blockchain …&lt;/p&gt;
+
+&lt;p&gt;What about “Serverless” computing? You will hear this term being thrown around a lot, as a buzzword, but to sum up, it just means that a cloud provider will be allowing developers to focus more on developing applications by offering a serverless platform. In an interview with &lt;a href=&quot;https://www.informationweek.com/cloud/platform-as-a-service/how-serverless-applications-will-change-your-business/d/d-id/1324389&quot;&gt;InformationWeek.com, &lt;/a&gt;Joe Emison the CTO of BuildFax said :&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“Software is eating the world. Companies that can develop software most effectively will be among those that succeed”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I don’t think anybody can argue with this statement. So why has Serverless architecture become this hidden technology that only developers know about? What if I told you many are already seeing benefits from Serverless-based workflows, and in the near future, this type of architecture could power practically the whole internet?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Where did it start?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Before we dive straight into the big bad world of Serverless architecture, it will be easier to understand where it came from. Ever heard of a virtual machine? Well it’s simply a way to have more than one operating system on your host machine. It’s really useful, especially if you’re working on a few different projects which require different environments. The only bad thing? The amount of resources a virtual machine required became a problem.&lt;/p&gt;
+
+&lt;p&gt;The solution to this was Containerization. If you want to learn more about containers follow &lt;a href=&quot;https://medium.com/@mirknn/containers-docker-kubernetes-and-serverless-beginners-blog-d477abdedbaf&quot;&gt;my previous article&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is serverless? The no-servers myth&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Serverless is a cloud execution model. The name Serverless itself is a bit misleading — as of course there are servers managed by the companies or individuals cloud provider. You’ve all heard of Iaas, Paas, Saas…. What about Faas? Function as a Service — The idea is that developers only pay-per-execution, and they don’t need to worry about scaling their applications or machine resources. They can spend their time (wait for it) –actually developing! This in turn means less time to market which is another benefit of developing on a &lt;a href=&quot;https://fnproject.io/&quot;&gt;serverless platform.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That all sounds great — but there are still some growing pains involved in the implementation process. This is because companies that have massive monolith architectures find it hard to change to a function driven system. And I’m not saying that this is an easy-breezy process, but once they have this new Serverless architecture, they open themselves up to a much more productive workflow. I’m not a professional developer myself (more of a technology enthusiast). However, I firmly believe that any new technology takes time to grow out of the awkward stages — after all, doesn’t every new technology go through this?&lt;/p&gt;
+
+&lt;p&gt;It is our responsibility to take a positive outlook on emerging tech and spread that positivity, and by doing this the future of Serverless technologies will be a bright one.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2400/1*ym1y1KhkDH8ZpCUpknwweA.jpeg&quot; alt=&quot;Doc, DOC! What about imgur’s servers? by AntiCircleJerker on imgur&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Future of Serverless&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In 2017, the serverless architecture market was valued $3.20 billion, and was expected to grow to $14.93 billion by 2023, according to a &lt;a href=&quot;http://www.sbwire.com/press-releases/serverless-architecture-market-expected-to-reach-1493-billion-by-2023-1037478.htm&quot;&gt;report&lt;/a&gt; conducted by &lt;a href=&quot;http://connect.releasewire.com/company/marketsandmarkets-51796.htm&quot;&gt;MarketsandMarkets.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This massive growth spurt projection isn’t that surprising, as the popularity of cloud-native services is only rising. I’ve no doubt that the future will be driven by containerized apps and pay-by-use functions being fired off in a cloud providers space by way of automation. Imagine a world where you didn’t need to worry about the physical maintenance of your hardware that helps develop and run all your applications. This has been and always will be the draw to cloud computing.&lt;/p&gt;
+
+&lt;p&gt;So keep reading and learning— if you are interested in disruptive technology you’ll want to keep an eye on serverless computing.&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Future of Serverless</summary></entry><entry><title type="html">Miriam Keenan</title><link href="https://oci-tutorials.github.io//contributors/about-me-miriam/" rel="alternate" type="text/html" title="Miriam Keenan" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//contributors/about-me-miriam</id><content type="html" xml:base="https://oci-tutorials.github.io//contributors/about-me-miriam/">&lt;h2 id=&quot;about-me&quot;&gt;About me&lt;/h2&gt;
+
+&lt;p&gt;Hey, welcome to our community.&lt;/p&gt;
+
+&lt;p&gt;My name is Miriam and I’m a Digital Advocate who recently joined the &lt;a href=&quot;https://medium.com/@mirknn/helping-developers-by-learning-about-what-matters-ea33fd9ea0b3&quot;&gt;Developer Advocacy team&lt;/a&gt; here at Oracle Digital. I’m also studying to complete my BSc. in Information Technology at Technological University Dublin. I’m pretty obsessed with the world of technology.&lt;/p&gt;
+
+&lt;p&gt;The great thing about being part of this new team is that we’re all passionate about the power of cloud computing. Through our varied levels of experience and knowledge, we intend to enable developers in our community to get the most out of their creations.&lt;/p&gt;
+
+&lt;p&gt;From me, you’ll get a first-hand experience of getting started with Oracle cloud services. I’m currently interested in making stuff with Python, Java, and web development frameworks like Flask. The services I want to focus on are Container Management and Serverless Functions – but I won’t limit myself as there might be more on the horizon!&lt;/p&gt;
+
+&lt;p&gt;Watch this space for tutorials, discussions, videos and more.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Miriam Keenan &lt;a href=&quot;https://twitter.com/mirknn&quot;&gt;@mirknn&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Digital &amp;amp; Developer Advocate Intern at Oracle.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About me</summary></entry><entry><title type="html">What is this “FaaS”?</title><link href="https://oci-tutorials.github.io//serverless/what-is-faas/" rel="alternate" type="text/html" title="What is this “FaaS”?" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/what-is-faas</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/what-is-faas/">&lt;h1 id=&quot;what-is-this-faas-thing-everyone-talking-about-i-dont-want-a-microservice-i-want-a-big-service-that-makes-me-lots-of-money&quot;&gt;What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!&lt;/h1&gt;
 
 &lt;h3 id=&quot;what-is-function-as-a-service-faas&quot;&gt;What is Function-as-a-Service (FaaS)?&lt;/h3&gt;
 
@@ -1117,75 +1170,4 @@ WORKDIR /function
 ADD . /function/
 COPY --from=build-stage /function/node_modules/ /function/node_modules/
 ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">FROM fnproject/node:dev as build-stage WORKDIR /function ADD package.json /function/fn RUN npm install FROM fnproject/node RUN apk add --no-cache imagemagick WORKDIR /function ADD . /function/ COPY --from=build-stage /function/node_modules/ /function/node_modules/ ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]</summary></entry><entry><title type="html">Brian Mathews</title><link href="https://oci-tutorials.github.io//contributors/about-me-brian/" rel="alternate" type="text/html" title="Brian Mathews" /><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//contributors/about-me-brian</id><content type="html" xml:base="https://oci-tutorials.github.io//contributors/about-me-brian/">&lt;h2 id=&quot;about-me&quot;&gt;About me&lt;/h2&gt;
-
-&lt;p&gt;Hey Everyone, my name is Brian Mathews and I am part of &lt;a href=&quot;https://medium.com/@brianbmathews/a-look-inside-the-life-of-a-developer-advocate-3c31cd6e0640&quot;&gt;Developer Advocacy team within Oracle&lt;/a&gt;, based in Dublin.&lt;/p&gt;
-
-&lt;p&gt;My background is in Software Engineering (BSc), I graduated a few years and went straight into a role in development and support in the same company where I had completed my Internship as part of my degree. I have experience with enterprise scale developments all the way down to smaller personal automation scripts for random things in my house&lt;/p&gt;
-
-&lt;p&gt;Having been born in Ireland and spending my life so far here I have always been used to clouds so naturally, I was drawn cloud computing.&lt;/p&gt;
-
-&lt;p&gt;I have a passion for day to day automation of mundane household tasks, which really isn’t helped by having IoT integration with my Alexa readily available.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*h7naW51IS9TrYMqBDZW6XA.jpeg&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I have recently started working in Oracle as part of the new Developer Advocacy team on the OCI platform.&lt;/p&gt;
-
-&lt;p&gt;The team spends our time trialing and creating some cool projects to see exactly what the OCI platform is capable of and showing the world the sort of cool application it can have for them. This ranges for small individual projects to larger team-based projects.&lt;/p&gt;
-
-&lt;p&gt;My current focus is mainly on the areas of DevOps &amp;amp; Serverless. But once in a while, I will also be branching off for some interesting projects in ML, AI, Blockchain and IoT. Wherever the tech takes me really!&lt;/p&gt;
-
-&lt;p&gt;Through testing and trying these projects I have gained experience in Java, Python, Swift, Objective C, Cuda, C, C++, Go, and Javascript (React, Node, etc.).
-***&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;Developer Advocate at Oracle.&lt;/p&gt;
-
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About me</summary></entry><entry><title type="html">What is API gateway and why you need one?</title><link href="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/" rel="alternate" type="text/html" title="What is API gateway and why you need one?" /><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on</id><content type="html" xml:base="https://oci-tutorials.github.io//integration/what-is-api-gateway-and-why-you-need-on/">&lt;p&gt;We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://images.unsplash.com/photo-1525857222756-37cdb4e87e36?ixlib=rb-1.2.1&amp;amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;amp;auto=format&amp;amp;fit=crop&amp;amp;w=2850&amp;amp;q=80&quot; alt=&quot;The puzzle of integrating APIs&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;why-i-need-an-api-gateway&quot;&gt;Why I need an API gateway?&lt;/h2&gt;
-
-&lt;p&gt;How many requests are you expecting per second? How many do you want to allow per minute? What happens if those requests are invalid? What if they are dangerous? Do you need authentication? What about authorization? I’m sure you want TLS on, right?&lt;/p&gt;
-
-&lt;p&gt;Let’s assume you know the answer to those questions. Now it’s time to implement all of those validations, rate limiting, auto-scaling, filtering out bad requests, integrate with OAuth, maybe OpenID Connect, TLS termination, and so on.&lt;/p&gt;
-
-&lt;p&gt;Aren’t all those cross-cutting aspects? Do we want to pollute our business code with that extra noise? The approach to these concerns should be the same across all contributors and teammates implementing the API.&lt;/p&gt;
-
-&lt;p&gt;Let’s be honest, it is not rocket science but as soon as we start implementing these new features, someone is going ask for configuration parameters and visibility of the process. At that point, it might be out of hand.&lt;/p&gt;
-
-&lt;p&gt;Some of the APIs endpoints would be public, other private. That would change and someone has to implement and enforce those policies. If you are building layers of microservices to provide internal and external services for other apps. It’s getting complicated.&lt;/p&gt;
-
-&lt;h2 id=&quot;lets-try-an-api-gateway&quot;&gt;Let’s try an API gateway&lt;/h2&gt;
-
-&lt;p&gt;What if we centralize the APIs of all your apps in a single place where you can configure non-functional requirements and manage policies, handle all the request per second and limit them to a threshold. Monitoring the result. The same way a reverse proxy works the API gateway can redirect the requests to the correct app inside your infrastructure. Imagine that you can handle TLS termination there to simplify the logic in your code. You don’t need to handle all the authentication and authorization in every app independently.&lt;/p&gt;
-
-&lt;p&gt;The good news is that API Gateway is exactly what you need. Manage hundreds of APIs from different systems in a centralized place. Even for a single API I would recommend it, you gain some insights about what the users are doing with your APIs and stop attacks in a lot of scenarios.&lt;/p&gt;
-
-&lt;p&gt;Even more, after a few months your API is getting traction, maybe you can implement some extra features for those that are willing to pay for some advanced features. API gateway can give you an easy way to analyze the requests and even monetize those fancy new ideas.&lt;/p&gt;
-
-&lt;h2 id=&quot;trade-offs&quot;&gt;Trade-offs&lt;/h2&gt;
-
-&lt;p&gt;Now that you are happy bringing in a new API gateway, you have to make sure the routing is correct at deployment time. You don’t want to have a call because some user can reach out your API.&lt;/p&gt;
-
-&lt;p&gt;Your API gateway should have the capacity to handle all the requests and be resilient. Think about what infrastructure is needed. Load balancer, metrics and alerts, and so on. Keep in mind that the complexity doesn’t disappear, it is moved to a place where you can manage more easily.&lt;/p&gt;
-
-&lt;h2 id=&quot;try-in-the-cloud&quot;&gt;Try in the cloud&lt;/h2&gt;
-
-&lt;p&gt;Some services in the cloud are available to handle all of this complexity for you. If you want to explore some options, feel free to play around with API platform cloud. It’s part of the catalog of cloud services that Oracle offers. See more on &lt;a href=&quot;https://cloud.oracle.com/en_US/api-platform&quot;&gt;API Platform&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Create a &lt;a href=&quot;https://cloud.oracle.com/tryit&quot;&gt;free trial account&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;Happy hacking!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Victor Martin &lt;a href=&quot;https://twitter.com/victorilloleon&quot;&gt;@victorilloleon&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;Software engineer and Oracle developer advocate.
-Long fancy name for just a guy who enjoys writing code and see it running in the cloud.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">We can say APIs are everywhere nowadays. Likely any app you build now consumes data from other apps, your own or from 3rd parties. That means you need to expose your app services to the world as well.</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">FROM fnproject/node:dev as build-stage WORKDIR /function ADD package.json /function/fn RUN npm install FROM fnproject/node RUN apk add --no-cache imagemagick WORKDIR /function ADD . /function/ COPY --from=build-stage /function/node_modules/ /function/node_modules/ ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]</summary></entry></feed>
