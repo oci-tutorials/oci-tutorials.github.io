@@ -14,8 +14,6 @@ resources:
 type: Post
 ---
 
-# Creating a blog with Jekyll and GitHub Pages
-
 How many of you had the need to create a quick blog for a school project, a
 hackathon, or a work project but had no time to learn how to use a new complex
 Content Management System (CMS) like [Drupal](http://drupal.org/) or
