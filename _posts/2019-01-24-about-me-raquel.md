@@ -23,5 +23,6 @@ Please, feel free to reach out your recommendations, feedback or any other comme
 ***
 
 > Raquel Teresa [@Raquel_Teresa](https://twitter.com/Raquel_Teresa)
+>
 > Cloud Sales Consultant and Developer Advocate @ Oracle Digital.
 > Passionate about technology and people.
