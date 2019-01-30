@@ -13,8 +13,6 @@ type: Post
 set: Blockchain
 ---
 
-# Everything you need to know to get started in the fascinating world of Blockchain
-
 ### Absolute truth does not exist … or does it?
 
 You are probably wondering if you have finally found an article in which the basic concepts of this technological trend are explained in a simple way. Usually, we find terms such as “Proof of Work”, “Smart Contract”, or “Hyperledger”. However, do we know what they really mean? And above all, what paradigm changes they will bring?
