@@ -1,7 +1,7 @@
 ---
 date: 2019-01-30
 title: Everything you need to know to get started in the fascinating world of Blockchain
-description: This post explains the most important points to understand the big possibilities of Blockchain
+description: Absolute truth does not exist … or does it?
 categories:
   - Blockchain
 resources:
@@ -98,5 +98,6 @@ But in the meanwhile, there are many other solutions available to test. Why not 
 ***
 
 > Raquel Teresa [@Raquel_Teresa](https://twitter.com/Raquel_Teresa)
+>
 > Cloud Sales Consultant and Developer Advocate @ Oracle Digital.
 > Passionate about technology and people.
