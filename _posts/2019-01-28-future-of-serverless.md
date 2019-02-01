@@ -43,4 +43,9 @@ This massive growth spurt projection isn’t that surprising, as the popularity 
 
 So keep reading and learning— if you are interested in disruptive technology you’ll want to keep an eye on serverless computing.
 
+***
+
+> Miriam Keenan [@mirknn](https://twitter.com/mirknn)
+>
+> Digital & Developer Advocate Intern at Oracle. 
 
