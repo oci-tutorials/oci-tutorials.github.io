@@ -1,12 +1,11 @@
 ---
 date: 2019-01-24
 title: Brian Mathews
+video_id: 6xxHUOInnpo
 description: Joining a Developer Advocate team
 categories:
   - Contributors
-resources:
-  - name: "About me"
-type: Post
+type: Video
 ---
 
 ## About me

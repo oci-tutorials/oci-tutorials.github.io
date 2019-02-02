@@ -1,12 +1,13 @@
 ---
 date: 2019-01-28
 title: Miriam Keenan
+video_id: ykFNmNLT6Dk
 description: Joining a Developer Advocate team
 categories:
   - Contributors
 resources:
   - name: "About me"
-type: Post
+type: Video
 ---
 
 ## About me
