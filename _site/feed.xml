@@ -1,4 +1,211 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://oci-tutorials.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://oci-tutorials.github.io//" rel="alternate" type="text/html" /><updated>2019-01-29T09:12:43+00:00</updated><id>https://oci-tutorials.github.io//</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">Future of Serverless</title><link href="https://oci-tutorials.github.io//serverless/future-of-serverless/" rel="alternate" type="text/html" title="Future of Serverless" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/future-of-serverless</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/future-of-serverless/">&lt;h2 id=&quot;future-of-serverless&quot;&gt;Future of Serverless&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="http://localhost:4001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4001/" rel="alternate" type="text/html" /><updated>2019-02-03T13:19:25+00:00</updated><id>http://localhost:4001/</id><title type="html">OD Groundbreakers</title><subtitle>We write tutorials about Cloud Native, DevOps, Blockchain, Microservices, Oracle Cloud Infrastructure and more.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><entry><title type="html">Weblogic Operator for K8s - Samples</title><link href="http://localhost:4001/weblogic-kubernetes-samples/" rel="alternate" type="text/html" title="Weblogic Operator for K8s - Samples" /><published>2019-02-03T00:00:00+00:00</published><updated>2019-02-03T00:00:00+00:00</updated><id>http://localhost:4001/weblogic-kubernetes-samples</id><content type="html" xml:base="http://localhost:4001/weblogic-kubernetes-samples/">&lt;p&gt;These samples provide simple demonstrations of how to accomplish common tasks.
+The samples are &lt;strong&gt;not&lt;/strong&gt; intended to be used in production deployments or to be depended upon to
+create production environments.  They are provided for educational and demonstration purposes only.&lt;/p&gt;
+
+&lt;p&gt;While these samples may be useful and usable as is, it is intended that you would read through all of the sample code in detail, understand how the given sample works, and then customize it to suit your needs.&lt;/p&gt;
+
+&lt;h2 id=&quot;sample-scripts&quot;&gt;Sample scripts&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/create-weblogic-domain-credentials/README.md&quot;&gt;Sample for creating a Kubernetes secret&lt;/a&gt; that contains the Administration Server credentials. This secret can be used in creating a WebLogic domain resource.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/create-weblogic-domain-pv-pvc/README.md&quot;&gt;Sample for creating a PV or PVC&lt;/a&gt; that can be used by a domain resource as the persistent storage for the WebLogic domain home or log files.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/create-weblogic-domain/domain-home-on-pv/README.md&quot;&gt;Sample for creating a WebLogic domain home on an existing PV or PVC&lt;/a&gt;, and the domain resource YAML file for deploying the generated WebLogic domain.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/create-weblogic-domain/domain-home-in-image/README.md&quot;&gt;Sample for creating a WebLogic domain home inside a Docker image&lt;/a&gt;, and the domain resource YAML file for deploying the generated WebLogic domain.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/elasticsearch-and-kibana/README.md&quot;&gt;Sample for configuring the Elasticsearch and Kibana&lt;/a&gt; deployments and services for the operator’s logs.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/rest/README.md&quot;&gt;Sample for generating a self-signed certificate and private key&lt;/a&gt; that can be used for the operator’s external REST API.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;scripts/terraform/README.md&quot;&gt;Sample for creating an OKE cluster using Terraform&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;sample-helm-charts&quot;&gt;Sample Helm charts&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;charts/traefik/README.md&quot;&gt;Sample Traefik Helm chart&lt;/a&gt; for setting up a Traefik load balancer for WebLogic clusters.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;charts/voyager/README.md&quot;&gt;Sample Voyager Helm chart&lt;/a&gt; for setting up a Voyager load balancer for WebLogic clusters.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;charts/ingress-per-domain/README.md&quot;&gt;Sample Ingress Helm chart&lt;/a&gt; for setting up a Kubernetes Ingress for each WebLogic cluster using a Traefik or Voyager load balancer.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;charts/apache-webtier/README.md&quot;&gt;Sample Apache  Helm chart&lt;/a&gt; and &lt;a href=&quot;charts/apache-samples/README.md&quot;&gt;Apache samples using the default or custom configurations&lt;/a&gt; for setting up a load balancer for WebLogic clusters using the Apache HTTP Server with WebLogic Server Plugins.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">These samples provide simple demonstrations of how to accomplish common tasks. The samples are not intended to be used in production deployments or to be depended upon to create production environments. They are provided for educational and demonstration purposes only.</summary></entry><entry><title type="html">Everything you need to know to get started in the fascinating world of Blockchain</title><link href="http://localhost:4001/blockchain/everything-you-need-to-know-to-get-started-in-the-fascinating-world-of-blockchain/" rel="alternate" type="text/html" title="Everything you need to know to get started in the fascinating world of Blockchain" /><published>2019-01-30T00:00:00+00:00</published><updated>2019-01-30T00:00:00+00:00</updated><id>http://localhost:4001/blockchain/everything-you-need-to-know-to-get-started-in-the-fascinating-world-of-blockchain</id><content type="html" xml:base="http://localhost:4001/blockchain/everything-you-need-to-know-to-get-started-in-the-fascinating-world-of-blockchain/">&lt;h3 id=&quot;absolute-truth-does-not-exist--or-does-it&quot;&gt;Absolute truth does not exist … or does it?&lt;/h3&gt;
+
+&lt;p&gt;You are probably wondering if you have finally found an article in which the basic concepts of this technological trend are explained in a simple way. Usually, we find terms such as “Proof of Work”, “Smart Contract”, or “Hyperledger”. However, do we know what they really mean? And above all, what paradigm changes they will bring?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In our day to day we usually read quotes such as: “What the internet did for communications, blockchain will do for trusted transactions” — Forbes, or “The technology most likely to change the next decade of business is not the social web, big data, the cloud, robotics or even artificial intelligence. It is the Blockchain “- Harvard Business Review. But, will Blockchain really impact in our lives as Internet did?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After some time researching around the ins and outs of Blockchain through different sources, I think I have concentrated the most important points to understand the big possibilities of this technology, which will transform sectors such as financial, energy or security. It will stir up any organization in which transactions are usually used, ultimately.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;First things first … What is Blockchain?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Blockchain, also known as DLT (Distributed Ledger Technology) is a decentralized mechanism that keeps track of all transactions made between two or more nodes in a network, in a secure and distributed way. It is nothing more than a great accounting book that is replicated in the machines of all the participants of a network, making impossible to modify the information contained in it, and which only users with permission can access, turning it into a shared source of truth.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*iOe5bg-HGlo94D9iTbZzCA.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The mystery … Who created Blockchain?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;All great stories hide mysteries, conspiracy theories, and different enigmas. Blockchain has all the necessary ingredients to turn its birth into a legend.&lt;/p&gt;
+
+&lt;p&gt;On Halloween 2008, several hundred people belonging to different cryptographic communities received an email with the following sender: Satoshi Nakamoto. He informed them that he had been working on a system that eliminated the need for trust intermediaries when making transactions, and solved the problem of double spending. All this was explained in the paper: &lt;a href=&quot;https://bitcoin.org/bitcoin.pdf&quot;&gt;“Bitcoin: A Peer-to-Peer Electronic Cash System”&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first cryptographic currency based on Blockchain was created. And unlike most entrepreneurs and CxOs of the world’s largest multinationals, which feed the dreamers with their success stories in their search of success, its creator decided to remain anonymous.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But … What did Satoshi Nakamoto explain in his paper?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Until recently, whenever we needed to make a transaction, we had some central authority or third party that acted as an intermediary. Whether it was in the payment of an asset online, in the change of a property’s name, or when patenting a product, we relied on the truthfulness of banks, notaries or any other organization.&lt;/p&gt;
+
+&lt;p&gt;Blockchain involves a paradigm shift in this system, by introducing a peer-to-peer exchange mechanism in a distributed and secure way, thanks to the cryptographic algorithm on which it is based.&lt;/p&gt;
+
+&lt;p&gt;When several actors that are part of a Blockchain distributed network decide to exchange value (cryptographic currency, property title, etc.), a new block composed of a set of transactions is sent to all the nodes that participate in the network. At that moment, those nodes initiate the verification process, which consists in verifying that the information contained in the block is valid and that the bases of the agreed terms have not been altered. Once the majority of the nodes have validated it, the block is sealed with a cryptographic hash (algorithm) based on the information that contains and the previous block hash. Thus, the manipulation or alteration of the data contained in each of the blocks that are part of the chain is fairly impossible, and an immutable record is obtained, a source of truth.&lt;/p&gt;
+
+&lt;p&gt;In an effort to get a large number of nodes involved in the verification process, Satoshi Nakamoto proposed a system of miners. These users keep a copy of the chain in their machines, from where they use its compute capacity to calculate the complex mathematical operations necessary to incorporate a new block in the chain. Then, those miners who get the solution, obtain a great monetary reward. This process is called &lt;em&gt;Proof of Work&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*-elE9DQRg3E9S1SglRCEwQ.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Moreover, in most data centers around the world, the databases are replicated to prevent a single point of failure and to provide high availability to the service. It is an expensive solution, but essential for any organization that handles sensitive data. In the case of Blockchain and due to its distributed nature, all the nodes that are part of the network have a copy of the blocks, avoiding a single point of failure and making insignificant the probability of data loss.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;“Permissionless” and “Permissioned” Blockchain&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Even though one of the first applications of Blockchain was Bitcoin, many other implementations of this technology have already been found. In the case of cryptographic currencies, the Blockchain network is public. Any user can join and obtain a copy of all transactions in the chain and participate in the verification process. On the other hand, it is also possible to create a private Blockchain network, in which only users with an invitation have access to the information contained in it and can participate in the validation process.&lt;/p&gt;
+
+&lt;p&gt;Currently, several open source initiatives such as Ethereum, Corda or &lt;em&gt;Hyperledger&lt;/em&gt; Fabric, have developed their own implementations of Blockchain, making life easier for developers by providing different tools and frameworks. Other private companies, such as Oracle, have also put in place solutions based on this powerful technology.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Let’s give an example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Once we have an understanding of how a Blockchain public network such as Bitcoin works, let’s see one practical application of a private network. On this &lt;a href=&quot;https://www.youtube.com/watch?v=NGk9k7uP4F0&quot;&gt;link&lt;/a&gt;, you will find the complete analysis of this case, which was modeled using the Blockchain service in the Oracle Cloud.&lt;/p&gt;
+
+&lt;p&gt;To improve the components’ traceability of their vehicles, a car manufacturer has integrated Blockchain with four of its dealers, creating the following network:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*Sn9Jok9e_lLD4Gp47XqdAw.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The car manufacturer is the founder of the Blockchain network, and the four dealers participate in it:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*fdBIPOQfvn9OAFqIKS55ow.gif&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Whenever a vehicle’s component is sold by one of the suppliers to the manufacturer, and once the transaction is approved by both parties, the transaction is registered in the Blockchain network. Thus, a large database shared between the parties is obtained, in a secure and unalterable way. Moreover, the dealers only have access to the information of their components, but not to those of other dealers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*fPBQs0X3RtFyy9YICWGAcw.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is just a simple practical example, that helps to understand better the countless applications that Blockchain has. For example, this solution in place would have avoided the scandal over the illegal installation of software that Volkswagen carried out to eleven million vehicles, in order to manipulate the results of the technical controls of polluting emissions. With a source of truth like Blockchain, it would have been possible to track the supply chain of all the cars, from the manufacturer to the customer, avoiding the manipulation in any of its phases.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Last but not least … What are the Smart Contracts?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Conventionally, contracts are used to close agreements between two or more parties. In Blockchain’s world, the Smart Contracts define the rules of the agreed terms and execute the outcomes automatically, without the need for an intermediary institution. The &lt;em&gt;Smart Contracts&lt;/em&gt; are scripts that can be programmed in different programming languages such as Java or Go, and that verify that when any of the conditions described in the contract is satisfied, the transaction is made.&lt;/p&gt;
+
+&lt;p&gt;Imagine that you decide to bet five euros on the fact that Real Madrid will win the next game against Barcelona, and another person bets the same amount to the opposite case. With a Smart Contract in place between the two parts, the result of the game would be verified automatically, and the money would be sent to the winner. In this sense, no intermediaries neither a third party would be needed to act as an arbitrator.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Absolute truth does not exist … or does it?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Blockchain is the first source of distributed and inalterable truth. A large public database globally. Secure and collaborative.&lt;/p&gt;
+
+&lt;p&gt;There is no doubt that it is time to get on board with this amazing technology, in which the developer’s community will have a decisive role, not only in its growth but also in its transformation and evolution.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;This sounds great, but … How can I get started and try it?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Shortly, the Blockchain service will be available in the Oracle Cloud within the &lt;em&gt;free 30-days Trial&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;But in the meanwhile, there are many other solutions available to test. Why not try them?&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://myservices.us.oraclecloud.com/mycloud/signup?sourceType=:so:bl:or::RC_WWSA180813P00054:Q3_MM_JB_KS_2&amp;amp;SC=:so:bl:or::RC_WWSA180813P00054:Q3_MM_JB_KS_2&amp;amp;pcode=WWSA180813P00054:Q3_MM_JB_KS_2&quot;&gt;&lt;em&gt;Sign Up for Free!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*wGVDR9h6t7tW7cnd5dWSDw.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Raquel Teresa &lt;a href=&quot;https://twitter.com/Raquel_Teresa&quot;&gt;@Raquel_Teresa&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Cloud Sales Consultant and Developer Advocate @ Oracle Digital.
+Passionate about technology and people.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Absolute truth does not exist … or does it?</summary></entry><entry><title type="html">Creating a blog with Jekyll and GitHub Pages</title><link href="http://localhost:4001/miscellaneous/creating-blog-jekyll/" rel="alternate" type="text/html" title="Creating a blog with Jekyll and GitHub Pages" /><published>2019-01-29T00:00:00+00:00</published><updated>2019-01-29T00:00:00+00:00</updated><id>http://localhost:4001/miscellaneous/creating-blog-jekyll</id><content type="html" xml:base="http://localhost:4001/miscellaneous/creating-blog-jekyll/">&lt;p&gt;How many of you had the need to create a quick blog for a school project, a
+hackathon, or a work project but had no time to learn how to use a new complex
+Content Management System (CMS) like &lt;a href=&quot;http://drupal.org/&quot;&gt;Drupal&lt;/a&gt; or
+&lt;a href=&quot;http://www.wordpress.com/&quot;&gt;Wordpress&lt;/a&gt; from scratch?&lt;/p&gt;
+
+&lt;p&gt;As the new &lt;a href=&quot;https://medium.com/@lucaiannario/joining-a-developer-advocacy-team-f4c376d1b960&quot;&gt;Developer Advocacy team @
+Oracle&lt;/a&gt;
+was created, we wanted to make sure we have a reliable way to publish our own
+stories, tutorials, code samples, and reference architectures.&lt;/p&gt;
+
+&lt;p&gt;Publishing content on Medium or similar platforms is great, but we would also
+like to start using our own “branding” — therefore we were looking for something
+like a customizable CMS but easier to use and quicker to deploy.&lt;/p&gt;
+
+&lt;p&gt;We have found an easy solution to achieve our goal: &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll
+&lt;/a&gt;+ &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll&quot;&gt;Jekyll&lt;/h3&gt;
+
+&lt;p&gt;Jekyll is a simple, extendable, static site generator. It allows you to write
+content with your favorite markup language, e.g. Markdown, and generate a
+navigable website in seconds.&lt;/p&gt;
+
+&lt;p&gt;Through themes and templates (or layouts), it is possible to customize the
+“look&amp;amp;feel” of your site, as well as the navigation and additional features like
+social media sharing. It also allows you to have a (client-side JavaScript
+based) Search functionality which is something great you would not expect from a
+static HTML website.&lt;/p&gt;
+
+&lt;p&gt;Installing Jekyll on your machine it’s very easy and you can find the quick
+start documentation &lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;windows-users&quot;&gt;Windows users&lt;/h4&gt;
+
+&lt;p&gt;Windows users are required to install some additional dependencies for Jekyll to
+work properly. In order to do so, make sure to add the following lines to the
+Gemfile:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'tzinfo'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;win_platform?&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'tzinfo-data'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;win_platform?&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'wdm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;win_platform?&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will allow installing additional Ruby gems that are needed on Windows only.
+After adding these lines, make sure to run &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle update&lt;/code&gt;. Additional
+information can be found
+&lt;a href=&quot;https://jekyllrb.com/docs/installation/windows/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-pages&quot;&gt;GitHub Pages&lt;/h3&gt;
+
+&lt;p&gt;GitHub Pages is a static site hosting service designed to host your personal,
+organization, or project pages directly from a GitHub repository. It is possible
+to host a Jekyll generated website for free just using a regular GitHub
+repository.&lt;/p&gt;
+
+&lt;p&gt;After creating a new GitHub repository, it is possible to enable the GitHub Page
+functionality through its settings and your website will be immediately
+available at *https://&lt;repo_name&gt;.github.io*. You only need to make sure the
+repository name ends with “github.io”.&lt;/repo_name&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*Os9lZ36qyz3NU29OhGf9Fw.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In our case, the website is available at
+&lt;a href=&quot;https://oci-tutorials.github.io/&quot;&gt;https://oci-tutorials.github.io&lt;/a&gt;, while the
+source content is stored at the corresponding repository
+&lt;a href=&quot;https://github.com/oci-tutorials/oci-tutorials.github.io&quot;&gt;https://github.com/oci-tutorials/oci-tutorials.github.io&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you browse to the GitHub repository, you can see it contains a bunch of
+static HTML files, CSS, and YAML files. HTML is generated by Jekyll starting
+from the Markdown files added to the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*6EiHn-Y4Q8BerDCaqwQm7g.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;final-result&quot;&gt;Final result&lt;/h3&gt;
+
+&lt;p&gt;As you can see below, this is the site generated from our GitHub repository
+containing Markdown content. Within a few hours, we were able to have a new site
+up and running, which will enable us to reach out as many developers as we can.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1200/1*N0Cp-rV-fzHmYX-MG2SgzQ.png&quot; alt=&quot;Image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you have any suggestion or feedback (or you have found any bugs), feel free
+to reach out and let us know.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Luca Iannario &lt;a href=&quot;https://twitter.com/liannario&quot;&gt;@liannario&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Developer Advocate at Oracle. 
+When I am not on the clouds, I like travelling and taking pictures.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">How many of you had the need to create a quick blog for a school project, a hackathon, or a work project but had no time to learn how to use a new complex Content Management System (CMS) like Drupal or Wordpress from scratch?</summary></entry><entry><title type="html">Future of Serverless</title><link href="http://localhost:4001/serverless/future-of-serverless/" rel="alternate" type="text/html" title="Future of Serverless" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>http://localhost:4001/serverless/future-of-serverless</id><content type="html" xml:base="http://localhost:4001/serverless/future-of-serverless/">&lt;h2 id=&quot;future-of-serverless&quot;&gt;Future of Serverless&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*ouyuETWpSy2RWas30NdZdQ.jpeg&quot; alt=&quot;Techcrunch via Shutterstock&quot; /&gt;&lt;/p&gt;
 
@@ -33,7 +240,15 @@
 
 &lt;p&gt;This massive growth spurt projection isn’t that surprising, as the popularity of cloud-native services is only rising. I’ve no doubt that the future will be driven by containerized apps and pay-by-use functions being fired off in a cloud providers space by way of automation. Imagine a world where you didn’t need to worry about the physical maintenance of your hardware that helps develop and run all your applications. This has been and always will be the draw to cloud computing.&lt;/p&gt;
 
-&lt;p&gt;So keep reading and learning— if you are interested in disruptive technology you’ll want to keep an eye on serverless computing.&lt;/p&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Future of Serverless</summary></entry><entry><title type="html">Miriam Keenan</title><link href="https://oci-tutorials.github.io//contributors/about-me-miriam/" rel="alternate" type="text/html" title="Miriam Keenan" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//contributors/about-me-miriam</id><content type="html" xml:base="https://oci-tutorials.github.io//contributors/about-me-miriam/">&lt;h2 id=&quot;about-me&quot;&gt;About me&lt;/h2&gt;
+&lt;p&gt;So keep reading and learning— if you are interested in disruptive technology you’ll want to keep an eye on serverless computing.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Miriam Keenan &lt;a href=&quot;https://twitter.com/mirknn&quot;&gt;@mirknn&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Digital &amp;amp; Developer Advocate Intern at Oracle.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Future of Serverless</summary></entry><entry><title type="html">Miriam Keenan</title><link href="http://localhost:4001/contributors/about-me-miriam/" rel="alternate" type="text/html" title="Miriam Keenan" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>http://localhost:4001/contributors/about-me-miriam</id><content type="html" xml:base="http://localhost:4001/contributors/about-me-miriam/">&lt;h2 id=&quot;about-me&quot;&gt;About me&lt;/h2&gt;
 
 &lt;p&gt;Hey, welcome to our community.&lt;/p&gt;
 
@@ -51,7 +266,7 @@
   &lt;p&gt;Miriam Keenan &lt;a href=&quot;https://twitter.com/mirknn&quot;&gt;@mirknn&lt;/a&gt;&lt;/p&gt;
 
   &lt;p&gt;Digital &amp;amp; Developer Advocate Intern at Oracle.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About me</summary></entry><entry><title type="html">What is this “FaaS”?</title><link href="https://oci-tutorials.github.io//serverless/what-is-faas/" rel="alternate" type="text/html" title="What is this “FaaS”?" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/what-is-faas</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/what-is-faas/">&lt;h1 id=&quot;what-is-this-faas-thing-everyone-talking-about-i-dont-want-a-microservice-i-want-a-big-service-that-makes-me-lots-of-money&quot;&gt;What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">About me</summary></entry><entry><title type="html">What is this “FaaS”?</title><link href="http://localhost:4001/serverless/what-is-faas/" rel="alternate" type="text/html" title="What is this “FaaS”?" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>http://localhost:4001/serverless/what-is-faas</id><content type="html" xml:base="http://localhost:4001/serverless/what-is-faas/">&lt;h1 id=&quot;what-is-this-faas-thing-everyone-talking-about-i-dont-want-a-microservice-i-want-a-big-service-that-makes-me-lots-of-money&quot;&gt;What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!&lt;/h1&gt;
 
 &lt;h3 id=&quot;what-is-function-as-a-service-faas&quot;&gt;What is Function-as-a-Service (FaaS)?&lt;/h3&gt;
 
@@ -132,7 +347,7 @@ microservice style architectures and smaller high volume back-end services.&lt;/
 
 &lt;blockquote&gt;
   &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!</summary></entry><entry><title type="html">Serverless Functions on OCI using FN</title><link href="https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/" rel="alternate" type="text/html" title="Serverless Functions on OCI using FN" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/serverless-fuctions-with-fn/">&lt;h1 id=&quot;serverless-functions-on-oracle-cloud-using-the-open-source-fn-project&quot;&gt;Serverless Functions on Oracle Cloud using the open source FN project&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">What is this “FaaS” thing everyone talking about? I don’t want a “microservice”, I want a big service that makes me lots of money!</summary></entry><entry><title type="html">Serverless Functions on OCI using FN</title><link href="http://localhost:4001/serverless/serverless-fuctions-with-fn/" rel="alternate" type="text/html" title="Serverless Functions on OCI using FN" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>http://localhost:4001/serverless/serverless-fuctions-with-fn</id><content type="html" xml:base="http://localhost:4001/serverless/serverless-fuctions-with-fn/">&lt;h1 id=&quot;serverless-functions-on-oracle-cloud-using-the-open-source-fn-project&quot;&gt;Serverless Functions on Oracle Cloud using the open source FN project&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*2KyQBP3r911sr6C3-Dh_Jg.png&quot; alt=&quot;&quot; /&gt;
 &lt;span class=&quot;figcaption_hack&quot;&gt;FN logo&lt;/span&gt;&lt;/p&gt;
@@ -431,7 +646,7 @@ on Oracle Cloud &lt;a href=&quot;http://bit.ly/brianMediumBlog&quot;&gt;http://b
 
 &lt;blockquote&gt;
   &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Serverless Functions on Oracle Cloud using the open source FN project</summary></entry><entry><title type="html">package.json</title><link href="https://oci-tutorials.github.io//packagejson/" rel="alternate" type="text/html" title="package.json" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//packagejson</id><content type="html" xml:base="https://oci-tutorials.github.io//packagejson/">&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Serverless Functions on Oracle Cloud using the open source FN project</summary></entry><entry><title type="html">package.json</title><link href="http://localhost:4001/packagejson/" rel="alternate" type="text/html" title="package.json" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>http://localhost:4001/packagejson</id><content type="html" xml:base="http://localhost:4001/packagejson/">&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;imagedims&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Function using ImageMagick that returns dimensions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -444,7 +659,7 @@ on Oracle Cloud &lt;a href=&quot;http://bit.ly/brianMediumBlog&quot;&gt;http://b
   &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;imagemagick&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^0.1.3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">{ &quot;name&quot;: &quot;imagedims&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;description&quot;: &quot;Function using ImageMagick that returns dimensions&quot;, &quot;main&quot;: &quot;func.js&quot;, &quot;author&quot;: &quot;fnproject.io&quot;, &quot;license&quot;: &quot;Apache-2.0&quot;, &quot;dependencies&quot;: { &quot;@fnproject/fdk&quot;: &quot;&amp;gt;=0.0.11&quot;, &quot;tmp&quot;: &quot;^0.0.33&quot;, &quot;imagemagick&quot;: &quot;^0.1.3&quot; } }</summary></entry><entry><title type="html">Creating custom Dockerfiles for Node.js function’s</title><link href="https://oci-tutorials.github.io//serverless/getting-started-with-customer-dockerfiles/" rel="alternate" type="text/html" title="Creating custom Dockerfiles for Node.js function’s" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//serverless/getting-started-with-customer-dockerfiles</id><content type="html" xml:base="https://oci-tutorials.github.io//serverless/getting-started-with-customer-dockerfiles/">&lt;h1 id=&quot;getting-started-with-custom-dockerfiles-for-nodejs-for-serverless-functions&quot;&gt;Getting started with Custom Dockerfiles for Node.js for Serverless Function’s&lt;/h1&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">{ &quot;name&quot;: &quot;imagedims&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;description&quot;: &quot;Function using ImageMagick that returns dimensions&quot;, &quot;main&quot;: &quot;func.js&quot;, &quot;author&quot;: &quot;fnproject.io&quot;, &quot;license&quot;: &quot;Apache-2.0&quot;, &quot;dependencies&quot;: { &quot;@fnproject/fdk&quot;: &quot;&amp;gt;=0.0.11&quot;, &quot;tmp&quot;: &quot;^0.0.33&quot;, &quot;imagemagick&quot;: &quot;^0.1.3&quot; } }</summary></entry><entry><title type="html">Creating custom Dockerfiles for Node.js function’s</title><link href="http://localhost:4001/serverless/getting-started-with-customer-dockerfiles/" rel="alternate" type="text/html" title="Creating custom Dockerfiles for Node.js function’s" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>http://localhost:4001/serverless/getting-started-with-customer-dockerfiles</id><content type="html" xml:base="http://localhost:4001/serverless/getting-started-with-customer-dockerfiles/">&lt;h1 id=&quot;getting-started-with-custom-dockerfiles-for-nodejs-for-serverless-functions&quot;&gt;Getting started with Custom Dockerfiles for Node.js for Serverless Function’s&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2560/1*Njm6sMNgKzhyVhPzwf7g0g.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -747,7 +962,7 @@ blog&lt;/a&gt;!&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Getting started with Custom Dockerfiles for Node.js for Serverless Function’s</summary></entry><entry><title type="html">func.js</title><link href="https://oci-tutorials.github.io//funcjs/" rel="alternate" type="text/html" title="func.js" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//funcjs</id><content type="html" xml:base="https://oci-tutorials.github.io//funcjs/">&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fdk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'@fnproject/fdk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Getting started with Custom Dockerfiles for Node.js for Serverless Function’s</summary></entry><entry><title type="html">func.js</title><link href="http://localhost:4001/funcjs/" rel="alternate" type="text/html" title="func.js" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>http://localhost:4001/funcjs</id><content type="html" xml:base="http://localhost:4001/funcjs/">&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fdk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'@fnproject/fdk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'imagemagick'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -771,403 +986,4 @@ blog&lt;/a&gt;!&lt;/p&gt;
     &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;inputMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'buffer'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">~~~javascript const fdk = require(‘@fnproject/fdk’); const fs = require(‘fs’); const tmp = require(‘tmp’); const im = require(‘imagemagick’);</summary></entry><entry><title type="html">func.yaml</title><link href="https://oci-tutorials.github.io//func-yaml/" rel="alternate" type="text/html" title="func.yaml" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//func-yaml</id><content type="html" xml:base="https://oci-tutorials.github.io//func-yaml/">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;schema_version: 20180708
-name: imagedims
-version: 0.0.1
-runtime: docker
-triggers:
-- name: imagedims-trigger
-type: http
-source: /imagedims
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">schema_version: 20180708 name: imagedims version: 0.0.1 runtime: docker triggers: - name: imagedims-trigger type: http source: /imagedims</summary></entry><entry><title type="html">Istio — Getting started guide</title><link href="https://oci-tutorials.github.io//kubernetes/Getting-started-with-istio/" rel="alternate" type="text/html" title="Istio — Getting started guide" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//kubernetes/Getting-started-with-istio</id><content type="html" xml:base="https://oci-tutorials.github.io//kubernetes/Getting-started-with-istio/">&lt;h1 id=&quot;istio--getting-started-with-configuring-monitoring--managing-your&quot;&gt;Istio — Getting started with Configuring, Monitoring &amp;amp; Managing your&lt;/h1&gt;
-&lt;p&gt;Microservice Deployments on Kubernetes&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*g0Jds40dh4QZSnfD9zOSiQ.jpeg&quot; alt=&quot;&quot; /&gt;
-&lt;span class=&quot;figcaption_hack&quot;&gt;Istio&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;what-is-istio&quot;&gt;What is Istio?&lt;/h3&gt;
-
-&lt;p&gt;Istio — &lt;a href=&quot;https://istio.io/&quot;&gt;https://istio.io&lt;/a&gt; — is a new Microservice service
-mesh manager for making microservice deployments less complex and eases the
-strain on development teams. It is a completely open source service mesh that
-layers transparently onto existing distributed applications. It is also a
-platform which included APIs that let it integrate into any logging platform,
-telemetry or policy system.&lt;/p&gt;
-
-&lt;h3 id=&quot;what-is-a-service-mesh&quot;&gt;&lt;strong&gt;What is a Service Mesh?&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;A service mesh is a term we use to describe the network of microservices that
-make up a distributed microservice architecture that makeup applications and the
-interactions between them.&lt;/p&gt;
-
-&lt;p&gt;As these service meshes grow with size and complexity they become harder to
-understand and manage. It can require discovery, load balancing, failure
-recovery, metrics, and monitoring. They can also have more complex operational
-requirements such as A/B testing, canary releases, rate limiting, access
-control, and end-to-end authentication.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*HynrD-Clme6snFtTc7CaOg.png&quot; alt=&quot;&quot; /&gt;
-&lt;span class=&quot;figcaption_hack&quot;&gt;Booking info application service mesh
-&lt;a href=&quot;https://istio.io/docs/tasks/telemetry/servicegraph/&quot;&gt;https://istio.io/docs/tasks/telemetry/servicegraph/&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;why-use-istio&quot;&gt;Why use Istio?&lt;/h3&gt;
-
-&lt;p&gt;How can we manage this service mesh complexity? In comes Istio which provides
-behavioral insights and operational control over the service mesh as a whole,
-offering a complete solution to satisfy the requirements of microservice
-applications.&lt;/p&gt;
-
-&lt;p&gt;Istio makes it easy to create a network of deployed services with load
-balancing, service-to-service authentication, monitoring, and more, without any
-changes in service code. To do this you add Istio support to services by
-deploying a sidecar proxy throughout your environment that intercepts all
-network communication between microservices. You then configure and manage Istio
-using its control plane functions, such as:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;· Automatic load balancing for HTTP, gRPC, WebSocket, and TCP traffic.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;· Fine-grained control of traffic behavior with rich routing rules, retries,
-failovers, and fault injection.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;· A pluggable policy layer and configuration API supporting access controls,
-rate limits and quotas.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;· Automatic metrics, logs, and traces for all traffic within a cluster,
-including cluster ingress and egress.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;· Secure service-to-service communication in a cluster with strong
-identity-based authentication and authorization.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;time-to-try-it&quot;&gt;Time to try it:&lt;/h3&gt;
-
-&lt;p&gt;In this article, I will show the steps for how I got started with Istio on my
-Kubernetes cluster that I provisioned on Oracle Cloud.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Steps taken:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Install Istio client on a my Mac.&lt;/li&gt;
-  &lt;li&gt;Deploy Istio to my Oracle Cloud OKE Kubernetes Cluster&lt;/li&gt;
-  &lt;li&gt;Deploy the Book info sample application with Sidecar Injection&lt;/li&gt;
-  &lt;li&gt;Try out some Istio functionalities — like traffic management and monitoring&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The conclusion is that leveraging Istio on OKE is quite straightforward.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;(the Envoy Sidecar is the proxy that is added to every Pod to handle all
-traffic into and out of the Pod; this is the magic that makes Istio work)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Install Istio Client in Linux VM&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The first step with Istio, prior to deploying Istio to the Kubernetes cluster,
-is the installation on your client machine of the istioctl client application
-and associated sources, including the Kubernetes yaml files required for the
-actual deployment.&lt;/p&gt;
-
-&lt;p&gt;Following the instructions in the quick start guide:
-&lt;a href=&quot;https://istio.io/docs/setup/kubernetes/quick-start.html&quot;&gt;https://istio.io/docs/setup/kubernetes/quick-start.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Firstly I downloaded the latest version of Istio to my Mac&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -L | sh -
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*UUJA2AZ71aUDd7NU8ljejA.png&quot; alt=&quot;&quot; /&gt;
-&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Service Dashboard&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio release download&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Then move to the Istio directory:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd istio-1.0.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The installation directory contains:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Installation .yaml files for Kubernetes in /install/&lt;/li&gt;
-  &lt;li&gt;Sample applications in /samples/&lt;/li&gt;
-  &lt;li&gt;The istioctl client binary in the bin/ directory. istioctl is used when manually
-injecting Envoy as a sidecar proxy and for creating routing rules and policies.&lt;/li&gt;
-  &lt;li&gt;The istio.VERSION configuration file&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You then add the istioctl client to my PATH environment variables:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export=$PWD $PATH
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Ensure that the current OCI and OKE user is allowed to do cluster administration
-tasks by creating a Role-Based Access Control policy&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; kubectl create clusterrolebinding &amp;lt;admin-binding&amp;gt; –clusterrole=cluster-admin –user=&amp;lt;user-OCID&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;admin-binding: Is any string that you want, such as “adminrolebinding”&lt;/li&gt;
-  &lt;li&gt;user: Your user OCID&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Deploy Istio to your Oracle Cloud OKE Kubernetes Cluster&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;I will cover the installation of Istio using Helm below, however, prior to
-performing the installation, let’s make some changes to the Istio “values.yaml”
-file. The “values.yaml” file informs Helm which components to install on the OKE
-platform. The “values.yaml” file is located at:&lt;/p&gt;
-
-&lt;p&gt;In order to have the components Grafana, Prometheus, Servicegraph, and Jaeger
-deployed, the “values.yaml” file needs to be modified. For each of the
-components you want to be deployed, change the enabled property from “false” to
-“true” eg:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Servicegraph:
-
-enabled: true
-
-replicaCount: 1
-
-image: servicegraph
-
-service:
-
-name: http
-
-type: ClusterIP
-
-externalPort: 8088
-
-internalPort: 8088
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Once you have made these changes to the “values.yaml” file you can save. and
-exit and you are now ready to install Istio!&lt;/p&gt;
-
-&lt;p&gt;If you are using a version of Helm prior to 2.10.0 then you must first install
-Istio’s Custom Resource Definitions via the kubectl apply:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;After this command execution you will have to wait a few seconds for the Custom
-Resource Definitions (CRDs) to be committed in the kube-apiserver.&lt;/p&gt;
-
-&lt;p&gt;Once the CRDs have been added to the kube-apiserver we can now render Istio’s
-core components to a Kubernetes manifest called &lt;code class=&quot;highlighter-rouge&quot;&gt;istio.yaml&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;helm template install/kubernetes/helm/istio --name istio --namespace istio-system &amp;gt; $HOME/istio.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now that the components have been rendered manifest file we can now install the
-components via the manifest by:&lt;/p&gt;
-
-&lt;p&gt;Creating the namespace in Kubernetes with Kubectl:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create namespace istio-system
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We then apply the istio.yaml file to install istio:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f $HOME/istio.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can now see that Istio has been installed to our pods by running:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get pods -n istio-system
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Since the “values.yaml” was modified to enable the deployment of Grafana,
-Prometheus, ServiceGraph, and Jeager you will see those components deployed as
-well.&lt;/p&gt;
-
-&lt;p&gt;While Istio states there is automatic sidecar injection; there are some slight
-limitations to this . Automatic sidecar injection must be specified per
-namespace; therefore, if you do not enable your namespace for automatic
-injection then the sidecar will not be injected into your pods. I do not
-recommend enabling the default namespace for automatic sidecar injection.&lt;/p&gt;
-
-&lt;p&gt;Please note, when enabling automatic sidecar injections that there may in future
-be some components that you deploy to the default namespace and you don’t want
-the sidecar deployed alongside the component. It would be better to deploy your
-application to a specified namespace and then set this namespace for automatic
-injection.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;In order to have sidecar injection at deployment, you must enable the namespace
-for your application. To enable the namespace for automatic injection execute
-the following command:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl label namespace default istio-injection=enabled
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;running-the-book-information-application&quot;&gt;Running the Book Information Application&lt;/h3&gt;
-
-&lt;p&gt;For this demo, we are going to deploy the Istio provided “bookinfo” sample
-application. You can find this application in the samples directory from the
-Istio download, which we downloaded earlier. Keep in mind that we previously
-enabled automatic sidecar injection during the installation of Istio and also
-enabled the default namespace for automatic sidecar injection. Therefore, when
-you deploy the book application an Envoy sidecar proxy is deployed in each pod.&lt;/p&gt;
-
-&lt;p&gt;Each of the black boxes in the below diagram are instances of the Envoy proxy
-sidecar. When the “bookinfo” application is deployed to the Kubernetes cluster
-Istio deploys the sidecar in the pod alongside of the microservice.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*vAGfMSaU7_YqZ1xHW7PZUw.png&quot; alt=&quot;&quot; /&gt;
-&lt;span class=&quot;figcaption_hack&quot;&gt;Istio bookinfo architecture
-&lt;a href=&quot;https://istio.io/docs/examples/bookinfo/&quot;&gt;https://istio.io/docs/examples/bookinfo/&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This application is polyglot, i.e., the microservices are written in different
-languages. It’s worth noting that these services have no dependencies on Istio,
-but make an interesting service mesh example, particularly because of the
-multitude of services, languages and versions for the &lt;code class=&quot;highlighter-rouge&quot;&gt;reviews&lt;/code&gt; service.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Let’s deploy the bookinfo application.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f /&amp;lt;istio installation directory&amp;gt;/samples/bookinfo/platform/kube/bookinfo.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;After the successful deployment, let’s take a look at the pods that were
-deployed.&lt;/p&gt;
-
-&lt;p&gt;We can check our pods by running:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get pods
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We then need to make the application accessible from outside your Kubernetes
-cluster. To do that, we need to create an Istio gateway:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;istio installation directory&amp;gt;/samples/bookinfo/networking
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can check this gateway by:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get gateway
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can also check the cluster-ip and ports for this gateway by running:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get svc -n istio-system
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*vQGxeXAEBBsUeixkB8BYaQ.png&quot; alt=&quot;&quot; /&gt;
-&lt;span class=&quot;figcaption_hack&quot;&gt;Gateway information output from “kubectl get svc -n istio-system”&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Istio is now installed on our cluster with the bookinginfo application, we can
-now check out some of the monitoring functionality and dashboards available.&lt;/p&gt;
-
-&lt;h3 id=&quot;available-dashboards&quot;&gt;Available Dashboards&lt;/h3&gt;
-
-&lt;p&gt;When you install Istio, with all of the dashboards enabled, there will be 4
-dashboards available, in addition to the standard Kubernetes dashboard. Each
-dashboard provides their own unique features and will be key for managing and
-monitoring your Kubernetes cluster. Since each dashboard is a product in its own
-right I will not cover each product in depth. To understand the key features of
-the dashboards I recommend that you review each product’s documentation page.
-There are also several books that have been written on many of these products.&lt;/p&gt;
-
-&lt;h3 id=&quot;grafana&quot;&gt;Grafana&lt;/h3&gt;
-
-&lt;p&gt;The Grafana add-on is a preconfigured instance of
-&lt;a href=&quot;https://grafana.com/grafana&quot;&gt;Grafana&lt;/a&gt;. The base image has been modified to
-start with both a Prometheus data source and the Istio Dashboard installed. The
-base install files for Istio, and Mixer in particular, ship with a default
-configuration of global metrics. The Istio Dashboard is built to be used in
-conjunction with the default Istio metrics configuration and a Prometheus
-backend.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-istio-dashboard-consists-of-three-main-sections&quot;&gt;The Istio Dashboard consists of three main sections:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Individual Workloads View: This section provides metrics about requests and
-responses for each individual workload within the mesh (HTTP/gRPC and TCP).
-Also, give metrics about inbound workloads and outbound services for this
-workload.&lt;/li&gt;
-  &lt;li&gt;Individual Services View: This section provides metrics about requests and
-responses for each individual service within the mesh (HTTP/gRPC and TCP). Also,
-give metrics about client and service workloads for this service.&lt;/li&gt;
-  &lt;li&gt;A Mesh Summary View: This section provides a Global Summary view of the Mesh and
-shows HTTP/gRPC and TCP workloads in the Service Mesh.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;setup-the-dashboard&quot;&gt;Setup the dashboard:&lt;/h3&gt;
-
-&lt;p&gt;To set up the Istio dashboard we will need to set up a port forward to the
-dashboard fro kubectl locally on your laptop:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath=’{.items[0].metadata.name}’) 3000:3000 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Once this has been configured we can access the dashboard at the :
-&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3000/dashboard/db/istio-mesh-dashboard&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The Istio service mesh delivers six default Grafana dashboards. Please see some
-screenshots of these dashboards below:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*Nn4Fh9X5jPQBsveStRC4nw.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Mesh Dashboard&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*3oLu5BTUtj4bkvLIhC5PGA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Service Dashboard&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*zTwLc5DXGSM-Znl7KxEjoA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Workload Dashboard&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*FKKDy4Jt8QaHs-rd2vdNhg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;figcaption_hack&quot;&gt;Istio Mixer Dashboard&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;The Grafana add-on is a pre-configured instance of Grafana. The base image
-(&lt;a href=&quot;https://hub.docker.com/r/grafana/grafana/&quot;&gt;grafana/grafana:4.1.2&lt;/a&gt;) has been
-modified to start with both a Prometheus data source and the Istio Dashboard
-installed. The Istio Dashboard is built to be used in conjunction with the
-default Istio metrics configuration and a Prometheus backend. More details on
-Prometheus: &lt;a href=&quot;https://prometheus.io/&quot;&gt;https://prometheus.io/&lt;/a&gt; .&lt;/p&gt;
-
-&lt;p&gt;Why not give this a try for yourself with a free Kubernetes instance hosted on
-Oracle Cloud with $300 free credit
-&lt;a href=&quot;http://bit.ly/brianMediumBlog&quot;&gt;http://bit.ly/brianMediumBlog&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/kubernetes?source=post&quot;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/istio?source=post&quot;&gt;Istio&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/devops?source=post&quot;&gt;DevOps&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/cloud-computing?source=post&quot;&gt;Cloud Computing&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/tag/deployment?source=post&quot;&gt;Deployment&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Brian Mathews &lt;a href=&quot;https://twitter.com/DevOps4Days&quot;&gt;@DevOps4Days&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">Istio — Getting started with Configuring, Monitoring &amp;amp; Managing your Microservice Deployments on Kubernetes</summary></entry><entry><title type="html">Dockerfile - Magick function</title><link href="https://oci-tutorials.github.io//Dockerfile-magick-function/" rel="alternate" type="text/html" title="Dockerfile - Magick function" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>https://oci-tutorials.github.io//Dockerfile-magick-function</id><content type="html" xml:base="https://oci-tutorials.github.io//Dockerfile-magick-function/">&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM fnproject/node:dev as build-stage
-WORKDIR /function
-ADD package.json /function/fn
-RUN npm install
-FROM fnproject/node
-RUN apk add --no-cache imagemagick
-WORKDIR /function
-ADD . /function/
-COPY --from=build-stage /function/node_modules/ /function/node_modules/
-ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">FROM fnproject/node:dev as build-stage WORKDIR /function ADD package.json /function/fn RUN npm install FROM fnproject/node RUN apk add --no-cache imagemagick WORKDIR /function ADD . /function/ COPY --from=build-stage /function/node_modules/ /function/node_modules/ ENTRYPOINT [&quot;node&quot;, &quot;func.js&quot;]</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;name&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil}</name></author><summary type="html">~~~javascript const fdk = require(‘@fnproject/fdk’); const fs = require(‘fs’); const tmp = require(‘tmp’); const im = require(‘imagemagick’);</summary></entry></feed>
