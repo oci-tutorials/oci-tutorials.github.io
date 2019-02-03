@@ -2,7 +2,7 @@
 date: 2019-01-25
 title: Dockerfile - Magick function
 resources:
-type: Sample
+type: SampleTmp
 set_order: 1
 ---
 

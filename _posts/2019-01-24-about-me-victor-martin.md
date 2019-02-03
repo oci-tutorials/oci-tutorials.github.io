@@ -1,12 +1,13 @@
 ---
 date: 2019-01-24
 title: Victor Martin
+video_id: qAQNEKvheY4
 description: I am a developer advocate
 categories:
   - Contributors
 resources:
   - name: "About me"
-type: Post
+type: Video
 ---
 
 ## About me

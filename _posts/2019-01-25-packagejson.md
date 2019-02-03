@@ -2,7 +2,7 @@
 date: 2019-01-25
 title: package.json
 resources:
-type: Sample
+type: SampleTmp
 set_order: 1
 ---
 ~~~json
