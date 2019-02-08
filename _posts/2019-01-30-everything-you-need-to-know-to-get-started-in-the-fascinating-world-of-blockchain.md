@@ -87,11 +87,9 @@ There is no doubt that it is time to get on board with this amazing technology, 
 
 **This sounds great, but … How can I get started and try it?**
 
-Shortly, the Blockchain service will be available in the Oracle Cloud within the *free 30-days Trial*.
+Oracle’s Blockchain service is available within the *free 30-days Trial*. Furthermore, there are many other solutions available to test. Why not try them?
 
-But in the meanwhile, there are many other solutions available to test. Why not try them?
-
-[*Sign Up for Free!*](https://myservices.us.oraclecloud.com/mycloud/signup?sourceType=:so:bl:or::RC_WWSA180813P00054:Q3_MM_JB_KS_2&SC=:so:bl:or::RC_WWSA180813P00054:Q3_MM_JB_KS_2&pcode=WWSA180813P00054:Q3_MM_JB_KS_2)
+[*Sign Up for Free!*](https://myservices.us.oraclecloud.com/mycloud/signup?sourceType=:ex:tb:::RC_WWSA180813P00054:Q3_MM_RT_BC&SC=:ex:tb:::RC_WWSA180813P00054:Q3_MM_RT_BC&pcode=WWSA180813P00054:Q3_MM_RT_BC)
 
 ![Image](https://cdn-images-1.medium.com/max/800/1*wGVDR9h6t7tW7cnd5dWSDw.png)
 
