@@ -40,6 +40,7 @@ After opening a terminal, we can run the following command to run the installer 
 
     bash -c "$(curl -L [https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh](https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh))"
 
+
 Upon successful completion of the installation, we need to run a one-time configuration process that will store a config file under the ~/.oci directory. CLI requests are authenticated using API keys, so if you need to generate a key pair it is possible to do so by running oci setup keys first and providing a path to store the generated private and public keys (in this case, do not forget also to upload the generated public key to the User console for the authentication mechanism to work properly).
 
 To start the configuration process we need to run the oci setup config command and follow the prompts. Three parameters will be required:
@@ -72,6 +73,7 @@ The random text file generated in the previous step can be now uploaded using th
     --name <object_name> \
     --part-size <upload_part_size_in_MB> \
     --parallel-upload-count <maximum_number_parallel_uploads>
+
 
 Let’s quickly review the parameters used by this command:
 
