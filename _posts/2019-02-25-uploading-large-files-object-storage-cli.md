@@ -3,7 +3,6 @@ date: 2019-02-25
 title: Uploading large files to Oracle Object Storage using a Command Line Interface (CLI)
 description: Tutorial that lists and explain the steps required to upload large files to the Oracle Object Storage using the CLI on Linux or MacOS
 categories:
-  - OCI
   - Object Storage
 resources:
   - name: "What is OCI?"
